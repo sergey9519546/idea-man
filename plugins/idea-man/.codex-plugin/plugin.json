@@ -1,0 +1,74 @@
+{
+  "interface": {
+    "brandColor": "#4B39F2",
+    "brandColorDark": "#26D9E6",
+    "capabilities": [],
+    "category": "Creativity",
+    "composerIcon": "./assets/icon.png",
+    "composerIconDark": "./assets/icon.png",
+    "defaultPrompt": [
+      "Find three unexpected directions for my creative brief and develop the strongest.",
+      "Critique my idea honestly, identify its weak spots, and help me improve it.",
+      "I am stuck. Help me reframe this problem and find a practical way forward."
+    ],
+    "developerName": "Sergey Avetisyan",
+    "displayName": "Idea Man",
+    "logo": "./assets/icon.png",
+    "logoDark": "./assets/icon.png",
+    "longDescription": "Find useful ideas and turn a chosen direction into a practical result. Bring a business challenge, engineering contradiction, research question, inefficient process, everyday problem or creative brief.\n\nIdea Man identifies the outcome, evidence, constraints and current stage, then chooses useful thinking methods and specialist workflows. Explore reframing, inversion, subtraction, analogy, systems reasoning, first principles, contradiction resolution and experiments.\n\nEleven skills cover innovation strategy, research and writing, quality checks, scoped learning, briefing, variations, critique, concept development, execution handoff and optional local project continuity. Use supplied sources for research, preserve approved decisions during exact edits, and compare distinct approaches with clear tradeoffs.\n\nProduction uses tools available in your host. Optional Python helpers validate structured plans and local project records. Saving a project requires your authorization. Ideas and predictions remain hypotheses until evidence supports them; plans and prompts are distinguished from executed work.",
+    "shortDescription": "Insight first. Only ideas worth making."
+  },
+  "name": "idea-man",
+  "version": "1.2.1",
+  "description": "Free creative director. Finds the insight first, generates far past the obvious, and shows only ideas that survive a blind critic (7+).",
+  "author": {
+    "name": "Sergey Avetisyan"
+  },
+  "keywords": [
+    "creativity",
+    "ideation",
+    "creative-director",
+    "brainstorming",
+    "innovation",
+    "problem-solving",
+    "concepts",
+    "story",
+    "advertising",
+    "product",
+    "creative-studio",
+    "task-routing",
+    "concept-development",
+    "creative-review",
+    "production-handoff",
+    "strategy",
+    "systems-thinking",
+    "operations",
+    "engineering",
+    "research",
+    "experiments",
+    "decision-making",
+    "innovation-methods"
+  ],
+  "license": "MIT",
+  "skills": "./skills",
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "prompts": [
+          "Our repair shop keeps missing dates. Diagnose likely causes and propose a small test before recommending a fix.",
+          "Find five business models for unused equipment, using only resources we already have. Compare their assumptions.",
+          "Resolve this engineering contradiction: lower weight without losing impact resistance. Separate hypotheses from evidence.",
+          "Use only the interviews I supply to write a findings memo. Mark claims the interviews do not support.",
+          "Give me six distinct mechanisms using analogy, then develop the strongest direction for this brief.",
+          "Critique my chosen idea and improve its weak points while preserving the approved constraints."
+        ],
+        "commerce": false,
+        "commerce_description": "Idea Man is free and does not sell products, process payments or offer purchases."
+      },
+      "publication": {
+        "release_notes": "Idea Man 1.2.1 packages eleven innovation skills and seventeen thinking modes. This release connects the conductor, specialists and optional delegated agents through a shared assignment contract, adds both approved character icons to every skill, and includes the interactive brand kit. Python planning helpers remain optional; execution depends on host tools.",
+        "countries": []
+      }
+    }
+  }
+}

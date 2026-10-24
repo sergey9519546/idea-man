@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "specialists": {
+    "creative-director": {
+      "path": "skills/creative-director/SKILL.md",
+      "status": "packaged"
+    },
+    "creative-brief": {
+      "path": "skills/creative-brief/SKILL.md",
+      "status": "packaged"
+    },
+    "concept-variations": {
+      "path": "skills/concept-variations/SKILL.md",
+      "status": "packaged"
+    },
+    "creative-review": {
+      "path": "skills/creative-review/SKILL.md",
+      "status": "packaged"
+    },
+    "concept-development": {
+      "path": "skills/concept-development/SKILL.md",
+      "status": "packaged"
+    },
+    "execution-handoff": {
+      "path": "skills/execution-handoff/SKILL.md",
+      "status": "packaged"
+    },
+    "creative-project": {
+      "path": "skills/creative-project/SKILL.md",
+      "status": "packaged"
+    },
+    "research-and-writing": {
+      "path": "skills/research-and-writing/SKILL.md",
+      "status": "packaged"
+    },
+    "artifact-quality": {
+      "path": "skills/artifact-quality/SKILL.md",
+      "status": "packaged"
+    },
+    "creative-learning": {
+      "path": "skills/creative-learning/SKILL.md",
+      "status": "packaged"
+    },
+    "innovation-strategy": {
+      "path": "skills/innovation-strategy/SKILL.md",
+      "status": "packaged"
+    }
+  },
+  "methods": {
+    "L1": {
+      "name": "Reframe",
+      "procedure": "Separate the stated solution from the outcome; change the question or system boundary and examine consequences.",
+      "output": "Reframed problem and assumptions",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "L1"
+    },
+    "L2": {
+      "name": "Invert",
+      "procedure": "Describe how to guarantee failure; invert causal contributors into testable alternative rules.",
+      "output": "Failure mechanisms and inverted alternatives",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "L2"
+    },
+    "L3": {
+      "name": "Subtract",
+      "procedure": "Remove steps, burdens or components while preserving required functions; inspect the tradeoff.",
+      "output": "Simpler mechanisms and lost functions",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "L3"
+    },
+    "L4": {
+      "name": "Provoke",
+      "procedure": "Use a clearly hypothetical extreme to extract a useful principle; translate it back into a bounded option.",
+      "output": "Provocation-derived principle and testable option",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "L4"
+    },
+    "L5": {
+      "name": "Connect",
+      "procedure": "Map a structurally analogous system onto the problem; test relationships and where the analogy breaks.",
+      "output": "Transferred mechanisms and boundary conditions",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "L5"
+    },
+    "S1": {
+      "name": "Map and disrupt",
+      "procedure": "Map conventions, competitors and unserved jobs; challenge a convention relevant to the bottleneck.",
+      "output": "Convention map and alternative mechanisms",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "S1"
+    },
+    "S2": {
+      "name": "Resolve contradictions",
+      "procedure": "State which improvement worsens which property; separate conditions, resources or timing to seek resolutions.",
+      "output": "Explicit contradiction and candidate resolutions",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "S2"
+    },
+    "S3": {
+      "name": "Constrain",
+      "procedure": "Treat fixed resources as design inputs and redesign around them without silently relaxing limits.",
+      "output": "Constraint-native options and feasibility checks",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "S3"
+    },
+    "Y1": {
+      "name": "Systems leverage",
+      "procedure": "Map stocks, flows, feedback, delays and incentives; compare interventions and second-order effects.",
+      "output": "System map and leverage hypotheses",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "Y1"
+    },
+    "Y2": {
+      "name": "Causes and first principles",
+      "procedure": "Separate observations from assumptions; compare causal models and identify discriminating evidence.",
+      "output": "Causal model and discriminating checks",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "Y2"
+    },
+    "H1": {
+      "name": "Inhabit",
+      "procedure": "Reconstruct a specific stakeholder's struggling moment from evidence; label imagined needs as hypotheses.",
+      "output": "Job, friction, workaround and validation question",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "H1"
+    },
+    "H2": {
+      "name": "Perception and behavior",
+      "procedure": "Examine attention, framing, incentives and barriers; propose bounded behavioral interventions.",
+      "output": "Behavior hypothesis and observable test",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "H2"
+    },
+    "H3": {
+      "name": "Mine experience",
+      "procedure": "Extract tensions and useful specifics from supplied lived or project experience without inventing it.",
+      "output": "Grounded insight candidates",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "H3"
+    },
+    "C1": {
+      "name": "Sequence",
+      "procedure": "Arrange causal or experiential beats while preserving established causality and knowledge boundaries.",
+      "output": "Sequence with purposeful transitions",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "C1"
+    },
+    "C2": {
+      "name": "Repeatable engine",
+      "procedure": "Define a rule that generates fresh instances; test multiple instances and failure limits.",
+      "output": "Generative mechanism with worked examples",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "C2"
+    },
+    "D1": {
+      "name": "Diverge and combine",
+      "procedure": "Generate across distinct dimensions, cluster mechanisms and recombine useful differences.",
+      "output": "Diverse alternatives and variation axes",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "D1"
+    },
+    "D2": {
+      "name": "Test and learn",
+      "procedure": "Find the assumption that changes the decision; define the cheapest discriminating test, falsifier and next action.",
+      "output": "Experiment or decision test with explicit unknowns",
+      "reference": "skills/creative-director/references/thinker-arsenal.md",
+      "section_prefix": "D2"
+    }
+  },
+  "domain_rubrics": {
+    "general": "analysis",
+    "business": "decision",
+    "operations": "process",
+    "engineering": "code",
+    "research": "analysis",
+    "product": "product",
+    "service": "process",
+    "learning": "analysis",
+    "personal": "decision",
+    "policy": "analysis",
+    "story": "story",
+    "visual": "visual",
+    "campaign": "campaign",
+    "game": "game"
+  }
+}

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F6F43C">
+  <title>Idea Man — Only the ideas worth making</title>
+  <meta name="description" content="Free creative-director plugin for Claude and Codex. Finds the insight first, then shows only ideas that score 7+ after a blind critic. Every big idea needs a sidekick.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Idea Man — Every big idea needs a sidekick.">
+  <meta property="og:description" content="Insight first. A blind critic kills the weak ideas. You only see what scores 7+.">
+  {{CANONICAL}}
+  <link rel="icon" href="favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header"><nav class="wrap navigation" aria-label="Main navigation">
+    <a class="brand" href="#top" aria-label="Idea Man home"><img src="assets/mark.svg" alt="" width="44" height="44"><span>IDEA MAN<span class="brand-dot">.</span></span></a>
+    <div class="nav-links"><span class="nav-sub"><a href="#process">How it works</a><a href="#sample-output">Sample</a></span><a class="nav-cta" href="#install">{{CTA_LABEL}} <span aria-hidden="true">↗</span></a></div>
+  </nav></header>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title"><div class="wrap hero-grid">
+      <div class="hero-copy"><p class="eyebrow"><span class="small-star" aria-hidden="true">✳</span> Free creative director for Claude and Codex</p><h1 id="hero-title">ONLY THE IDEAS<br> WORTH MAKING.</h1><p class="hero-intro">Idea Man finds the insight first, generates far past the obvious, then a blind critic kills everything that scores under 7.</p><div class="hero-actions"><a class="button button-dark" href="#install">{{CTA_LABEL}} <span aria-hidden="true">↗</span></a><a class="hero-link" href="#sample-output">See a sample <span aria-hidden="true">↓</span></a></div><p class="hero-caption">Every big idea needs a sidekick.</p></div>
+      <figure class="hero-art"><picture><source type="image/webp" srcset="assets/lightbulb-hero-1024.webp"><img src="assets/lightbulb-hero.png" width="1024" height="1024" alt="Lightbulb Hero: a faceless cyan bulb in round violet glasses and a coral cape, hands on hips, on a bright yellow background." fetchpriority="high"></picture><figcaption><span aria-hidden="true">↗</span> Your sidekick.<br>Your name on the idea.</figcaption></figure>
+    </div><div class="wrap hero-bottom"><p>Film, series, music video, ads, products, games, business problems.</p><a href="#process" aria-label="See how Idea Man works">How it works <span aria-hidden="true">↓</span></a></div></section>
+
+    <section class="toolkit-strip" aria-label="What Idea Man does"><div class="wrap toolkit-row"><p><strong>Insight</strong><span>before ideas</span></p><span class="strip-star" aria-hidden="true">✳</span><p><strong>7+</strong><span>or it is cut</span></p><span class="strip-star" aria-hidden="true">✳</span><p class="strip-promise">Free. 5 modes: Full, Spark, Critique, Unstick, Room.</p></div></section>
+
+    <section class="possibilities section" id="possibilities" aria-labelledby="possibilities-title"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">01 / Start where you are</p><h2 id="possibilities-title">ANY PROJECT.<br>ANY STAGE.</h2></div><p>Full session, quick spark, critique, unstick, or room: parallel thinkers with a blind critic. Pick the mode that fits where you are.</p></div>
+      <div class="domain-layout"><div class="domain-list" aria-label="Explore challenges by field">
+        <button type="button" class="domain-button" data-domain="business" aria-pressed="true"><span>01</span>Business <span aria-hidden="true">↗</span></button>
+        <button type="button" class="domain-button" data-domain="operations" aria-pressed="false"><span>02</span>Operations <span aria-hidden="true">↗</span></button>
+        <button type="button" class="domain-button" data-domain="engineering" aria-pressed="false"><span>03</span>Engineering <span aria-hidden="true">↗</span></button>
+        <button type="button" class="domain-button" data-domain="research" aria-pressed="false"><span>04</span>Research <span aria-hidden="true">↗</span></button>
+        <button type="button" class="domain-button" data-domain="everyday" aria-pressed="false"><span>05</span>Everyday life <span aria-hidden="true">↗</span></button>
+        <button type="button" class="domain-button" data-domain="creative" aria-pressed="false"><span>06</span>Creative work <span aria-hidden="true">↗</span></button>
+      </div><article class="example-panel" id="domain-panel" aria-live="polite" aria-atomic="true"><p class="eyebrow" id="example-label">Try a business challenge</p><h3 id="example-title">Find the opportunity<br>in what you already have.</h3><p class="example-prompt" id="example-prompt">“Find five business models for this unused equipment, using the resources we already have.”</p><div class="example-outcome"><p class="eyebrow">A useful direction</p><p id="example-outcome">Explore distinct models, compare assumptions and tradeoffs, then choose a small test before making a bigger commitment.</p></div><button class="copy-button" type="button" id="copy-example">Copy this starting point <span aria-hidden="true">↗</span></button><p class="example-note">Example prompts illustrate the workflow; results depend on your context and tools.</p></article></div>
+    </div></section>
+
+    <section class="process section" id="process" aria-labelledby="process-title"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">02 / How it works</p><h2 id="process-title">INSIGHT FIRST.<br>THEN IDEAS.</h2></div><p>Most brainstorming starts generating before it understands the problem. Idea Man does it in the other order.</p></div><div class="process-grid"><figure class="nerd-art"><picture><source type="image/webp" srcset="assets/invisible-nerd-1024.webp"><img src="assets/invisible-nerd.png" width="1024" height="1024" alt="Invisible Nerd: a pair of floating round cyan glasses and a coral cape with no visible face or body." loading="lazy"></picture><figcaption>Fresh eyes. Honest verdicts.</figcaption></figure><ol class="steps"><li><span>01</span><div><h3>Diagnose the problem.</h3><p>What are you really trying to solve, for whom, with what constraints? The brief gets sharpened before any idea appears.</p></div></li><li><span>02</span><div><h3>Find the insight.</h3><p>The true thing about people or the situation that makes a good idea inevitable. Everything else is built on it.</p></div></li><li><span>03</span><div><h3>Generate far past the obvious.</h3><p>Structural methods drawn from real master thinkers (lateral, systems, divergent and more) push past the first ten ideas everyone has.</p></div></li><li><span>04</span><div><h3>Let a blind critic kill the weak ones.</h3><p>A separate critic scores each idea on a calibrated scale. Only 7+ gets presented, with its risks and the cheapest test.</p></div></li></ol></div></div></section>
+
+    <section class="methods section" aria-labelledby="methods-title"><div class="wrap methods-grid"><div><p class="eyebrow">03 / The toolkit</p><h2 id="methods-title">THE RIGHT<br> THINKER FOR<br> THE PROBLEM.</h2></div><div class="methods-copy"><p class="large-copy">Eleven skills in one plugin: the creative director, plus brief, concept variations, concept development, creative review, artifact quality, research and writing, innovation strategy, creative learning, execution handoff and project continuity.</p><details><summary>Explore all 17 thinking methods <span aria-hidden="true">+</span></summary><ul class="method-list"><li>Reframing</li><li>Inversion</li><li>Subtraction</li><li>Provocation</li><li>Connection</li><li>Convention mapping</li><li>Contradiction resolution</li><li>Constrained invention</li><li>Systems leverage</li><li>Causes / first principles</li><li>Stakeholder perspective</li><li>Perception</li><li>Experience mining</li><li>Sequencing</li><li>Repeatable mechanisms</li><li>Divergence</li><li>Testing</li></ul></details><p class="methods-note">The host model interprets your request and selects the workflow. The optional planner validates structured workflow assessments; it does not independently understand raw language or execute external tools.</p></div></div></section>
+
+    <section class="sample-output section" id="sample-output" aria-labelledby="sample-title"><div class="wrap"><p class="eyebrow">04 / Sample output</p><h2 id="sample-title">WHAT YOU ACTUALLY GET.</h2>
+      <dl>
+        <dt>Brief</dt><dd>A tiny coffee roaster is launching decaf with $5k.</dd>
+        <dt>Insight</dt><dd>People apologise when they order decaf.</dd>
+        <dt>The idea</dt><dd><strong>No Reason Needed.</strong> Ordering decaf becomes a small ritual, not a confession: an opt-in bell customers can choose to ring, so nobody is singled out.</dd>
+        <dt>Why it works</dt><dd>It removes the apology instead of hiding the product.</dd>
+        <dt>Killed</dt><dd><ul><li><strong>Rename it “Midnight Roast.”</strong> Cosmetic: it hides the label, not the apology.</li><li><strong>Free decaf Fridays.</strong> A discount signals “lesser product,” confirming the stigma.</li></ul></dd>
+        <dt>Cheapest test</dt><dd>One weekend, one counter, one bell and a small sign. Watch whether people order decaf without apologising.</dd>
+      </dl>
+      <p class="small">Illustrative example, written to show the format. Your results depend on your brief.</p></div></section>
+
+    <section class="install section" id="install" aria-labelledby="install-title"><div class="wrap"><div class="install-top"><div><p class="eyebrow">05 / Install</p><h2 id="install-title">{{INSTALL_HEADING}}</h2></div><div class="install-actions">{{MARKETPLACE_LINK}}{{REPOSITORY_LINK}}<p class="small">Free · No in-plugin purchases · v{{VERSION}}</p></div></div>
+      <div class="install-host"><h3>Claude Code</h3>{{CLAUDE_INSTALL}}</div>
+      <div class="install-host"><h3>Claude.ai and Cowork</h3>{{CLAUDEAI_INSTALL}}</div>
+      <div class="install-host"><h3>Codex</h3>{{CODEX_INSTALL}}</div>
+      <div class="starter"><div><p class="eyebrow">Your first brief</p><p id="starter-prompt">“A tiny coffee roaster is launching decaf with $5k. Find the insight first, then show me only ideas worth making.”</p></div><button class="button button-light" type="button" id="copy-starter">Copy prompt <span aria-hidden="true">↗</span></button></div></div></section>
+  </main>
+  <footer class="footer"><div class="wrap"><div class="footer-top"><a class="brand" href="#top"><img src="assets/mark.svg" alt="" width="36" height="36"><span>IDEA MAN<span class="brand-dot">.</span></span></a><p>Every big idea needs a sidekick.</p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></div><div class="footer-notes"><p><strong>Your work stays yours.</strong> Idea Man’s characters and visual style identify this plugin. Your projects keep their own identity. Local project records are optional and saved only when authorized.</p><p><strong>Clear about the limits.</strong> The plugin installs no background observer, raw-prompt logging, model training or automatic cross-chat learning. Your host and connected services control their own data handling. Outputs need appropriate evidence and review; execution depends on available tools.</p></div><div class="footer-bottom"><p class="footer-small">Published by Sergey Avetisyan. No analytics or third-party font scripts are included in this site. Hosting providers may process standard request data. Idea Man is free and independent. Not endorsed by Anthropic or OpenAI; host names identify compatibility only.</p><nav class="legal-links" aria-label="Information"><a href="support/">Support</a><a href="privacy/">Privacy</a><a href="terms/">Terms</a><a href="brand/">Brand kit</a></nav></div></div></footer>
+  <div class="toast" id="copy-status" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

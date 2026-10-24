@@ -1,0 +1,15 @@
+{
+  "name": "idea-man-marketplace",
+  "description": "Idea Man: insight-first creative direction with a blind critic",
+  "owner": {
+    "name": "Sergey Avetisyan"
+  },
+  "plugins": [
+    {
+      "name": "idea-man",
+      "source": "./plugins/idea-man",
+      "version": "1.2.1",
+      "description": "A free creative director: finds the insight first, generates past the obvious, and a blind critic shows only ideas that score 7+."
+    }
+  ]
+}

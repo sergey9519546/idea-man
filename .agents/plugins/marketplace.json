@@ -1,0 +1,20 @@
+{
+  "name": "idea-man-marketplace",
+  "interface": {
+    "displayName": "Idea Man"
+  },
+  "plugins": [
+    {
+      "name": "idea-man",
+      "source": {
+        "source": "local",
+        "path": "./plugins/idea-man"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Creativity"
+    }
+  ]
+}

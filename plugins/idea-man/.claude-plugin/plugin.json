@@ -1,0 +1,35 @@
+{
+  "name": "idea-man",
+  "displayName": "Idea Man",
+  "version": "1.2.1",
+  "description": "Free creative director. Finds the insight first, generates far past the obvious, and shows only ideas that survive a blind critic (7+).",
+  "author": {
+    "name": "Sergey Avetisyan"
+  },
+  "license": "MIT",
+  "keywords": [
+    "creativity",
+    "ideation",
+    "creative-director",
+    "brainstorming",
+    "innovation",
+    "problem-solving",
+    "concepts",
+    "story",
+    "advertising",
+    "product",
+    "creative-studio",
+    "task-routing",
+    "concept-development",
+    "creative-review",
+    "production-handoff",
+    "strategy",
+    "systems-thinking",
+    "operations",
+    "engineering",
+    "research",
+    "experiments",
+    "decision-making",
+    "innovation-methods"
+  ]
+}

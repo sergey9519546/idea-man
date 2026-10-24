@@ -1,0 +1,712 @@
+{
+  "description": "Human-authored semantic examples and deterministic planning fixtures. These do not constitute live host recognition tests.",
+  "cases": [
+    {
+      "id": "fresh_brief",
+      "prompt": "Give me three new film concepts.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "ideate"
+        ],
+        "deliverable": "text",
+        "scope": "open",
+        "selection": "not_needed",
+        "source": "not_needed",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Give me three new film concepts."
+          }
+        ]
+      },
+      "includes": [
+        "extract_insight",
+        "generate_concepts",
+        "compare_concepts"
+      ],
+      "excludes": [
+        "produce_artifact",
+        "select_concept"
+      ]
+    },
+    {
+      "id": "six_visual_variants",
+      "prompt": "Show six more, keep the round glasses.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "vary"
+        ],
+        "deliverable": "image",
+        "scope": "bounded",
+        "selection": "not_needed",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Show six more, keep the round glasses."
+          }
+        ],
+        "requested_count": 6,
+        "capabilities": [
+          "image_generation"
+        ]
+      },
+      "includes": [
+        "design_variations",
+        "generate_concepts",
+        "produce_artifact",
+        "verify_output"
+      ],
+      "excludes": [
+        "extract_insight",
+        "select_concept"
+      ]
+    },
+    {
+      "id": "exact_bulb_edit",
+      "prompt": "Remove eyes, mouth and filament from 02; keep the character.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "revise"
+        ],
+        "deliverable": "image",
+        "scope": "exact",
+        "selection": "user",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Remove eyes, mouth and filament from 02; keep the character."
+          }
+        ],
+        "capabilities": [
+          "image_generation"
+        ]
+      },
+      "includes": [
+        "revise_source",
+        "produce_artifact",
+        "verify_output"
+      ],
+      "excludes": [
+        "generate_concepts",
+        "extract_insight",
+        "compare_concepts",
+        "resolve_selection"
+      ]
+    },
+    {
+      "id": "deep_exact_edit",
+      "prompt": "Ultrathink, but only change the title size.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "revise"
+        ],
+        "deliverable": "text",
+        "scope": "exact",
+        "selection": "user",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Ultrathink, but only change the title size."
+          }
+        ],
+        "effort": "deep"
+      },
+      "includes": [
+        "revise_source",
+        "verify_output"
+      ],
+      "excludes": [
+        "generate_concepts",
+        "extract_insight"
+      ]
+    },
+    {
+      "id": "review_only",
+      "prompt": "Tell me what is weak; don't change it.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "review"
+        ],
+        "deliverable": "text",
+        "scope": "open",
+        "selection": "not_needed",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Tell me what is weak; don't change it."
+          }
+        ]
+      },
+      "includes": [
+        "compare_concepts"
+      ],
+      "excludes": [
+        "revise_source",
+        "produce_artifact",
+        "develop_concept"
+      ]
+    },
+    {
+      "id": "choose_and_develop",
+      "prompt": "Compare these and develop the strongest.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "review",
+          "develop"
+        ],
+        "deliverable": "text",
+        "scope": "open",
+        "selection": "assistant_authorized",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Compare these and develop the strongest."
+          }
+        ]
+      },
+      "includes": [
+        "compare_concepts",
+        "select_concept",
+        "develop_concept"
+      ],
+      "excludes": [
+        "resolve_selection",
+        "generate_concepts"
+      ]
+    },
+    {
+      "id": "selected_concept",
+      "prompt": "We picked B. Turn it into a short-film treatment.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "develop"
+        ],
+        "deliverable": "text",
+        "scope": "bounded",
+        "selection": "user",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "We picked B. Turn it into a short-film treatment."
+          }
+        ]
+      },
+      "includes": [
+        "develop_concept"
+      ],
+      "excludes": [
+        "select_concept",
+        "resolve_selection",
+        "generate_concepts"
+      ]
+    },
+    {
+      "id": "missing_reference",
+      "prompt": "Edit the exact image from my other chat.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "revise"
+        ],
+        "deliverable": "image",
+        "scope": "exact",
+        "selection": "user",
+        "source": "missing",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Edit the exact image from my other chat."
+          }
+        ],
+        "capabilities": [
+          "image_generation"
+        ]
+      },
+      "includes": [
+        "resolve_source",
+        "revise_source",
+        "produce_artifact"
+      ],
+      "excludes": [
+        "generate_concepts"
+      ]
+    },
+    {
+      "id": "missing_video_tool",
+      "prompt": "Render the approved video concept.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "produce"
+        ],
+        "deliverable": "video",
+        "scope": "open",
+        "selection": "user",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Render the approved video concept."
+          }
+        ],
+        "capabilities": []
+      },
+      "includes": [
+        "prepare_handoff",
+        "produce_artifact"
+      ],
+      "excludes": [
+        "generate_concepts"
+      ]
+    },
+    {
+      "id": "blocked_brief_independent_research",
+      "prompt": "Research the market and ideate, but the audience is unresolved.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "research",
+          "ideate"
+        ],
+        "deliverable": "text",
+        "scope": "open",
+        "selection": "not_needed",
+        "source": "not_needed",
+        "brief": "blocked",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Research the market and ideate, but the audience is unresolved."
+          }
+        ],
+        "capabilities": [
+          "web"
+        ]
+      },
+      "includes": [
+        "clarify_brief",
+        "research",
+        "generate_concepts"
+      ],
+      "excludes": []
+    },
+    {
+      "id": "repeated_rejection",
+      "prompt": "No, try again. The last two batches missed it.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "vary"
+        ],
+        "deliverable": "text",
+        "scope": "open",
+        "selection": "not_needed",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "No, try again. The last two batches missed it."
+          }
+        ],
+        "feedback": "rejection",
+        "rejection_count": 2,
+        "requested_count": 6
+      },
+      "includes": [
+        "diagnose_rejection",
+        "design_variations",
+        "generate_concepts"
+      ],
+      "excludes": [
+        "select_concept"
+      ]
+    },
+    {
+      "id": "status_only",
+      "prompt": "Where are we?",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "status"
+        ],
+        "deliverable": "text",
+        "scope": "open",
+        "selection": "not_needed",
+        "source": "not_needed",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Where are we?"
+          }
+        ]
+      },
+      "includes": [
+        "answer_status"
+      ],
+      "excludes": [
+        "generate_concepts",
+        "develop_concept",
+        "produce_artifact"
+      ]
+    },
+    {
+      "id": "status_then_continue",
+      "prompt": "Give a quick update, then finish the selected concept.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "status",
+          "develop"
+        ],
+        "deliverable": "text",
+        "scope": "open",
+        "selection": "user",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Give a quick update, then finish the selected concept."
+          }
+        ]
+      },
+      "includes": [
+        "answer_status",
+        "develop_concept"
+      ],
+      "excludes": [
+        "generate_concepts"
+      ]
+    },
+    {
+      "id": "handoff_only",
+      "prompt": "Write the image production brief, don't generate yet.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "handoff"
+        ],
+        "deliverable": "text",
+        "scope": "open",
+        "selection": "user",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Write the image production brief, don't generate yet."
+          }
+        ]
+      },
+      "includes": [
+        "prepare_handoff"
+      ],
+      "excludes": [
+        "produce_artifact",
+        "generate_concepts"
+      ]
+    },
+    {
+      "id": "research_then_ideate",
+      "prompt": "Check current competitors, then find three different product ideas.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "research",
+          "ideate"
+        ],
+        "deliverable": "text",
+        "scope": "open",
+        "selection": "not_needed",
+        "source": "not_needed",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Check current competitors, then find three different product ideas."
+          }
+        ],
+        "capabilities": [
+          "web"
+        ]
+      },
+      "includes": [
+        "research",
+        "extract_insight",
+        "generate_concepts"
+      ],
+      "excludes": [
+        "produce_artifact"
+      ]
+    },
+    {
+      "id": "low_confidence_reversible",
+      "prompt": "Try a few directions; make reasonable assumptions.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "ideate"
+        ],
+        "deliverable": "text",
+        "scope": "open",
+        "selection": "not_needed",
+        "source": "not_needed",
+        "brief": "assumptions_ok",
+        "confidence": 0.4,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Try a few directions; make reasonable assumptions."
+          }
+        ]
+      },
+      "includes": [
+        "form_brief",
+        "generate_concepts"
+      ],
+      "excludes": [
+        "clarify_brief"
+      ]
+    },
+    {
+      "id": "consequential_ambiguity",
+      "prompt": "Make a campaign, but whether this is for adults or children is unclear.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "ideate"
+        ],
+        "deliverable": "text",
+        "scope": "open",
+        "selection": "not_needed",
+        "source": "not_needed",
+        "brief": "sufficient",
+        "confidence": 0.4,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Make a campaign, but whether this is for adults or children is unclear."
+          }
+        ],
+        "material_ambiguity": true
+      },
+      "includes": [
+        "clarify_brief"
+      ],
+      "excludes": []
+    },
+    {
+      "id": "approve_both",
+      "prompt": "I approve both; save those decisions.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "record"
+        ],
+        "deliverable": "text",
+        "scope": "open",
+        "selection": "user",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "I approve both; save those decisions."
+          }
+        ],
+        "feedback": "approval"
+      },
+      "includes": [
+        "record_decisions"
+      ],
+      "excludes": [
+        "select_concept",
+        "generate_concepts"
+      ]
+    },
+    {
+      "id": "resume_record",
+      "prompt": "Resume this saved project.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "resume"
+        ],
+        "deliverable": "text",
+        "scope": "open",
+        "selection": "not_needed",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Resume this saved project."
+          }
+        ]
+      },
+      "includes": [
+        "inspect_context",
+        "present"
+      ],
+      "excludes": [
+        "generate_concepts"
+      ]
+    },
+    {
+      "id": "selection_not_delegated",
+      "prompt": "Develop one of these three, but I have not picked or delegated a choice.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "develop"
+        ],
+        "deliverable": "text",
+        "scope": "open",
+        "selection": "none",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Develop one of these three, but I have not picked or delegated a choice."
+          }
+        ]
+      },
+      "includes": [
+        "resolve_selection",
+        "develop_concept"
+      ],
+      "excludes": [
+        "select_concept"
+      ]
+    },
+    {
+      "id": "mixed_artifacts",
+      "prompt": "Make the approved image and deck.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "produce"
+        ],
+        "deliverable": "mixed",
+        "scope": "open",
+        "selection": "user",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Make the approved image and deck."
+          }
+        ],
+        "required_capabilities": [
+          "image_generation",
+          "deck_authoring"
+        ],
+        "capabilities": [
+          "image_generation"
+        ]
+      },
+      "includes": [
+        "produce_artifact",
+        "prepare_handoff"
+      ],
+      "excludes": []
+    },
+    {
+      "id": "approval_does_not_cancel_edit",
+      "prompt": "Approved. Now fix only that typo.",
+      "assessment": {
+        "schema_version": 1,
+        "objective": "Develop the requested creative work",
+        "actions": [
+          "revise"
+        ],
+        "deliverable": "text",
+        "scope": "exact",
+        "selection": "user",
+        "source": "available",
+        "brief": "sufficient",
+        "confidence": 0.9,
+        "evidence": [
+          {
+            "source": "user",
+            "detail": "Approved. Now fix only that typo."
+          }
+        ],
+        "feedback": "approval"
+      },
+      "includes": [
+        "revise_source"
+      ],
+      "excludes": [
+        "generate_concepts",
+        "select_concept"
+      ]
+    }
+  ]
+}
