@@ -23,3 +23,12 @@
     External sends, deployments and purchases follow the host's authorization rules.
 11. Richer work should yield richer deliverables, not longer process reports. End with
     a useful artifact, comparison or test; don't invent a passing score to finish.
+
+When the optional v2 planner/receipt workflow is active, capture a pre-edit snapshot
+with studio.py begin-step before replacing an authoritative source file in place.
+Wait until revise_source is ready; choose the exact source ID and a new project-owned
+snapshot path. Retain the returned hash, then use receipt --snapshot with that hash
+after editing and inspecting the same target. Pass --task-id for portfolio operations.
+Follow router-schema-v2.md for commands, drift checks and verification. This evidence
+workflow does not grant edit authority. Ordinary authorized edits do not require Python
+when the planner/receipt workflow is not being used.

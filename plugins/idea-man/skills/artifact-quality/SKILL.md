@@ -1,6 +1,6 @@
 ---
 name: artifact-quality
-description: "Idea Man quality service for inspecting a produced or supplied artifact against its brief, sources, approved constraints and relevant craft standards. Use for a requested review or verification before delivery. Skip a full audit for a trivial response or when no artifact can be inspected."
+description: "Idea-Man quality service for inspecting a produced or supplied artifact against its brief, sources, approved constraints and relevant craft standards. Use for a requested review or verification before delivery. Skip a full audit for a trivial response or when no artifact can be inspected."
 ---
 
 # Artifact quality

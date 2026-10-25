@@ -1,6 +1,10 @@
 # The Creative Constitution (full version)
 
-The evaluation law of this skill. Twelve principles in two layers, two calibration
+A craft reference for concept evaluation. Current routing and calibration authority are
+../../../references/recognition-playbook.md and scoring-calibration.md. Compare supplied
+concepts as requested, including exactly two concepts made using one requested method;
+do not require regeneration, a tournament, or a passing score before reporting them.
+Apply the domain-appropriate criteria below conditionally. Twelve principles in two layers, two calibration
 scales, a gap analysis, the anti-pitfall rules, and the calibration anchors. Domain
 translations of each principle (what "brand" or "audience" means for a film, a game, a
 product) live in `domain-lenses.md`.
@@ -33,19 +37,23 @@ when scored as two separate axes, originality and appropriateness (Rosengren et 
 - Generic and on-brief → not creative (wallpaper).
 - The target is the intersection of the **unexpected** and the **strategically precise**.
 
-Score novelty and usefulness separately. Never let a high score on one hide a low score
-on the other.
+Assess novelty and usefulness separately when relevant. Numerical scores are optional;
+a strong showing on one must not conceal a weakness on the other.
 
 ---
 
 ## 1. Layer 1 — Compliance gates (pass/fail)
 
-A single fail kills the idea. Report which gate killed it.
+Distinguish actual hard requirements from craft diagnostics. A hard-requirement failure
+blocks recommending the idea as compliant; an unresolved check stays unknown. The
+questions below are conditional lenses, not universal kill rules. Keep requested
+candidates visible with their weaknesses; do not regenerate until they pass.
 
 **1. The idea can be formulated in one sentence.**
 - Can you say it in one breath, under ~25 words, without "and also"?
 - Does the sentence contain the mechanism (what happens), not just a theme ("it's about hope")?
-- If it needs three sentences, it is a plan or a list of executions, not an idea.
+- Compress the core mechanism, but preserve necessary system detail. A multi-part
+  mechanism is not invalid merely because it needs more explanation.
 
 **2. The message reads without explanation.**
 - If the audience met it cold, with no presenter, would they get it in the medium's time
@@ -67,9 +75,9 @@ A single fail kills the idea. Report which gate killed it.
 - Product, logo, call to action, format, length, platform specs, budget ceiling, IP rules,
   rating, deadlines — whatever the brief fixed.
 
-**Goal check (part of gate 5).** Does the idea move the stated success metric — sales,
-retention, views, sign-ups — or only generate attention? Attention that doesn't convert to
-the goal is a fail unless the brief is purely awareness.
+**Goal check (part of gate 5).** Explain the plausible link to the actual goal and the
+evidence still needed. Attention is not proof of sales, retention or other outcomes.
+A concept can have an untested mechanism; do not claim the metric moved before measuring.
 
 **6. Law and ethics are observed.**
 - No deception, no harm, no exploitation of vulnerable audiences, no IP infringement, no
@@ -99,7 +107,8 @@ the goal is a fail unless the brief is purely awareness.
 
 **10. Anti-cliché / originality — the swap test.**
 - Replace the brand (show, artist, product) with its closest competitor. If the idea still
-  works unchanged, originality ≤ 5.
+  works unchanged, investigate specificity; lower an optional originality judgment only
+  when ownability matters to the actual brief.
 - Run it twice: idea level (could a competitor run this concept?) and execution level
   (logo hidden, is it still recognisably ours?).
 - Name the closest existing work. Too close → lower the score.
@@ -121,10 +130,10 @@ the goal is a fail unless the brief is purely awareness.
 
 ## 3. Two extra gates
 
-**Feasibility gate.** Can it actually be made with the real budget, team, tools and
-time? (For AI-generated work: does the idea survive the tools' current limits?) If not,
-it dies or gets a "smaller version" that keeps the mechanism. Novelty and feasibility trade
-off; never let a blended score hide an impossible idea.
+**Feasibility gate.** Inspect real budget, team, tools and time, including AI-tool limits
+where applicable. Known failure blocks a feasible recommendation; absent evidence stays
+unverified. Consider a smaller mechanism-preserving version when in scope. Do not blend
+a hard feasibility failure away with a high originality score.
 
 **Authenticity cap.** Purpose-driven work loses credit if the brand's own behaviour
 contradicts the purpose. *Fearless Girl* won four Grands Prix in 2017; months later its
@@ -157,7 +166,8 @@ identity; levels 8–10 mean the same thing everywhere — people join in, it en
 it changes behaviour.
 
 Leo's internal bar was "7+": a thick line was drawn between 7 and 8, and work above 7
-earned an "8-ball". This skill's house rule follows it: **below 7, do not present.**
+earned an "8-ball". This is historical agency practice, not a presentation gate.
+Present requested options with honest weaknesses and uncertainty at any score.
 
 A useful ceiling from Contagious's Leo-derived Creative Ladder: the highest level you can
 deliberately brief for is 9. A 10 is only visible in hindsight; never award it to an
@@ -188,18 +198,13 @@ verified, so treat it as this skill's house scale.)
 
 ## 6. Dual calibration and the divergence rule
 
-Heuristic mapping to award outcomes for unexecuted ideas (not an official mapping; Leo
-executives only said high GPC scores *correlate* with awards):
+Scores describe a subjective craft judgment. No numerical score predicts or equals
+a Cannes, D&AD, or other award outcome. Executed reference works are comparison
+anchors, not outcome forecasts; use scoring-calibration.md for current calibration.
 
-- 9.5+ ≈ Cannes Grand Prix / Titanium territory (very rare; needs named comparisons)
-- 9.0–9.4 ≈ Gold / shortlist for the top prizes
-- 8.0–8.9 ≈ Bronze–Silver / best in category
-- 7.0–7.9 ≈ Inspiring; presentable, still needs refinement
-- below 7 ≈ redo; do not present
-
-**Divergence rule:** if HumanKind and the craft score differ by more than 1.5 points,
-re-evaluate. A large gap usually means one of: clever-but-hollow (craft high, human impact
-low), or important-but-flat (impact high, craft low). Name which, and use the gap analysis.
+**Perspective disagreement:** when optional craft and intended-impact judgments differ,
+explain the evidence behind each. The gap may reveal a mismatch, not a numerical law.
+Use the diagnostic actions below when they fit; do not invent scores to trigger them.
 
 ---
 
@@ -207,32 +212,40 @@ low), or important-but-flat (impact high, craft low). Name which, and use the ga
 
 | Situation | Diagnosis | Action |
 |---|---|---|
-| Craft 8+ / HumanKind < 7 | Clever but doesn't matter | Strengthen the human purpose; find the tension; re-check the insight |
-| Craft < 7 / HumanKind 8+ | Matters but boring | Strengthen craft, originality, surprise; new execution routes |
-| Craft 8+ / HumanKind 8+ | Strong candidate | Check scalability, feasibility, authenticity; polish |
-| Craft < 7 / HumanKind < 7 | Restart | Different insight or HMW, different method families |
+| Strong craft, weak goal fit | Attractive answer to the wrong problem | Recheck the goal, mechanism and supported tension |
+| Strong goal fit, weak delivery | Useful but unclear or familiar | Improve the consequential craft weakness |
+| Strong on relevant criteria | Worth considering | Check actual constraints and unresolved assumptions |
+| Weak on relevant criteria | Diagnose the miss | Change the failed operation if exploration is requested; otherwise report it |
+
+These are qualitative diagnostics, not score thresholds or instructions to restart
+every low-rated review. Preserve selected directions and requested scope.
 
 ---
 
 ## 8. Anti-pitfall rules
 
-1. **Never skip the insight.** Without an insight, ideas are decoration.
+1. **Understand the goal and evidence.** Use a relevant insight when the creative task
+   benefits from one; do not invent an insight or add insight mining to exact edits.
 2. **Never give 9+ without justification.** Name the real work this idea stands alongside or
    surpasses (anchors in §9 and in domain-lenses). If you can't, the score is ≤ 8.
-3. **Never use a single method for all ideas.** At least three methods from different
-   thinking modes per round.
-4. **Never praise generated ideas.** The engine is a critic, not a fan. Report evidence and
-   scores; no adjectives.
-5. **Remove the obvious.** The first three ideas are warm-up; bias toward ideas 5–12+.
-6. **Specificity test.** Replace the brand with a competitor. Still works? Originality ≤ 5.
+3. **Choose task-fit methods.** Use zero to three methods under the recognition playbook;
+   a single requested method is sufficient. For explicitly expansive ideation, consider
+   contrasting modes only when they add useful exploration.
+4. **Evaluate with evidence.** Describe supported strengths and weaknesses, including
+   generated work. Numerical scores are optional: use them only when requested or useful
+   under scoring-calibration.md, and state their uncertainty.
+5. **Evaluate substance, not generation order.** Optional warm-up can help expansive
+   exploration; retain strong early ideas. No fixed number of ideas is discarded.
+6. **Specificity test.** When ownability matters, replace the brand with a competitor.
+   Inspect what the substitution loses. A shared effective practice need not be original.
 7. **Kill your darlings.** After choosing a favourite, argue against it as hard as you can.
    If the argument is stronger than the idea, the idea is weak.
 8. **Droga's rule: repetition is scarier than failure.** (David Droga: "I'm not scared of
    failure – I'm scared of repetition.") Pair it with Mark Pollard's observation that real
-   insights are often uncomfortable. If an idea makes no one slightly nervous and nobody
-   says "I don't know how I feel about that", it probably won't hook anyone either.
-9. **Simplicity as violence.** If the idea can't be explained in one sentence, it is not an
-   idea; it is a plan.
+   insights are often uncomfortable. Discomfort can reveal an assumption worth inspecting, but is not a requirement or
+   evidence of audience pull. Quiet precision can serve the brief.
+9. **Simplicity with fidelity.** Express the core move clearly; preserve any dependencies
+   needed to understand how it works. Sentence length is not a validity test.
 10. **Cliché registry — auto-flag on sight** (each needs a real reason to survive): a
     "journey"; "it's not just X, it's Y"; a montage of diverse happy people; a child
     explaining something wise; a "what if [brand] could talk"; slow-motion tears with piano;
@@ -251,8 +264,8 @@ low), or important-but-flat (impact high, craft low). Name which, and use the ga
 ## 9. Calibration anchors (advertising / brand)
 
 Positions on HumanKind are this skill's heuristic placements of real, executed work;
-award facts are as verified. Use them to say "this stands alongside X" honestly. Most
-unexecuted ideas should land between 4 and 7.
+award facts are as verified. Use them to say "this stands alongside X" honestly. These
+placements are illustrative judgments, not a required distribution for new work.
 
 | Work | Year, agency | Verified recognition | The idea / the insight | HK |
 |---|---|---|---|---|
@@ -283,20 +296,21 @@ no surprise ≈ 5–6.
 
 ## 10. Scoring hygiene
 
-- **Inflation is the default failure.** Scores drift upward with each round and with
-  self-authored work. Start every score from 5 and move it only with evidence.
-- **Most ideas are 4–6.** A 7 is genuinely good. An 8 is rare. 9+ is a career idea.
+- **Avoid inflation and forced distributions.** Anchor optional judgments in inspected
+  details and relevant comparisons. Do not start every candidate at 5 or require most
+  candidates to fall in a prescribed band. Unknown evidence stays unknown.
 - **Separate judge from author** (see `engine-science.md` S1–S4): normalise format, judge
   blind, compare finalists head-to-head in both orders.
-- **Report confidence.** On close calls, say so; let the human choose among ≤3 finalists.
+- **Report uncertainty.** Preserve requested count and delegated decision authority;
+  recommendation does not authorize selecting, developing or committing a branch.
 - **Never award a 10 before execution.**
 - **Judge against the real arena.** The bar is the best work of this project's size, budget
   and domain (see each domain's "what 7 means here" in `domain-lenses.md`). A neighbourhood
   café, an indie artist or a small app is not compared with global Grand Prix winners; those
   anchors calibrate the top of the scale, not the line between 6 and 7.
-- **Borderline is a real category.** Scores of 6.5–7.4 are within judge noise. Take a second
-  independent opinion where possible; present a straddler as BORDERLINE with the reason
-  rather than silently promoting or killing it.
+- **Close judgments stay uncertain.** A second authorized independent opinion may
+  help a consequential disagreement; no fixed noise band is established here.
+  Preserve disagreement rather than manufacturing a passing score.
 - **The swap test is arena-relative.** Swap in the closest *real* competitor. A copyable
   mechanic rooted in this project's own insight or distinctive asset is not a fail.
 
@@ -322,6 +336,6 @@ no surprise ≈ 5–6.
 **Corrections made to the original draft** (kept so future edits don't reintroduce them):
 the HumanKind levels were re-aligned to Leo Burnett's published wording (7 is "Inspiring",
 not "changes thoughts"; "becomes part of people's lives" is level 9); the Cannes mapping
-is labelled a heuristic; the second scale is no longer attributed to Grey; "Droga's
+has been retired because it implied unsupported score-to-outcome equivalence; the second scale is no longer attributed to Grey; "Droga's
 formula — Uncomfortable > Comfortable" was replaced by Droga's actual line plus Pollard's
 discomfort principle.

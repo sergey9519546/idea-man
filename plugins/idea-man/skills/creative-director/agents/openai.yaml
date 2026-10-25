@@ -1,5 +1,5 @@
 interface:
-  display_name: "Idea Man - Innovation Conductor"
+  display_name: "Idea-Man - Innovation Conductor"
   short_description: "Choose the right methods, specialists and workflow."
   default_prompt: "Use $creative-director to diagnose this assignment, choose the right thinking methods and workflows, and carry it through the requested result."
   brand_color: "#4B39F2"

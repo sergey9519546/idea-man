@@ -10,7 +10,7 @@ An artifact can be an analysis, recommendation, experiment protocol or operating
 | `process` / service or operations redesign | Current versus proposed flow; bottleneck/mechanism; ownership; handoffs; exception paths; constraints; stakeholder burden; dependencies; reversible pilot and outcome measure | Process description or observed workflow; relevant measurements; proposed/implemented distinction | Optimizing a local step while worsening the whole system; hiding shifted costs/work; checking only the happy path |
 | `factual_writing` / article or research brief | Audience question answered; claims supported as worded; date/population context; accurate quotations; coherent argument; user voice; complete requested format | Actual draft plus inspected sources or supplied-document passages | Invented experience, citation decoration, SEO rules on non-SEO requests |
 | `story` / screenplay, treatment or narrative | Character desire and choice; causal progression; earned consequences; knowledge/timeline/world consistency; voice; promised emotional effect; requested length/form | Actual story plus authoritative canon and relevant prior scenes | Treating imagined events as false external facts; silently changing accepted causality |
-| `visual` / design, brand or exact image edit | Source identity; silhouette; palette; proportions; typography; source fidelity; requested delta; legibility at intended size; appropriate accessibility checks | Delivered image/render and approved reference side by side; target-size preview | Scoring a prompt instead of pixels; changing protected features; importing Idea Man's identity into a customer's project |
+| `visual` / design, brand or exact image edit | Source identity; silhouette; palette; proportions; typography; source fidelity; requested delta; legibility at intended size; appropriate accessibility checks | Delivered image/render and approved reference side by side; target-size preview | Scoring a prompt instead of pixels; changing protected features; importing Idea-Man's identity into a customer's project |
 | `product` / product or experience concept | Problem and audience evidence; coherent core behavior; assumptions; flows and edge cases; scope; testable requirements; feasible next test | Brief, design/spec/prototype, research evidence where available | Invented customer demand; pseudo-precise impact forecasts; calling a mockup a working product |
 | `campaign` / campaign, names or messages | Audience tension; distinctive mechanism/message; channel fit; brand voice; claims; pronunciation/ambiguity where relevant; requested variation count | Actual copy/names plus brief; inspected external checks if requested | Treating a name search as legal clearance; promised conversion results |
 | `presentation` / pitch, deck or handoff | Decision or ask; coherent narrative; source support; readable hierarchy; consistency; recipient can act without hidden context | Actual document/deck render when relevant; cited claims; handoff context | Mistaking an outline for an authored deck; fabricated traction; omitted dependencies or unresolved decisions |
@@ -30,3 +30,12 @@ Before judging polish, check that the result answers the requested operation. A 
 - Completion claims match the action performed. A prototype can be implemented but not behavior-tested; a concept can be ready for discussion but untested with users.
 
 For a narrow edit, check the requested change and protected properties rather than running the entire table. For multiple deliverables, apply the relevant rubric to each and disclose the resulting coverage. A failed critical acceptance condition cannot be hidden by averaging unrelated passing checks.
+
+## Readiness for a specific next commitment
+
+For consequential choices, use the optional
+[candidate contract](../skills/creative-director/references/candidate-decisions.md).
+Discussing an option, running a bounded test, making a prototype and deploying widely
+require different support. Missing hard checks and critical evidence stay unresolved;
+ratings cannot compensate. Preserve useful strengths during revision and distinguish
+recommendation, user selection and permission to execute.

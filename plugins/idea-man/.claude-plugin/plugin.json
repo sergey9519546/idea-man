@@ -1,8 +1,8 @@
 {
   "name": "idea-man",
-  "displayName": "Idea Man",
-  "version": "1.2.1",
-  "description": "Free creative director. Finds the insight first, generates far past the obvious, and shows only ideas that survive a blind critic (7+).",
+  "displayName": "Idea-Man",
+  "version": "1.2.2",
+  "description": "A free innovation partner for insight, distinct ideas, practical next steps and critique using the host's available tools.",
   "author": {
     "name": "Sergey Avetisyan"
   },

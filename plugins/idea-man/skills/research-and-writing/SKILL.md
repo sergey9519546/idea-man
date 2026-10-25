@@ -1,6 +1,6 @@
 ---
 name: research-and-writing
-description: "Idea Man specialist for evidence synthesis, business or engineering research briefs, sourced articles, explainers, case studies and substantive factual revisions. Use when the requested analysis or writing depends on supplied material or external facts. Skip for pure fiction, a spelling-only edit, or visual production without a research or writing task."
+description: "Idea-Man specialist for evidence synthesis, business or engineering research briefs, sourced articles, explainers, case studies and substantive factual revisions. Use when the requested analysis or writing depends on supplied material or external facts. Skip for pure fiction, a spelling-only edit, or visual production without a research or writing task."
 ---
 
 # Research and writing

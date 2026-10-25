@@ -1,5 +1,5 @@
 interface:
-  display_name: "Idea Man - Concept Variations"
+  display_name: "Idea-Man - Concept Variations"
   short_description: "Explore distinct alternatives within your constraints."
   default_prompt: "Use $concept-variations to create six distinct directions while keeping my approved choices."
   brand_color: "#4B39F2"

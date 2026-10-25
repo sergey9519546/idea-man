@@ -1,188 +1,108 @@
 # Output Templates
 
-How the work is handed back. Scale the length to the stakes: a quick "give me a few
-angles" gets SPARK; a real brief gets the full PRESENTATION. Never pad. The reader is a
-busy director, so the one-sentence idea always comes first and the reasoning follows.
+Composition aids for requested creative work, not mandatory response formats. Apply
+../../../references/recognition-playbook.md and scoring-calibration.md first. Preserve
+the user's exact format, count, operation, selected direction and authorization. Omit
+irrelevant sections instead of inventing evidence. Exact edits need no presentation,
+insight, tournament or scorecard. A serious brief can still need a short answer.
 
-## Contents
-1. PRESENTATION (full mode)
-1b. Development packs
-2. SPARK (quick mode)
-3. CRITIQUE (judging someone's idea)
-4. UNSTICK (breaking a rut)
-5. ROOM (multi-agent deep mode) additions
-6. Scorecard block
-7. Style rules for every output
+## 1. PRESENTATION — substantial exploration
 
----
+Choose only useful sections:
+- **Outcome/read:** the actual job and consequential assumption, if needed.
+- **Insight or starting evidence:** supported observation, labeled hypothesis or technical
+  requirement; omit a separate insight when it adds nothing.
+- **Requested candidates:** core mechanism; what people experience; meaningful difference;
+  why it could serve the goal; material tradeoff or unresolved assumption.
+- **Evaluation:** relevant criteria and inspected evidence; optional subjective scores.
+  Discomfort, emotional framing, nearest-work comparison and scalability belong only
+  when relevant. Do not invent audience response or prior art.
+- **Development:** only a selected direction or delegated selection/development, at the
+  requested depth. Recommendation alone does not authorize this section.
+- **Discarded directions:** only when requested or useful to explain the choice; no quota.
+- **Recommendation/next action:** within delegated authority. Name decisive uncertainty
+  when it changes the answer; it may call for a test, further evidence or stopping.
 
-## 1. PRESENTATION (full mode)
+Present the requested options honestly even with weaknesses. No score threshold
+requires regeneration, a winner or an action to build. Do not hide an infeasible
+candidate's failure behind unrelated strengths. Exploration can end with an unresolved
+comparison or a reasoned recommendation to stop.
 
-```
-## The read
-<2–4 lines: what the project really is, the actual problem underneath the ask,
-and the assumption you made if you didn't ask.>
+## 1b. Development packs — within selected scope
 
-## The insight
-**<one sentence — the human/system truth + the tension>**
-Why it holds: <one line of evidence or recognisable behaviour>
-HMW: <the How-Might-We question this insight unlocks>
+Use only the pieces needed for the requested result. These are craft prompts, not counts
+or required outputs. Preserve the selected branch and protect approved properties.
+- **Series/film/animation:** logline; leads' desire, flaw and consequential choices;
+  world rules; transformation or episode engine as appropriate; illustrative scenes or
+  episode premises; pilot/story beats; production constraints. A finite film needs no
+  recurring episode engine. Audience pull remains unobserved until tested.
+- **Campaign/launch:** core mechanism and experience; requested channels, sequence,
+  resources and intended measure. Unknown budgets stay unknown; a proposed split or
+  target is an estimate, not an approved fact.
+- **Product/service:** beneficiary's actual problem or labeled hypothesis; mechanism,
+  usable core flow, alternatives/workarounds, dependencies and smallest informative
+  test where needed. Do not manufacture customer quotations, ROI or demand.
+- **Music video/artist:** visual rule, concrete moments, relation to song structure and
+  feasible production approach. Participation is optional, not a universal success goal.
+- **Names/titles:** requested shortlist and rationale; actual search/translation checks
+  if performed, otherwise checks still needed. No automatic expansion to more names.
+- **Engineering/operations:** observed issue, supported cause or competing hypotheses;
+  change mechanism, dependencies, exceptions, displaced burden, reversibility and
+  measurement. A plausible cause is not an established root cause.
 
-## How I got here (optional, one line)
-<only for users who care about process: "Cast: convention audit, flaw-flip, random entry."
-Never list process statistics.>
+## 2. SPARK — quick options
 
-## Idea 1 — <short name>
-**<the idea in one sentence>**
-- What people experience: <the moment, concretely: what they see, hear, do>
-- Why it works: <the mechanism — which insight it exploits and how>
-- The uncomfortable part: <what makes someone nervous; if nothing, say so and dock it>
-- Stands alongside: <a named real work at this level, and why>
-- Scorecard: <see §6>
-- Biggest risk → fix: <from the pre-mortem>
-- Cheapest test: <how to know in a day or a week whether it's real>
+Give the requested number of distinct ideas with concise mechanisms and useful
+differences. Add rationale or a recommendation only when it helps the task.
+In SPARK, compare ideas on merit regardless of generation order. Preserve the requested
+count and supplied options; no warm-up exclusion applies. Scores, killed ideas, insight
+sections and invitations to a longer session are optional, never completion criteria.
 
-## Idea 2 — … (same block; 1–3 ideas total, never more than 3)
+## 3. CRITIQUE — supplied work
 
-## Developed: <winner's name>
-<the domain's development pack from §1b — compact in FULL, full on "go deep">
-
-## The graveyard
-<the 5–8 most instructive kills, grouped by cause of death, one line each:
-"<idea> — killed by <test>: <reason>". The full list belongs in the session log, if kept.>
-
-## Recommendation
-<which one to make and why, in two lines; the first concrete next step>
-```
-
-Rules: if no idea reaches HumanKind 7, do not invent a winner — but still end on an
-action. Present the best one or two as bets ("closest miss"), say exactly what each lacks,
-and give the cheapest test with a decision rule for each. Never end on "build nothing".
-
-## 1b. Development packs (the winner only)
-
-Develop the recommended idea into its first concrete version. Compact in FULL; full on
-"go deep". Pick the pack for the domain:
-
-- **Series / film / animation:** logline (≤25 words) · the lead(s): want, flaw, signature
-  behaviour, and a look a child (or fan) could draw · the world and its two or three rules ·
-  the episode engine (the fixed beats every episode hits) · five episode loglines · a pilot
-  outline in beats · tone references · production notes (for AI video: what to keep simple
-  and on-model, shots per episode).
-- **Campaign / launch:** the idea in one line · the moment people experience · rollout by week
-  and channel · budget split that adds up · the success metric and how to read it · the first
-  test.
-- **Product / feature / startup:** the PR headline and the customer's problem in their words ·
-  the core flow in five steps · the decisive unknown and the experiment that resolves it ·
-  the metric that moves and the target · what to cut from v1.
-- **Music video / artist concept:** the rule in six words · the key images (5–8 frames) · the
-  structure locked to the song · the production approach and what keeps it on-model · the
-  recreatable element for fans.
-- **Names / titles / taglines:** shortlist of 5–10 with one-line rationale each · the checks to
-  run (search, domains/handles, translation) · the recommended one.
-- **Engineering / operations:** the root cause statement · the change · how it can be gamed and
-  the guard · how to reverse it · the measurement.
-
----
-
-## 2. SPARK (quick mode)
-
-Use for low-stakes or explicitly quick asks.
-
-```
-Insight: <one line>
-1. **<one-sentence idea>** — <why it works, one line> (HK ~x / Craft ~y)
-2. **…**
-3. **…**
-Killed on the way: <3–5 one-liners>
-Want the full treatment on one of these?
-```
-
-Even in SPARK, the first three ideas you thought of are not the ones you show unless
-they survived. Keep the scores honest; "~" marks a quick estimate.
-
-## 3. CRITIQUE (someone else's idea)
-
-Diagnose first, the Braintrust way: say where it bleeds before saying how to fix it.
-
-```
-## One-sentence test
-<restate their idea in one sentence — or say it can't be done, which is finding #1>
-
-## Verdict
-HumanKind x / Craft y — <one line: what it is right now>
-
-## Diagnosis
-- Layer 1 gates: <pass/fail list, only failures explained>
-- Strongest element: <the part to protect>
-- Where it bleeds: <the 1–3 symptoms, stated as symptoms not fixes>
-- Swap test: <does it still work for a competitor/another show/another artist? result>
-
-## Gap analysis
-<which quadrant (clever-but-doesn't-matter / matters-but-boring / strong / restart) and the action>
-
-## Directions (only after the diagnosis)
-1. <a concrete push that fixes the main symptom>
-2. <an alternative route>
-3. <the brave version>
-```
-
-Never soften the verdict to be kind. Kindness here is precision.
+Restate enough to identify the mechanism without flattening it. Identify protected
+strengths, failed actual requirements, consequential weaknesses and unknown evidence.
+Explain how those findings affect the user's goal. Recommend changes only within the
+requested review scope; review alone does not authorize rewriting or development.
+A qualitative verdict is sufficient. Optional scores remain subjective and uncertain.
 
 ## 4. UNSTICK
 
-```
-The rut: <name the assumption everyone is stuck inside>
-Drawn: <the cards/words/domains from scripts/draw.py>
-Provocations → stepping stones:
-1. <provocation> → <what it unlocks> → <a usable idea>
-2. …
-3. …
-Reframe: <the problem restated so it becomes solvable>
-Try next: <one tiny action>
-```
+Name the repeated mechanism or limiting assumption. Apply an operation that changes it,
+show the usable stepping stone and check it against hard constraints. Mention random
+draws only if they explain something useful or were requested. A bizarre provocation
+without a working consequence does not satisfy the job.
 
-## 5. ROOM additions (deep mode)
+## 5. ROOM additions
 
-Use the PRESENTATION template as normal. Add a room report **only if the user asks how
-the room ran** (by default the machinery stays invisible):
+Use the same task-fit output rules. If a room report is requested, distinguish actual
+isolated agents from sequential role passes. Report observed dispatch/results only;
+no invented blind critic, tournament or raw pool. Agent use depends on host capability
+and authorization, not a template.
 
-```
-## Room report
-- Thinkers dispatched: <n> (methods: …)
-- Raw ideas: <n> → after dedupe by mechanism: <n> → passed gates: <n> → finalists: <n>
-- Blind critic: <ran / not available>; tournament: <winner path, e.g. 3 beat 7, 3 beat 1>
-```
+## 6. Optional scorecard
 
-## 6. Scorecard block
+Use relevant criteria, evidence and uncertainty. A compact qualitative comparison can
+cover hard requirements, mechanism fit, distinctive value, feasibility and principal
+unknown. Apply emotional response, ownability, memorability or reach only when needed.
+If scores are requested/useful, use scoring-calibration.md and explain their basis.
+Do not force every candidate into every criterion or replace missing facts with numbers.
+Historical HumanKind/craft labels are optional lenses, not audience measurements.
 
-```
-Gates: ✔ one sentence · ✔ reads without explanation · ✔ insight intact · ✔ audience sees themselves · ✔ mandatories · ✔ law/ethics
-Excellence: Surprise x · Simplicity x · Emotional specificity x (<the emotion>) · Originality/swap x · Memorability x · Scalability x
-Domain lens (<domain>): <the 2–3 domain criteria with scores>
-HumanKind x · Craft x — <agree / diverge → revisited>
-```
+## 7. Style
 
-Name the emotion precisely ("the relief of being caught and forgiven", not "positive").
+Lead with the useful result and concrete mechanism. Preserve necessary detail rather
+than treating sentence length as a validity test. Explain consequential choices, not
+hidden reasoning or method theater. Match the requested register and format.
+No hype, invented facts or promised outcomes. Keep method traces and raw pools in a
+record only when authorized; the reader need not receive a methodology report.
 
-**Plain-language scorecard** (for users outside advertising/creative industries):
+## Optional single-concept and campaign delivery details
 
-```
-Surprise 7/10 · Simple enough to say in one breath: yes · The feeling: <named emotion>
-Could a competitor do this? <mostly no / partly / yes> · Will people remember it? <…>
-Can it grow beyond one post/episode/feature? <…> · Makeable with your budget/tools? <…>
-Overall: 7/10 — <strong and worth making / borderline: why / not yet: what's missing>
-```
+Use only for a requested creative deliverable; studio routing and the user's count/format override template defaults above. No template requires three finalists, five quick concepts, discarded-direction quotas or a passing score. Recommending a direction does not approve or commit it. Omit irrelevant sections rather than inventing their contents.
 
-## 7. Style rules for every output
+**Single-concept one-pager:** concept name and one-sentence mechanism; supported insight or labeled hypothesis; concrete opening image/hero experience; optional tagline; how each requested channel expresses the same mechanism; resources/unknowns; evidence-aware evaluation if useful; next test. Give a specific scene instead of mood adjectives.
 
-- First line of every idea = the idea itself in one sentence. No preamble.
-- Concrete over abstract: "a mirror beside every elevator door" beats "a perceptual intervention".
-- No hype words (game-changing, revolutionary, innovative, epic). Let the idea do it.
-- Do not praise your own ideas. Report scores and evidence; the reader decides.
-- Thinker stories are cited only as verified in `thinker-arsenal.md`. No invented statistics.
-- Hide the machinery: no method name-dropping in the body of an idea, no process statistics,
-  no decimal scores. Integers or plain language only.
-- For problem-solving briefs, lead the recommendation with the decisive unknown and how to
-  check it cheaply, then branch.
-- Match the user's register: a terse request gets terse, high-density output.
+**Campaign platform:** distinguish enduring platform, particular campaign and individual execution. State objective, audience action, relevant project advantage, positioning, visual language and tone with an example phrase. Map only the channels needed by the brief. Use an execution matrix with channel, format, what happens, owner/resources and observable measure. Define what would count as success and how to collect it; targets are proposed until approved, results unobserved until measured. Preserve unknown budgets rather than inventing a split.
+
+**Compact response:** task read, requested alternatives with meaningful differences, and a recommendation when delegated. A quick response need not contain scores. Include discarded directions only when they explain the decision; process traces belong in a requested record, not automatically in the presentation.

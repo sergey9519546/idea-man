@@ -1,14 +1,25 @@
-> Routing precedence: ../../../references/recognition-playbook.md governs method count, depth, workflow and scope. Expansive ideation defaults below do not force insight mining, emotional framing, raw-volume floors or multiple methods on diagnosis, decisions, evidence synthesis or exact edits. Use evidence and the user's outcome.
+> Routing precedence: ../../../references/recognition-playbook.md and scoring-calibration.md
+> govern scope and optional evaluation. Domain examples are craft prompts, not universal
+> requirements, factual user evidence or passing-score thresholds. Exact edits retain their
+> requested boundaries; no raw-volume or emotional-framing requirement applies.
 
 # Domain Lenses
 
 The creative constitution is written in advertising language (brand, audience, client).
-Every other domain needs a translation, its own kill tests, and its own calibration
-anchors. Read only the lens(es) for the current project; a music-video treatment for a
-brand uses both C and G.
+Translate relevant criteria to the actual deliverable. Read only needed lenses; a
+brand music-video treatment may use C and G. A lens is not a genre prescription.
+Treat historical anchors as illustrative judgments, not predictions or verified outcomes
+for an unmade proposal. The "What 7 means here" passages explain an optional scale;
+they do not establish a presentation bar.
+
+Below, craft checks become hard gates only when the actual brief makes them requirements.
+A missing observation is unknown, not a failed test. Do not claim children, customers or
+players passed a check unless they were actually observed; simulated perspectives are
+hypotheses. Preserve requested options with weaknesses instead of automatically killing
+unfamiliar forms, documentary stories, abstract animation or deliberately niche work.
 
 ## Contents
-0. Universal rule: score the HOOK and the ENGINE separately
+0. Distinguish the hook and engine when relevant
 A. Film / TV / streaming
 B. Animation & kids' content
 C. Music video, songs & artist concepts
@@ -24,13 +35,12 @@ J. Calibration warnings (read before scoring anything)
 
 ## 0. Hook vs engine
 
-The same idea can score very differently on the **hook** (the surprise you see first)
-and the **engine** (whether it keeps producing value: episodes, plays, uses, shares).
-Score both and report both. Examples: FlashForward had a 9-level hook and no episode
-engine (cancelled after one season); BeReal had a strong novel constraint and weak
-retention; CoComelon has a powerful commercial engine and low originality. A
-presentable idea needs a hook ≥7 and an engine appropriate to its format (a one-off film
-or stunt needs a strong ending, not an engine).
+Distinguish initial attraction (hook) from repeatable value (engine) when the format
+needs both. Explain the concrete mechanism and evidence behind each; optional scores
+are not measurements of future pull. A one-off image, film or intervention may succeed
+without a repeatable engine. Do not require a hook score of 7 or promise retention from
+a compelling premise. Use historical comparisons to ask better questions, not to
+declare an untested proposal a hit or failure.
 
 ---
 
@@ -52,7 +62,7 @@ or stunt needs a strong ending, not an engine).
 8. Engine — series: a premise that generates endless storylines, or a finite
    transformation clock ("Mr. Chips to Scarface", Gilligan on *Breaking Bad*).
 
-**Kill tests**
+**Craft checks**
 - Poster test: describe the one image on the one-sheet. Can't → no high concept.
 - Wrong-man test: replace the hero with a generic competent person. Nothing lost → no irony.
 - Situation test: does solving the problem change the hero, or only end the plot?
@@ -79,7 +89,7 @@ memorability → title, poster, one quotable scene · scalability → world rule
 an episode engine.
 
 **For story work, also apply** any story taste profile the user keeps (e.g. a
-taste-profile skill) as an extra lens, and its anti-patterns as extra kill tests.
+taste-profile skill) as an extra lens, and its anti-patterns as scoped criteria when the user made them requirements.
 
 ---
 
@@ -100,9 +110,10 @@ taste-profile skill) as an extra lens, and its anti-patterns as extra kill tests
 7. Developmental soundness — engagement metrics can beat developmental value; don't let them.
 8. Visual read — silhouette and drawability.
 
-**Kill tests** (gates — fail one and the idea is dead or must be fixed first)
-- Who's the star? A series needs a lead (or duo) a kid would ask for by name. A format,
-  a narrator or a concept with no lovable character fails.
+**Craft checks** (apply only to the requested audience, format and requirements)
+- Who's the star? For character-led work, identify the lead or duo a child could ask for by name. A format,
+  a narrator or abstract format may serve a different brief; inspect intended engagement
+  rather than rejecting it for lacking a conventional star.
 - Playground test: can kids act it out at recess with no props?
 - Parent-stays test: does the parent stay on the couch?
 - 10-in-10: ten episode premises in ten minutes from the character alone.
@@ -147,9 +158,10 @@ scalability → 52-episode engine, clippability for Shorts, toyetic world.
    influence makes success unpredictable (Salganik, Dodds & Watts 2006). Judge the concept;
    never promise a hit.
 
-**Kill tests**
+**Craft checks**
 - Screenshot test: is any single frame identifiable as THIS video?
-- Song-swap test: could it run on another artist's track? Yes → content, not concept.
+- Song-swap test: what is lost on a different track? A shared visual device may still
+  work; inspect whether this brief needs song-specific structure.
 - Text-a-friend test: a fan can describe it in ~six words.
 - Recreate test: can fans copy it with a phone (dance, challenge, costume)?
 - Mute test: does it hold with the sound off in feed autoplay?
@@ -195,15 +207,18 @@ choreography are expensive in that pipeline.
 5. Much better than the closest substitute, including the dumbest free one.
 6. Job to be done — what is it hired to replace? (the milkshake vs bagel/doughnut).
 7. PR/FAQ "so what?" — fails if not meaningfully better for the customer (Amazon).
-8. Kano — today's delighters become tomorrow's must-haves; post-launch, Sean Ellis's 40%
-   "very disappointed" bar.
+8. Kano — today's delighters become tomorrow's must-haves; post-launch, disappointment surveys can investigate dependence, with population and
+   sampling limits. No universal percentage proves fit for this project.
 
-**Kill tests**
+**Craft checks**
 - Hand-squeeze test: name the dumbest free substitute. Clearly better than that?
-- Crappy-v1 test: would users take a broken version from two strangers?
-- Name-10 test: ten real people who'd be very disappointed if it vanished.
+- Early-adoption check: what usable minimum would someone try, and what behavior would
+  reveal value? Do not treat simulated enthusiasm as observed willingness.
+- Dependence check: inspect actual evidence of who relies on the product. A pre-launch
+  idea may have no users yet; identify a useful demand test instead of inventing people.
 - So-what headline: would a customer forward the PR headline?
-- Competitor-logo swap: a rival's logo on the PR/FAQ — still true? No idea.
+- Competitor-logo swap: what is specific to this product? Shared effective practices
+  need not be novel; investigate the actual user advantage.
 
 **Anchors**
 - 10: iPhone (three devices in one; multitouch delighter became a must-have); Figma
@@ -240,7 +255,7 @@ loops, path from well to wide.
 7. Watchability / social loop (Among Us on a Mafia structure; spread via streamers).
 8. Ethical retention (Flappy Bird's creator pulled it over addictiveness).
 
-**Kill tests**
+**Craft checks**
 - Greybox test: fun with cubes and no art?
 - Dominant-strategy test: always-best move → fake decisions.
 - One-verb test: name the core verb (jump, portal, place).
@@ -281,7 +296,7 @@ UGC, multiplayer, live ops.
 7. Constraint-native simplicity (Apollo 13's improvised CO₂ adapter from on-board materials).
 8. Single points of failure; pre-mortem.
 
-**Kill tests**
+**Craft checks**
 - Which-why test: does the fix sit at why #1 (symptom) or why #4–5?
 - Exploit test: how would a smart, self-interested actor game it?
 - Remove-the-patch test: pull the fix — does the problem return at once? Then it's a patch.
@@ -327,24 +342,27 @@ compounding.
 read; ownable (search it — is it taken in this category?); carries the insight or the
 irony; survives translation and doesn't mean something embarrassing elsewhere; short.
 
-**Kill tests:** the phone test (say it on a call — can they spell it?); the competitor test
+**Craft checks:** the phone test (say it on a call — can they spell it?); the competitor test
 (could a rival use it?); the cringe test (would the target audience say it out loud?).
 
 **Method note:** generate in families (descriptive, evocative, invented, metaphor,
-collision of two words, borrowed from a far domain), at least 30 raw, before judging.
+collision of two words, borrowed from a far domain) when they add meaningful differences.
+Preserve requested count; stop when further names repeat the same naming mechanism.
+Search/translation checks are unverified until actually performed and are not legal clearance.
 
 ---
 
 ## I. Visual / design concepts
 
-**What 7 means here:** one dominant idea readable in two seconds that can generate the 50th application without going generic.
+**What 7 means here:** a clear dominant idea, with a generative rule when the brief needs
+a system. A strong single image need not become a fifty-application identity.
 
-**Criteria:** one dominant idea readable in two seconds; a system, not a single image (it
-must produce the 50th application); reduction — every element earns its place (Swiss/
+**Criteria:** clear dominant idea at the intended viewing scale; when a visual system is
+requested, test whether its rule survives varied applications; reduction — every element earns its place (Swiss/
 Bauhaus); a signature move a competitor couldn't copy without looking derivative; works at
 thumbnail size and at billboard size.
 
-**Kill tests:** squint test (does the hierarchy hold blurred?); logo-off test (still
+**Craft checks:** squint test (does the hierarchy hold blurred?); logo-off test (still
 recognisable as this brand/project?); 50th-application test (sketch five more uses).
 
 For UI and web builds, hand the chosen concept to the user's design-direction skill if one
@@ -354,10 +372,11 @@ exists.
 
 ## J. Calibration warnings — read before scoring
 
-1. **Gatekeeper rejection is not signal.** *Back to the Future* was rejected about 40
+1. **Gatekeeper rejection is not decisive evidence.** *Back to the Future* was rejected about 40
    times; *Squid Game* waited about a decade; *Phineas and Ferb* was pitched for 16 years
    as too complex; Among Us sat near-empty for two years. Never kill an idea for being too
-   weird, complex or strange — kill it for failing a test.
+   weird, complex or strange. Inspect actual constraints and evidence; an optional craft
+   exercise is not a universal gate.
 2. **Virality is not greatness.** Score flash and engine separately (Flappy Bird, BeReal).
 3. **A commercial engine is not a creative idea** (CoComelon).
 4. **Never claim to predict hits.** Judge the concept and its mechanism.

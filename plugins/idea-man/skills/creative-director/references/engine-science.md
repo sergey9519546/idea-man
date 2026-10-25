@@ -1,8 +1,9 @@
 # Engine Science — why the workflow is built this way
 
-The workflow in SKILL.md is not taste; each rule answers a measured failure of
-human brainstorming or of language-model ideation. Read this when you need to
-explain a choice, adapt the engine to an unusual situation, or run ROOM mode.
+This reference explains research-motivated working hypotheses, not proof that every
+plugin rule is measured or effective. Human/group and model studies have different
+tasks and limits. Apply recognition-playbook.md and scoring-calibration.md first;
+validate adaptations on the actual task rather than treating citations as mandates.
 
 ## Contents
 1. The two failure modes this engine exists to beat
@@ -35,16 +36,17 @@ Everything below attacks one of these two.
 
 ## 2. Generation rules
 
-**G1. The first ideas are warm-up.** Human originality rises over a session and then
-plateaus (Beaty & Silvia 2012; Christensen, Guilford & Wilson 1957). An LLM's first
-samples are its most typical. Write the first three ideas down, label them WARM-UP, and
-treat them as the bar to beat, not as candidates.
+**G1. Optional warm-up, no automatic exclusion.** Human serial-order findings suggest
+trying beyond initial responses during expansive exploration. They do not establish a
+fixed three-idea discard rule for LLMs or this plugin. Compare early and later ideas
+against the brief; retain any strong candidate regardless of generation order.
 
-**G2. Volume before selection.** The best idea is an extreme value; more draws raise the
-maximum. Hybrid (solo-then-group) processes beat team brainstorming mainly by producing
-more ideas, and their top ideas were far better (Girotra, Terwiesch & Ulrich 2010). Hits
-scale with output (Simonton's equal-odds rule). Floors: SPARK ≥10 raw, FULL ≥20 raw,
-ROOM ≥40 raw before dedupe.
+**G2. Explore while useful differences emerge.** Human productivity and hybrid-process
+studies motivate trying more than the first plausible answer. More draws do not guarantee
+a better usable result, particularly when outputs are correlated. These studies do not
+establish raw-volume floors for SPARK, FULL or ROOM. Expand only when another pass can
+add a distinct mechanism or resolve a specified uncertainty; stop at the requested scope,
+repetition or an evidence boundary.
 
 **G3. Independent contexts, then pool.** Pooled solo work produces about twice the ideas of
 interacting groups (Diehl & Stroebe 1987), and building on each other's ideas did not
@@ -53,41 +55,40 @@ mode, run each thinker as a separate subagent that cannot see the others; merge 
 the end. In single-context mode, generate each method's batch before reading the previous
 batch back.
 
-**G4. At least three method families per round.** Chain-of-thought prompting cut idea
-similarity close to human-pool levels, while a single persona barely helped
-(Meincke, Mollick & Terwiesch 2024). Pooling methods, personas, constraints and models
-brought LLM diversity near human level (Terwiesch et al. 2026). One method = one
-neighbourhood of ideas.
+**G4. Task-fit method diversity.** Use zero to three methods as assigned by the
+recognition playbook; honor a requested single method. Contrasting families may help
+expansive exploration, but cited studies do not validate a mandatory three-method
+minimum or this plugin's effectiveness. Report empirical limits.
 
-**G5. Sample the tails (verbalized sampling).** Asking for several candidates with
-their probabilities, then asking for candidates below a probability threshold, raised
-creative diversity 1.6–2.1× and human ratings ~26% (Zhang et al. 2025). Use: "List 5
-directions with how likely a typical creative team is to propose each; now give 5 that a
-typical team would propose less than 10% of the time." The numbers are a steering lever,
-not calibrated truth.
+**G5. Optional experimental tail exploration.** Zhang et al. (2025) reported
+creative diversity and rating improvements in the study's verbalized-sampling setting;
+those results do not validate this plugin or establish real proposal probabilities.
+For expansive exploration, optionally contrast familiar mechanisms with less typical
+ones. A five-plus-five or probability-threshold prompt is an experimental exercise,
+not a required procedure or output count. The user's requested count prevails.
+Do not fabricate probabilities for what a typical team would propose; use qualitative
+rarity hypotheses unless probabilities have an empirical basis, and label uncertainty.
 
 **G6. Change the structure, never just say "be different".** Feeding a model
 similarity feedback produced the *least* diverse output of 35 strategies tested
 (Meincke et al.). When ideas start repeating, switch method, add a constraint, or ban
 the mechanisms already used. Do not merely exhort.
 
-**G7. Deduplicate by mechanism, not wording.** About 95% of 4,000 LLM seed ideas were
-duplicates (Si, Yang & Hashimoto, ICLR 2025). Paraphrases hide shared mechanisms. Give
-every raw idea a one-line "mechanism + source of surprise" tag and merge ideas with the
-same tag. If more than half of a new batch duplicates earlier ones, the frame is
-exhausted: change insight, HMW, method or constraint.
+**G7. Deduplicate by mechanism, not wording.** Idea-generation studies motivate checking
+conceptual repetition, not a universal duplication rate for this plugin. Compare the core
+intervention, causal relation and changed experience. Different names or polish can
+conceal the same move. Repetition without useful distinction calls for a changed
+operation or frame; no fixed percentage is needed.
 
-**G8. Analogy distance: mostly near-to-mid, one far probe.** Far-domain solvers produce
-more novel ideas, especially in the top tail (Franke, Poetz & Schreier 2014), but far
-sources lower average quality and there is a distance sweet spot (Fu et al. 2013; Chan,
-Dow & Schunn 2015). Use one far-domain probe per round for variance, and admit it to the
-pool only if you can state which *relations* carry over (structure, not surface).
+**G8. Analogy by relation, not mandatory distance.** Analogy research motivates different
+source domains with task-dependent tradeoffs. Use a distant source only if it helps the
+bottleneck. Map roles and causal relations, derive a mechanism, then inspect mismatch
+and feasibility. No far-probe quota follows.
 
-**G9. One or two constraints per pass; fewer for radical briefs.** A required element
-made writing measurably more creative, and the boost carried into later unconstrained
-work (Haught-Tromp 2016). Constraint effects follow an inverted U, with the peak at fewer
-constraints for radical innovation (Acar, Tarakci & van Knippenberg 2019). Rotate
-constraints between passes (scripts/draw.py --only constraints).
+**G9. Constraints as deliberate experiments.** Constraint studies motivate a focused
+restriction that changes the search space, not a universal constraint count for model
+ideation. Preserve hard requirements. Vary soft preferences only within scope; check
+the function each restriction removes and whether the result still serves the goal.
 
 **Incubation analogue.** Incubation has a real but modest effect, larger for divergent
 problems and after solid preparation; rest beats a demanding filler task (Sio & Ormerod
@@ -107,8 +108,9 @@ and enter them into the pool as equals; offer provocations, not only finished co
 **S1. The judge is not the author.** Use a separate critic context that sees only the
 brief, the insight and the anonymised ideas, never the generation reasoning (rationale:
 self-preference, self-correction failure). In Claude Code / Cowork, that is the
-`idea-critic` subagent. In chat, simulate it: restate each idea cold in the normalised
-template, then judge as someone who has never seen them.
+`idea-critic` subagent. Without isolated agents, normalize and re-read for a sequential self-review; disclose
+that it is not blind and cannot remove shared-context bias. Agent dispatch depends on
+host capability, authorization and useful information value.
 
 **S2. Normalise before judging.** Rewrite every surviving idea into the same template and
 length (one-sentence idea, what people experience, mechanism). Length and polish bias
@@ -133,10 +135,11 @@ team, tools and time?).
 knowledge. Every finalist states the nearest existing work; if web search is available,
 check it before claiming originality.
 
-**S7. The human chooses.** The best LLM judge agreed with expert humans only ~53% on fine
-distinctions, about the same as humans agree with each other (Si et al.). Groups picking
-their own best ideas barely beat chance (Girotra et al.). Present at most three finalists
-with honest trade-offs and the critic's confidence; recommend one, but the user decides.
+**S7. Preserve decision authority.** Judge agreement in particular studies is not a
+reliability estimate for this plugin. Present requested options and meaningful tradeoffs,
+making unresolved evidence clear. Recommend or select only within delegated authority.
+Do not develop or commit an unselected recommendation merely because it ranked first.
+No universal finalist count follows from these studies.
 
 **S8. Pre-mortem, then argue the alternative.** Imagining a failure as already having
 happened made people generate about 30% more reasons for it (Mitchell, Russo &
@@ -152,17 +155,17 @@ Evolve only the top ideas and re-judge anything you change.
 
 | Failure | Mitigation in this skill |
 |---|---|
-| Typical/cliché output | G1 warm-up ban, G5 tails, cliché registry in anti-pitfalls |
-| Homogeneous batch | G3 independent contexts, G4 ≥3 families, G7 mechanism dedupe |
-| Frame exhausted (paraphrases) | G7 >50% duplicate trigger → switch frame |
+| Typical/cliché output | G1 optional exploration, G5 tails, cliché registry in anti-pitfalls |
+| Homogeneous batch | G3 authorized independent contexts, G4 task-fit methods, G7 mechanism dedupe |
+| Frame exhausted (paraphrases) | G7 repeated mechanisms without useful difference → change operation/frame |
 | "Be original" backfiring | G6 structural change, ban list |
 | Self-flattering scores | S1 separate critic, S2 normalisation |
 | Order/length bias | S2, S4 |
-| Judge near chance on close calls | S7 human chooses from ≤3, report confidence |
+| Judge near chance on close calls | S7 preserve delegated choice and requested count; state uncertainty |
 | Feasibility blindness | S5 gate, S8 pre-mortem |
 | Overclaiming novelty | S6 closest-existing-thing |
-| Far-analogy noise | G8 one far probe + structure check |
-| Over-constraining | G9 one or two constraints, fewer for radical briefs |
+| Far-analogy noise | G8 optional analogy with relation/mismatch check |
+| Over-constraining | G9 deliberate constraint experiment; preserve hard requirements |
 | Deskilling a strong human | Seed-from-the-human rule |
 
 ---

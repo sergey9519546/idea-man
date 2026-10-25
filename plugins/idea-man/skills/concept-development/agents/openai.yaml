@@ -1,5 +1,5 @@
 interface:
-  display_name: "Idea Man - Concept Development"
+  display_name: "Idea-Man - Concept Development"
   short_description: "Develop the chosen direction into a useful solution."
   default_prompt: "Use $concept-development to expand my selected idea into a practical development pack."
   brand_color: "#4B39F2"

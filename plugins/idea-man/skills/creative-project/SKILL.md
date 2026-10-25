@@ -41,3 +41,27 @@ not delete a possible active writer's lock. Records are local, not synced across
 ## Innovation integration
 
 Apply ../creative-learning/SKILL.md when feedback creates a scoped preference. Store structured preferences as supported note events. On resume inspect the record, sources and preferences, reconstruct structured pending actions, and feed a v2 continuity checkpoint into the planner. Continue authorized unfinished work, not only a recap.
+
+## Structured checkpoint and resume
+
+For an authorized save of unfinished work, record a checkpoint event containing one
+validated v2 assessment, nonempty pending_actions and concise evidence; use the exact
+contract in ../creative-director/references/project-record.md. File locators must be
+absolute. Store the minimum task contract and evidence pointers, not raw transcripts.
+Portfolio checkpoints are unsupported; preserve separate records rather than flattening
+dependencies.
+
+Use studio.py resume --file <record.json> to get a read-only packet. Its
+resume_assessment is an unverified draft, with current capabilities/receipts cleared,
+source inspection false and selection authority withheld. Pass it to the planner only
+as a restore checkpoint request. Read the historical checkpoint and current decisions;
+reinspect sources, objective, scoped preferences and actual tools before supplying a
+fresh substantive assessment. Never flip source_rechecked merely because a hash matches.
+After any intervening record event, reconcile decisions and save a new checkpoint;
+resume deliberately withholds an obsolete draft. Old records remain supported and
+report the missing checkpoint rather than inventing pending actions.
+
+Reconcile still-current explicit user decisions from the historical record; this does
+not require asking for approval again. Preserve existing authorization when inspection
+confirms its scope still applies. Saved choice authority is withheld in the draft to
+require this reconciliation, not to revoke the user's instruction.

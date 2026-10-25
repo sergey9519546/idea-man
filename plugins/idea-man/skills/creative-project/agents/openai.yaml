@@ -1,5 +1,5 @@
 interface:
-  display_name: "Idea Man - Creative Project"
+  display_name: "Idea-Man - Creative Project"
   short_description: "Keep project decisions and resume the right next step."
   default_prompt: "Use $creative-project to save the approved choices and next steps in this project."
   brand_color: "#4B39F2"

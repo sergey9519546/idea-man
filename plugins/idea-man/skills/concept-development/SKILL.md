@@ -37,3 +37,5 @@ also requested, continue to ../execution-handoff/SKILL.md without an unnecessary
 ## Innovation integration
 
 For general innovation and practical problem solving, use ../innovation-strategy/SKILL.md. For evidence-led articles and reports, use ../research-and-writing/SKILL.md. Verify the resulting artifact through ../artifact-quality/SKILL.md with the relevant rubric; do not duplicate a full critique.
+
+For a requested narrative artifact, selectively read ../creative-director/references/storytelling-frameworks.md, sections "Choose by the narrative job" and "Adapt duration through a beat budget". For a selected idea that remains abstract, read ../creative-director/references/supplementary-methods.md, section "C1 Sequence: concrete solution sketch". Preserve approved story decisions; sketches still require review and verification.

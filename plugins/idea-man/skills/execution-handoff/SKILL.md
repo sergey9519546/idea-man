@@ -47,3 +47,11 @@ through each handoff. Replan when a tool cannot satisfy them.
 ## Innovation integration
 
 Use ../artifact-quality/SKILL.md for the requested artifact's acceptance checks. Handoffs also cover process changes, business experiments, technical solutions and decision implementation. A plan does not prove those actions occurred.
+
+If the optional v2 planner/receipt workflow is active and execution replaces its source
+file in place, run studio.py begin-step before editing, retain the snapshot hash, and
+mint revise_source with receipt --snapshot afterward. Use --task-id for a portfolio;
+do not extract a dependent task to bypass its joined readiness checks. Then inspect
+the revised output and receipt verification separately. See
+../creative-director/references/router-schema-v2.md. This applies only within that
+optional receipt workflow; it does not require Python for ordinary authorized edits.

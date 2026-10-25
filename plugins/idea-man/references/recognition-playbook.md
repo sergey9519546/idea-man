@@ -7,7 +7,7 @@ This governs routing across business, operations, engineering, scientific inquir
 Recover from current context and inspected sources:
 
 1. **Outcome:** what must exist or change? Separate understanding causes, inventing possibilities, choosing, testing, making and checking. The topic is not the job: hospital queues could require diagnosis, service redesign, research synthesis, a decision or implementation.
-2. **State:** active objective, stage, exact source/version, selected candidates, locked constraints, rejected mechanisms and unfinished commitments. Numbered choices belong to a particular board or list; multiple approvals remain valid.
+2. **State:** active objective, stage, exact source/version, selected candidates, locked constraints, rejected mechanisms and unfinished commitments. Numbered choices belong to a particular board or list; multiple approvals remain valid. Permission to edit an option is separate from selection. An edited but unselected alternative stays unselected; do not merge it into the chosen branch unless the user authorizes that change.
 3. **Problem shape:** unclear framing, causal failure, optimization, contradiction, novelty, combination, uncertainty, adoption or execution. Infer from the actual bottleneck, not the word "idea".
 4. **Evidence:** supplied observations, measurements, external facts, fictional canon or hypotheses. What observation would change the next decision? Do not invent users, interviews or validation.
 5. **Constraints:** hard limits versus preferences, affected stakeholders, stakes, reversibility, resources, tools and acceptance conditions. Do not quietly relax what makes the problem difficult.
@@ -34,9 +34,20 @@ These are tendencies, not keyword rules. Do not redo diagnosis already establish
 
 ## Cast and switch methods
 
-Read selected procedures in innovation-registry.json and their sections in the original thinker arsenal. Normally choose zero to three complementary methods. Honor explicit user methods/counts. The original engine's three-to-five method rule, mandatory distance/subtraction, insight floors and raw-volume floors apply only to suitable expansive ideation.
+Read selected procedures in innovation-registry.json and their sections in the original thinker arsenal. Normally choose zero to three complementary methods. Honor explicit user methods/counts. Expansive ideation may use additional complementary methods or a broader private working pool when useful, but no inherited method quota, insight floor or raw-volume floor overrides the task. Distance and subtraction are optional procedures selected for a problem signal.
+
+Before changing existing work, inspect what already succeeds: approved elements,
+distinctive voice, functioning behavior and evidence-backed strengths. Separate those
+from the defects. Preserve what the user protected and justify consequential changes;
+a broad improvement request is not a reason to erase strengths indiscriminately.
 
 Every method must have a problem signal, actual operation and useful output. Switch when it repeats the same mechanism, relies on a disproven assumption, violates a constraint or cannot address the decisive uncertainty. Explain the short reason when useful. Do not cycle personas or methods to look sophisticated.
+
+An evidence-check method must not displace the work requested. For example, a quick
+high-stakes invention may need one generating procedure plus a bounded test lens.
+Effort limits optional breadth, not the substantive operation. Explicit user methods
+remain controlling. For a consequential choice use the candidate-decisions guidance
+in ../skills/creative-director/references/candidate-decisions.md.
 
 Distinguish divergence, convergence, development and verification. A score or named thinker is not evidence. Scientific or operational work need not invent an emotional storytelling frame.
 
@@ -54,8 +65,10 @@ Preserve the exact scope of exceptions. "For this client-facing pitch only" does
 mean all client-facing work. Retain the source phrase and named artifact/conditions,
 and check an adjacent non-matching case before reusing a preference or permission.
 
-First resolve uncertainty from available context/tools. Ask only when a wrong guess materially changes action, such as conflicting source identities or an undelegated selection. Otherwise use a stated reversible assumption. Missing local material does not block independent research or a separate workstream. Parallel execution still requires host support and applicable authorization.
+First resolve uncertainty from available context/tools. Before declaring an input missing, check whether the needed result follows from supplied facts, such as a composite route or a calculation. Preserve direction, units and dependencies; state material assumptions. A known two-leg route may suffice even when direct travel time is unknown. Ask only when a wrong guess materially changes action, such as conflicting source identities or an undelegated selection. Otherwise use a stated reversible assumption. Missing local material does not block independent research or a separate workstream. Parallel execution still requires host support and applicable authorization.
 
 ## Completion
+
+Check the entire final response against the latest explicit format and count, including explanations, caveats and blockers; keep them inside a table-only response rather than adding prose around it.
 
 Define acceptance from the outcome: evidence-backed diagnosis, distinct options, a usable decision, experiment plan, actual artifact or working change. Bind checks to exact source/output versions. Inspect pixels for images, sources for claims, and behavior for code. A plan is not execution, a hypothetical stakeholder is not an interview, and a concept score is not market demand.

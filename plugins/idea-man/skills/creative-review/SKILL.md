@@ -39,3 +39,15 @@ decision. If asked to improve too, continue into revision/development and verify
 ## Innovation integration
 
 Use ../artifact-quality/SKILL.md for artifact inspection and evidence-backed findings. Use ../innovation-strategy/SKILL.md for practical decisions, system tradeoffs and discriminating experiments. Keep concept judgment distinct from factual support and observed outcomes.
+
+When evaluative creative comparison benefits from explicit calibration, selectively read ../creative-director/references/scoring-calibration.md. Scores are optional; use its compliance, level-matching and disagreement checks without quantifying when that is clearer. For separated review lenses, read ../creative-director/references/supplementary-methods.md, section "D2 Test: Six Thinking Hats as separated review lenses". Sequential lenses are self-review, not independent audience evidence.
+
+## Compare mechanisms and readiness
+
+For a consequential candidate decision, read
+../creative-director/references/candidate-decisions.md. Hard failures, unresolved
+evidence and subjective preferences stay separate. Compare the same requested level
+and commitment; expose ties and tradeoffs rather than manufacturing a winner.
+Use evidenced mechanism groups to recognize shared approaches; unknown or unassessed
+pairs do not establish diversity. Reinspect relevant source versions before applying
+a saved assessment. The helper is optional and does not grant selection or tool authority.

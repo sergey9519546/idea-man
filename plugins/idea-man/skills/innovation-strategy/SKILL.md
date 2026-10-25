@@ -58,3 +58,13 @@ Deliver the requested decision memo, causal analysis, options, operating model, 
 - "Which of these three designs should we build?" → constraints and tradeoffs, sensitivity to uncertain inputs, recommendation or delegated selection. Do not reopen ideation by default.
 - "Make school pickup less chaotic with no extra staff" → map people, timing and handoffs; try removal, sequencing or incentive changes; protect safety constraints and specify a bounded test.
 - "Could a different physical principle solve this engineering bottleneck?" → separate requirements from current implementation assumptions, explore transferable mechanisms, and mark technical evidence still needed.
+
+## Commitment-specific candidate decisions
+
+When a consequential comparison benefits from an explicit evidence contract, read
+../creative-director/references/candidate-decisions.md. Judge readiness for the next
+specific commitment, not an entire venture at once. A hypothesis can justify a small
+test while remaining insufficient for a rollout. Hard constraints cannot be averaged
+away by attractive ratings. A single practical option can be sufficient; do not
+invent a tournament or scores. Pair proposed tests with later observations and
+revisit the affected decision; preserve still-valid work and existing authorization.

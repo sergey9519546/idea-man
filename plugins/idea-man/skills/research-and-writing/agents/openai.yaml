@@ -1,5 +1,5 @@
 interface:
-  display_name: "Idea Man - Research and Writing"
+  display_name: "Idea-Man - Research and Writing"
   short_description: "Research, synthesize and write with traceable evidence."
   default_prompt: "Use $research-and-writing to investigate this question and produce the requested analysis."
   brand_color: "#4B39F2"

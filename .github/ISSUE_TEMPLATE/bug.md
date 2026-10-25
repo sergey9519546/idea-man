@@ -1,12 +1,12 @@
 ---
 name: Bug report
-about: Something in Idea Man isn't working
+about: Something in Idea-Man isn't working
 labels: bug
 ---
 
 **Host and version** (Claude Code, Claude.ai/Cowork, Codex):
 
-**Idea Man version:**
+**Idea-Man version:**
 
 **What you did:**
 

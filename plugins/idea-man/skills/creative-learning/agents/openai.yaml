@@ -1,5 +1,5 @@
 interface:
-  display_name: "Idea Man - Project Learning"
+  display_name: "Idea-Man - Project Learning"
   short_description: "Apply feedback with its exact scope and exceptions."
   default_prompt: "Use $creative-learning to capture this project preference and apply it within its scope."
   brand_color: "#4B39F2"

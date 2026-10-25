@@ -29,3 +29,5 @@ user requested the completed work.
 ## Innovation integration
 
 For business, operations, engineering, research and everyday problems, define the desired change, system boundary, constraints, observations and decisive unknown. A useful brief need not be an advertising brief or emotional story. Use ../innovation-strategy/SKILL.md when the work needs diagnosis, systems reasoning, decision or experiment design.
+
+For consequential framing uncertainty, selectively read ../creative-director/references/insight-engine.md, section "Optional framing procedures" (problem/advantage linkage, jobs layers, abstraction ladder and assumption map). Do not load insight exercises for a sufficient brief or exact edit.

@@ -1,5 +1,5 @@
 interface:
-  display_name: "Idea Man - Artifact Quality"
+  display_name: "Idea-Man - Artifact Quality"
   short_description: "Inspect actual outputs using criteria that fit the task."
   default_prompt: "Use $artifact-quality to inspect this result against its evidence and acceptance conditions."
   brand_color: "#4B39F2"

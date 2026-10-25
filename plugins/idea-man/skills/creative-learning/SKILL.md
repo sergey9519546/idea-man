@@ -1,6 +1,6 @@
 ---
 name: creative-learning
-description: "Idea Man service for applying explicit corrections, approved examples and scoped problem-solving, workflow or creative preferences. Use after feedback changes a decision or when the user asks to remember, inspect or reuse project preferences. Do not infer approval from silence or enable background observation."
+description: "Idea-Man service for applying explicit corrections, approved examples and scoped problem-solving, workflow or creative preferences. Use after feedback changes a decision or when the user asks to remember, inspect or reuse project preferences. Do not infer approval from silence or enable background observation."
 ---
 
 # Creative learning
@@ -57,4 +57,4 @@ For reusable workflow lessons, write a candidate maintainer note: failure, expec
 
 Usually apply the correction without a lecture. When saving is requested, report what was saved, its scope and location. When uncertain, say what is inferred. On request, provide a concise list of active, tentative and superseded preferences with evidence references.
 
-Example: both Invisible Nerd and Lightbulb Hero are approved for Idea Man; neither approval eliminates the other. Their bright palette is a project decision and must not silently become the default identity of every future customer's brand.
+Example: both Invisible Nerd and Lightbulb Hero are approved for Idea-Man; neither approval eliminates the other. Their bright palette is a project decision and must not silently become the default identity of every future customer's brand.

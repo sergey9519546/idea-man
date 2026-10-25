@@ -1,5 +1,5 @@
 interface:
-  display_name: "Idea Man - Innovation Strategy"
+  display_name: "Idea-Man - Innovation Strategy"
   short_description: "Solve problems with systems thinking and experiments."
   default_prompt: "Use $innovation-strategy to diagnose this problem and develop a practical way forward."
   brand_color: "#4B39F2"

@@ -40,7 +40,7 @@ saved records contain conclusions, evidence and next steps, not hidden reasoning
 
 | Situation | Ordered work | Avoid |
 |---|---|---|
-| Fresh brief | Inspect → brief → insight → generate → critique → present | Unrequested production |
+| Fresh brief | Inspect → establish outcome/evidence → choose the needed diagnosis, research, invention or execution route → deliver/check | Mandatory insight or ideation on every topic |
 | Six variants of A | Inspect A → lock invariants → variation matrix → generate → compare → deliver | Cosmetic duplicates |
 | Remove one detail | Inspect exact source → edit → verify → deliver | Rebranding or reopening decisions |
 | Choose and develop | Inspect → compare → delegated selection → develop → verify | Unnecessary permission pauses |
@@ -65,7 +65,8 @@ independent branches. Otherwise state a reasonable assumption and act.
 Never fabricate a selection the user has not delegated. A request to "develop the best"
 delegates selection; "help me choose" asks for a recommendation, not an unapproved commitment.
 
-For complex jobs use ../scripts/studio.py plan with router-schema.md. The structured
+For complex jobs use ../scripts/studio.py plan with router-schema-v2.md and a schema_version: 2 assessment.
+router-schema.md is version-1 compatibility only; use it solely for explicitly requested legacy assessments. The structured
 planner gives dependency IDs, ready/blocked/done states and completion requirements.
 It is advisory: the user and host rules govern actual execution. A mentioned workflow
 does not create capabilities. If a tool is unavailable, deliver a usable fallback and
@@ -90,3 +91,7 @@ Deliver the requested result plus only useful rationale and material limits. Dis
 concept, specification, generated, inspected, tested and externally published results.
 Saved local state is not global memory. Creative scores are opinions, not market evidence.
 Do not promise autonomous future activity.
+
+## Static recognition examples
+
+See examples/recognition-cases.json relative to this reference directory for authored recognition fixtures. They are static examples for structural checks, not evidence of live model recognition or installed-host behavior.

@@ -1,4 +1,4 @@
-"""Idea Man: structured workflow planning and portable, append-only project records.
+"""Idea-Man: structured workflow planning and portable, append-only project records.
 
 Standard library only. This helper does not classify prose or invoke external services.
 The host model supplies an evidence-backed assessment; plan() validates and orders it.
@@ -260,16 +260,36 @@ def apply_event(view, event):
              'approve': ({'target_id', 'evidence'}, set()),
              'reject': ({'target_id', 'evidence'}, {'reason'}),
              'supersede': ({'target_id', 'replacement_id', 'evidence'}, {'reason'}),
-             'artifact': ({'id', 'path', 'status'}, {'note'})}
+             'artifact': ({'id', 'path', 'status'}, {'note'}),
+             'checkpoint': ({'assessment', 'pending_actions', 'evidence'}, set())}
     require(kind in specs, 'Unknown event type')
     required, optional = specs[kind]
     require(required <= event.keys() and event.keys() <= required | optional | {'type'}, 'Invalid event fields')
-    for key in required:
+    for key in required - ({'assessment', 'pending_actions'} if kind == 'checkpoint' else set()):
         require(nonempty(event[key]), 'Event ' + key + ' must be nonempty')
     for key in optional:
         if key in event:
             require(event[key] is None or nonempty(event[key]), 'Optional event field must be text or null')
-    if kind in {'brief', 'next_step'}:
+    if kind == 'checkpoint':
+        from router_v2 import normalize, ACTIONS as V2_ACTIONS
+        require(isinstance(event['assessment'], dict) and 'workstreams' not in event['assessment'],
+                'Checkpoint requires one v2 task; portfolios are unsupported')
+        normalized, _ = normalize(event['assessment'])
+        for source in normalized['sources']:
+            if source['kind'] == 'file' and source['locator']:
+                require(Path(source['locator']).is_absolute(),
+                        'Checkpoint file sources require absolute paths')
+        for receipt in normalized['receipts']:
+            output = receipt['output']
+            if output['kind'] == 'file':
+                require(Path(output['locator']).is_absolute(),
+                        'Checkpoint file receipt outputs require absolute paths')
+        unique_list(event['pending_actions'], V2_ACTIONS - {'resume', 'status', 'record'}, 'pending_actions')
+        require(event['pending_actions'], 'Checkpoint needs outstanding substantive actions')
+        require(set(event['pending_actions']) <= set(normalized['effective_actions']),
+                'Pending actions must belong to the saved task contract')
+        view['checkpoint'] = event
+    elif kind in {'brief', 'next_step'}:
         view[kind] = event['text']
     elif kind == 'note':
         view['notes'].append(event['text'])
@@ -314,6 +334,8 @@ def project_view(data):
         require(isinstance(item, dict) and set(item) == {'revision', 'at', 'event'}, 'Invalid history entry')
         require(type(item['revision']) is int and item['revision'] == number and nonempty(item['at']), 'Invalid history sequence')
         apply_event(view, item['event'])
+        if item['event']['type'] == 'checkpoint':
+            view['checkpoint_revision'] = number
     return view
 
 
@@ -404,8 +426,69 @@ def markdown(view):
         lines.append('- ' + safe(key) + ' [' + item['status'] + ']: ' + safe(item['path']))
     lines += ['', '## Scoped notes', '']
     lines += ['- ' + safe(note) for note in view['notes']]
+    if view.get('checkpoint'):
+        checkpoint = view['checkpoint']
+        lines += ['', '## Continuation checkpoint', '',
+                  'Saved objective: ' + safe(checkpoint['assessment']['objective']),
+                  'Outstanding actions: ' + safe(', '.join(checkpoint['pending_actions'])),
+                  'Checkpoint revision: ' + str(view['checkpoint_revision']),
+                  'Fresh inspection required; no saved execution authority.']
     lines += ['', 'Next: ' + safe(view['next_step']), '', 'Saved observations must be rechecked on resume.']
     return '\n'.join(lines) + '\n'
+
+
+
+def resume_project(raw_path):
+    """Read-only continuation evidence; never fresh inspection or execution authority."""
+    import copy
+    from router_v2 import file_hash
+    path = record_path(raw_path)
+    view = project_view(read_json(path))
+    checkpoint = view.get('checkpoint')
+    result = {'schema_version': 1, 'record': str(path), 'project_revision': view['revision'],
+              'project': view, 'resume_assessment': None, 'blockers': [],
+              'observations': [], 'execution_authorized': False}
+    if checkpoint is None:
+        result['blockers'].append('No structured checkpoint; reconstruct the task from inspected evidence')
+        return result
+    current = view['checkpoint_revision'] == view['revision']
+    if not current:
+        result['blockers'].append('Record changed after checkpoint; reconcile decisions and save a new checkpoint')
+    a = copy.deepcopy(checkpoint['assessment'])
+    a['actions'] = ['resume']
+    a['capabilities'] = []
+    a['receipts'] = []
+    if a['selection']['status'] in {'user', 'assistant_authorized'}:
+        a['selection'] = {'status': 'none', 'ids': [], 'evidence': ''}
+    a['project_revision'] = view['revision']
+    a['continuity'] = {'task_id': a['task_id'], 'objective': a['objective'],
+                       'pending_actions': checkpoint['pending_actions'],
+                       'evidence': checkpoint['evidence'], 'source_rechecked': False}
+    for source in a['sources']:
+        source['inspected'] = False
+        state = 'requires_host_inspection'
+        if source['kind'] == 'file' and not Path(source['locator']).is_absolute():
+            state = 'relative_locator_unresolved'
+        elif source['kind'] == 'file':
+            target = Path(source['locator'])
+            state = 'missing'
+            try:
+                if target.is_file():
+                    state = 'unchanged_bytes' if file_hash(target) == source['revision'] else 'changed'
+            except OSError:
+                state = 'unreadable'
+        result['observations'].append({'id': source['id'], 'state': state})
+    for identity, artifact in view['artifacts'].items():
+        result['observations'].append({'id': identity,
+            'state': ('relative_locator_unresolved' if not Path(artifact['path']).is_absolute()
+                      else 'exists_unverified' if Path(artifact['path']).is_file() else 'missing'),
+            'recorded_status': artifact['status']})
+    # Saved selection is historical evidence. Fresh inspection must reconcile it with
+    # current explicit instructions before the host submits a substantive assessment.
+    result['blockers'].append('Fresh source, objective, decisions, authorization and capabilities inspection required')
+    if current:
+        result['resume_assessment'] = a
+    return result
 
 
 def main():
@@ -413,13 +496,22 @@ def main():
     commands = parser.add_subparsers(dest='command', required=True)
     p = commands.add_parser('plan')
     p.add_argument('--assessment', required=True)
+    p = commands.add_parser('compare-candidates')
+    p.add_argument('--assessment', required=True)
     p = commands.add_parser('fingerprint')
     p.add_argument('--file', required=True)
+    p = commands.add_parser('begin-step')
+    p.add_argument('--assessment', required=True)
+    p.add_argument('--source-id', required=True)
+    p.add_argument('--task-id')
+    p.add_argument('--snapshot', required=True)
     p = commands.add_parser('receipt')
     p.add_argument('--assessment', required=True)
     p.add_argument('--step', required=True)
     p.add_argument('--task-id')
     p.add_argument('--artifact', required=True)
+    p.add_argument('--snapshot')
+    p.add_argument('--snapshot-revision')
     p.add_argument('--evidence-file', required=True)
     p = commands.add_parser('init')
     p.add_argument('--file', required=True)
@@ -428,13 +520,36 @@ def main():
     p.add_argument('--file', required=True)
     p.add_argument('--expected-revision', required=True, type=int)
     p.add_argument('--event', required=True)
-    for command in ('show', 'validate', 'export'):
+    for command in ('show', 'validate', 'export', 'resume'):
         p = commands.add_parser(command)
         p.add_argument('--file', required=True)
     args = parser.parse_args()
     try:
         if args.command == 'plan':
             result = plan(read_json(args.assessment))
+        elif args.command == 'compare-candidates':
+            from candidates import assess as assess_candidates, load_assessment
+            result = assess_candidates(load_assessment(args.assessment))
+        elif args.command == 'begin-step':
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            from router_v2 import begin_step, file_hash
+            snapshot = begin_step(read_json(args.assessment), args.source_id, args.task_id)
+            target = Path(args.snapshot).resolve()
+            require(target.parent.is_dir(), 'Snapshot directory must already exist')
+            # Exclusive creation: never overwrite pre-edit execution evidence.
+            payload = (json.dumps(snapshot, ensure_ascii=False, indent=2)+'\n').encode('utf-8')
+            temporary = None
+            try:
+                with tempfile.NamedTemporaryFile(dir=target.parent, prefix=target.name+'.', suffix='.tmp', delete=False) as stream:
+                    temporary = Path(stream.name)
+                    stream.write(payload)
+                    stream.flush()
+                    os.fsync(stream.fileno())
+                os.link(temporary, target)  # Atomic publication, fails if target exists.
+            finally:
+                if temporary is not None:
+                    temporary.unlink(missing_ok=True)
+            result = {'snapshot': str(target), 'revision': file_hash(target)}
         elif args.command in {'fingerprint', 'receipt'}:
             sys.path.insert(0, str(Path(__file__).resolve().parent))
             from router_v2 import file_hash
@@ -443,6 +558,16 @@ def main():
             if args.command == 'fingerprint':
                 result = output
             else:
+                if args.snapshot:
+                    from router_v2 import receipt_from_snapshot
+                    require(args.step == 'revise_source', 'Snapshot requires revise_source')
+                    require(nonempty(args.snapshot_revision), 'Pre-edit --snapshot-revision required')
+                    evidence = Path(args.evidence_file).read_text(encoding='utf-8-sig').strip()
+                    require(nonempty(evidence), 'Inspection evidence required')
+                    result = receipt_from_snapshot(read_json(args.assessment), args.snapshot, output, evidence, args.snapshot_revision, args.task_id)
+                    print(json.dumps(result, ensure_ascii=False, indent=2))
+                    return
+                require(not args.snapshot_revision, '--snapshot-revision requires --snapshot')
                 portfolio = plan(read_json(args.assessment))
                 require(portfolio.get('schema_version') == 2, 'Receipt requires a v2 assessment')
                 if 'workstreams' in portfolio:
@@ -453,9 +578,14 @@ def main():
                     current = portfolio
                     node = next((s for s in current['steps'] if s['id'] == args.step), None)
                 require(node is not None and node['state'] == 'ready' and args.step != 'present', 'Receipt requires a ready executable step')
+                graph = {step['id']: step for step in portfolio['steps']}
+                require(all(dep in graph and graph[dep]['state'] == 'done' for dep in node['depends_on']),
+                        'Receipt requires completed dependencies')
                 evidence = Path(args.evidence_file).read_text(encoding='utf-8-sig').strip()
                 require(nonempty(evidence), 'Inspection evidence required')
-                result = {'step': args.step, 'binding': current['input_binding'], 'evidence': evidence, 'output': output}
+                result = {'step': args.step, 'binding': node['input_binding'], 'evidence': evidence, 'output': output}
+        elif args.command == 'resume':
+            result = resume_project(args.file)
         elif args.command == 'init':
             result = init_project(args.file, args.title)
         elif args.command == 'record':

@@ -1,4 +1,4 @@
-# Idea Man approved character system
+# Idea-Man approved character system
 
 Tagline: Every big idea needs a sidekick. (The capes and glasses are the sidekick.) Product line for listings: Insight first. Only ideas worth making. "Brainstorm. Sharpen. Create." is retired.
 
@@ -29,7 +29,7 @@ The bright yellow square background is intentional. Square assets were isolated 
 the image-generation tool from the approved board and visually checked; the board remains
 the authoritative reference. icon.png is the glasses-mark icon (512px, mark on yellow tile) used for the plugin logo and composer icon. The full illustrations are for large placements only.
 
-Use this identity for Idea Man's own listing, guides and presentations. Do not inject
+Use this identity for Idea-Man's own listing, guides and presentations. Do not inject
 these characters, colors or style into unrelated user deliverables.
 
 ## Packaged applications
@@ -37,3 +37,11 @@ these characters, colors or style into unrelated user deliverables.
 [Open the interactive brand kit](brand-kit.html) for the approved duo, palette, typography, icon-size previews and downloads.
 
 Every skill uses the glasses-mark icon (icon.png) for its small icon and Lightbulb Hero for its large icon, referencing these shared PNGs. This is presentation metadata; both characters remain equally approved and do not change workflow selection or user deliverables. The host controls where these icons appear.
+
+## Website color roles
+
+For Idea-Man's own website, use deep violet #25134D for the navigation bar with
+paper-colored text and cyan accents. Use solar yellow #F6F43C behind Invisible Nerd
+so the cyan glasses remain distinct. On the deep-violet principles section, use
+cyan #26D9E6 for the main heading. Preserve readable contrast, focus states and the
+approved illustration files. These roles belong to this brand, not other user projects.

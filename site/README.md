@@ -1,16 +1,23 @@
-# Idea Man landing site
+# Idea-Man landing site
 
-Dependency-free static site. Build output is `../docs/`; no server runtime or external font/analytics dependencies.
+Dependency-free GitHub Pages site. Source is `site/src/`; build output is `docs/` at the repository root.
 
-```powershell
+```sh
+cd site
 node build.mjs
 node validate.mjs
+node --check src/app.js
+node verify-live.mjs
 ```
 
-Update `site-config.json` with verified public URLs before the final build. `repositoryUrl` accepts an HTTPS GitHub repository URL. `marketplaceUrl` is emitted only when `marketplacePublicVerified` is true. `siteUrl` supplies optional canonical metadata after hosting identity is known. Missing URLs produce honest status text, never dummy links.
+`site-config.json` sets the verified public repository URL, canonical Pages base URL, and release version displayed by installation instructions. releaseStatus distinguishes an unreleased candidate from a GitHub release. Version 1.2.2 is published on GitHub; marketplace directory submission remains on hold. Keep releaseStatus=candidate for future unpublished work.
 
-The build copies the approved PNG assets byte for byte from `../../release-1.2.1/idea-man/assets/`. The source package is not modified.
+The public directory listing remains pending unless `marketplacePublicVerified` is explicitly set after actual approval. Repository installation is separate from public-directory approval.
 
-Sites deployment is owned by the parent task. Register the Site, persist the returned identity with the Sites `set-project-id.mjs` helper using `--static-directory docs`, then package and publish through the Sites workflow. No project identity or remote repository was created by this implementation task.
+The build copies approved artwork byte for byte from `../plugins/idea-man/assets/` and includes the brand kit at `docs/brand/`. Keep relative links compatible with the `/idea-man/` GitHub Pages base path. No Site registration or separate Sites deployment is needed.
 
-Browser QA should cover desktop and mobile layouts, all six domain selectors, both copy buttons, the methods disclosure, keyboard focus and configured external links.
+`verify-live.mjs` anonymously checks the four public routes, canonical URLs, the support GitHub Issues link, and referenced same-site assets. It verifies the currently deployed site, which can precede local staged changes. Static checks verify the local build. Browser rendering and interactions require separate visual QA when browser access is available.
+
+When repositoryUrl is null, Claude Code instructions use session-only `claude --plugin-dir "<path-to-unzipped-idea-man-directory>"`. The path must contain `.claude-plugin/plugin.json`; it is a plugin directory, not a marketplace. Verified against local `claude --help` (directory or ZIP, session only).
+
+Run `node --test site/distribution.test.mjs` from the repository root to test configured and absent repositories. Tests build isolated temporary copies and leave tracked docs untouched.

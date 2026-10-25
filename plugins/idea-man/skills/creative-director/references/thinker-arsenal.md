@@ -29,11 +29,10 @@ illustrations whose details are not documented; say so if you cite them.
 ## How to cast
 
 **Rules**
-1. Three to five methods per round, from at least three different modes, spanning at least
-   two families.
-2. Always include: one **distance** method (L4 Provoke or L5 Connect), one **subtract or
-   invert** method (L2/L3), and one **domain-native** method (Craft modes for creative
-   work; Systems or Human modes for products and operations).
+1. Use zero to three task-fit methods under ../../../references/recognition-playbook.md;
+   honor a single requested method and do not add methods to supplied-concept review.
+2. For explicitly expansive ideation, consider contrasting distance (L4/L5), subtraction
+   or inversion (L2/L3), and domain-native methods when useful. This is a menu, not a quota.
 3. A persona alone ("think like Steve Jobs") barely changes LLM output; a persona with its
    procedure does. Always run the procedure.
 4. Justify each casting in one line tied to the Phase 1 trap.
@@ -45,7 +44,7 @@ illustrations whose details are not documented; say so if you cite them.
 | Kids' animation | C2, H1, C1, S3 |
 | Music video / artist concept | C1 (image), S3, H3, L5, C2 (track-and-hook for songs) |
 | Advertising / brand | H3, S1 (convention audit), L2 (flaw-flip), H2, L4 |
-| Names / titles / taglines | D1 (quota), L5, H3 (DHM), H2 (SUCCESs) |
+| Names / titles / taglines | D1 (divergent rounds), L5, H3 (DHM), H2 (SUCCESs) |
 | Product / software / startup | H1, L1, L3, S2, D2 |
 | Games | C2 (MDA, Sid's rules), S2 (multi-problem), S3 (withered tech) |
 | Engineering / ops / business | Y2, Y1, S2, L3, L1 |
@@ -59,6 +58,8 @@ DIVERGENT. STRUCTURAL, HUMAN and CRAFT extend the room.
 # LATERAL family — break the pattern
 
 ## L1 REFRAME
+
+Optional subprocedure: read supplementary-methods.md, section "L1 Reframe: question starburst", when unanswered questions block the framing. All filenames here resolve from this reference directory. Studio scope and requested count take precedence.
 **Trap:** solving the problem exactly as stated.
 
 #### How-Might-We ladder — Min Basadur, Procter & Gamble (early 1970s)
@@ -76,7 +77,7 @@ DIVERGENT. STRUCTURAL, HUMAN and CRAFT extend the room.
 #### Question Burst — Hal Gregersen (HBR, 2018)
 - **Move:** questions, not answers, unlock a stuck problem.
 - **Procedure:** 1) State the challenge in under two minutes. 2) For four minutes generate
-  only questions — no preambles, no answers — at least 15. 3) Flag the ones that challenge an
+  only questions within the requested count or a bounded working pass — no preambles or answers. 3) Flag the ones that challenge an
   assumption or open a new angle. 4) Turn the best three into HMWs. AI version: simulate 3–5
   different askers (customer, competitor, child, regulator, artist).
 - **Use for:** unclear briefs, stuck projects.
@@ -151,6 +152,8 @@ DIVERGENT. STRUCTURAL, HUMAN and CRAFT extend the room.
   block is often on that list.
 
 ## L3 SUBTRACT
+
+Optional subprocedure: read supplementary-methods.md, section "S1 Map & Disrupt / L3 Subtract: closed-world structural transformations", for component-level subtraction with preserved functions. All filenames here resolve from this reference directory. Studio scope and requested count take precedence.
 **Trap:** the addition habit — solving by adding features, scenes, words, parts.
 
 #### Subtraction neglect — Adams, Converse, Hales & Klotz (*Nature*, 2021); via negativa — Nassim Taleb (*Antifragile*, 2012)
@@ -298,6 +301,8 @@ DIVERGENT. STRUCTURAL, HUMAN and CRAFT extend the room.
 # STRUCTURAL family — force the space
 
 ## S1 MAP & DISRUPT
+
+Optional subprocedure: read supplementary-methods.md, section "S1 Map & Disrupt / L3 Subtract: closed-world structural transformations", when structural operators fit the diagnosis. All filenames here resolve from this reference directory. Studio scope and requested count take precedence.
 **Trap:** tunnel vision on familiar combinations; copying the category's conventions.
 
 #### Morphological analysis (Zwicky box) — Fritz Zwicky
@@ -561,6 +566,8 @@ DIVERGENT. STRUCTURAL, HUMAN and CRAFT extend the room.
 # CRAFT family — domain-native form
 
 ## C1 SEQUENCE (story & image)
+
+Optional subprocedures: read supplementary-methods.md, section "C1 Sequence: concrete solution sketch", for concretization; read storytelling-frameworks.md, sections "Choose by the narrative job" and "Adapt duration through a beat budget", for requested narrative artifacts. All filenames here resolve from this reference directory. Studio scope and requested count take precedence.
 **Trap:** "and then" storytelling; telling instead of showing; pretty images with no idea.
 
 #### But / Therefore — Trey Parker & Matt Stone (NYU class, 2011)
@@ -649,12 +656,17 @@ DIVERGENT. STRUCTURAL, HUMAN and CRAFT extend the room.
 # DIVERGENT family — volume, incubation, testing
 
 ## D1 DIVERGE & INCUBATE
+
+Optional subprocedure: read supplementary-methods.md, section "D1 Diverge & Incubate: Crazy 8s as a bounded sketch burst", for a time-bounded sketch exercise. All filenames here resolve from this reference directory. Studio scope and requested count take precedence.
 **Trap:** premature convergence and perfectionism — loving the first workable idea.
 
 #### Quota and cull — Dean Keith Simonton (equal-odds rule); 6-3-5 brainwriting (Bernd Rohrbach, 1968); Pixar rule #12
-- **Procedure:** set a hard quota (30–100); generate in rounds (6-3-5: six voices, three ideas,
-  six rounds = 108 ideas); discard the first, second and most obvious ideas by rule; judge only
-  after the quota; keep a boneyard.
+- **Procedure:** choose useful variation axes, then generate bounded rounds against different
+  mechanisms without polishing each immediately. Cluster by causal move, retain strong early
+  ideas and compare against the brief. Expand only when a new round could add a useful mechanism;
+  stop at the requested diversity, repeated mechanisms or an evidence boundary. Historical
+  quota/brainwriting formats are optional workshop aids, not AI raw-count requirements or
+  reasons to discard early ideas. Keep rejected directions only when their lessons are useful.
 
 #### The invention factory — Thomas Edison (Menlo Park, 1876)
 - **Story:** the first long-lasting lamp (October 1879) burned for about 13.5 hours on a
@@ -689,6 +701,8 @@ DIVERGENT. STRUCTURAL, HUMAN and CRAFT extend the room.
   generation, a clickable sketch) and react to it.
 
 ## D2 TEST
+
+Optional subprocedure: read supplementary-methods.md, section "D2 Test: Six Thinking Hats as separated review lenses", when separated review perspectives help; sequential lenses are self-review. All filenames here resolve from this reference directory. Studio scope and requested count take precedence.
 **Trap:** falling in love before checking — optimism bias.
 
 #### Pre-mortem — Gary Klein (*HBR*, 2007)
@@ -737,3 +751,15 @@ DIVERGENT. STRUCTURAL, HUMAN and CRAFT extend the room.
 - Luhmann's output: "dozens of books, hundreds of articles" (counts vary by source).
 - MittiCool's storage duration and Bob Moesta's exact role in the milkshake study are
   unverified; don't state them as fact.
+
+## Optional supplementary procedure map
+
+Load only the selected section for the diagnosed operation. Existing seventeen mode IDs remain authoritative; these are subprocedures, not registry additions. The studio router governs scope and count.
+
+- S1 Map & Disrupt / L3 Subtract: supplementary-methods.md, section "S1 Map & Disrupt / L3 Subtract: closed-world structural transformations".
+- L1 Reframe: supplementary-methods.md, section "L1 Reframe: question starburst".
+- D1 Diverge & Incubate: supplementary-methods.md, section "D1 Diverge & Incubate: Crazy 8s as a bounded sketch burst".
+- D2 Test: supplementary-methods.md, section "D2 Test: Six Thinking Hats as separated review lenses".
+- C1 Sequence: supplementary-methods.md, section "C1 Sequence: concrete solution sketch", and storytelling-frameworks.md, sections "Choose by the narrative job" and "Adapt duration through a beat budget" for requested narrative work.
+
+All filenames in this map are relative to this reference directory. These supplementary procedures do not grant tools, delegation or execution authority.

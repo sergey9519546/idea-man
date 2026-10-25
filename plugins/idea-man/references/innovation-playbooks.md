@@ -58,6 +58,24 @@ Choose a method appropriate to available evidence and resources: interview, obse
 
 Output: executable test protocol with measurement and decision rules. Label it planned until actually run; record unexpected results as observations before explaining them.
 
+### Continue when results arrive
+
+Recover the tested assumption and original observation/decision rule from the supplied
+plan or authorized project record. Inspect actual results before interpreting them.
+Separate observations from explanations; check material confounds, missing comparisons
+and whether the evidence is inconclusive. Disclose any changed measure or threshold
+rather than judging the original test against a new rule.
+
+Explain what the evidence changes and recommend proceeding, adjusting, stopping or
+gathering more evidence within delegated authority. Preserve user-selected commitments
+unless the user changes them. Do not treat a favorable anecdote as established demand,
+an unrun protocol as results, or an inconclusive trial as proof of failure.
+Keep this as small as the job permits; it is not a mandatory experiment template.
+
+If saving is requested, reuse the existing project record's note and next_step events
+with source references. Do not create a new storage system or claim durable recall
+from ordinary conversation context.
+
 ## Redesign a service or process
 
 Use for handoffs, queues, coordination, resource constraints and recurring operational friction. Map the current sequence and owners, including exception paths. Identify who gains and who may inherit extra cost or burden. Preserve essential controls and access needs.

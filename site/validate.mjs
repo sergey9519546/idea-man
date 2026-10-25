@@ -50,7 +50,7 @@ for (const file of pages) {
     const alt = tag.match(/\salt="([^"]*)"/)[1];
     if (alt === '' && !rel.startsWith('brand')) {
       const after = html.slice(m.index + tag.length, m.index + tag.length + 220).replace(/<[^>]+>/g, ' ');
-      assert(/idea\s*man/i.test(after), `${rel}: decorative <img alt=""> not adjacent to brand text`);
+      assert(/idea[\s-]*man/i.test(after), `${rel}: decorative <img alt=""> not adjacent to brand text`);
     }
     checkedImgs++;
   }
@@ -60,14 +60,31 @@ assert(!await access(path.join(dist, 'CNAME')).then(() => true, () => false), 'C
 assert(!/(?:src|href)="\//.test((await Promise.all(pages.map(f => readFile(f, 'utf8')))).join('')), 'root-absolute URL found');
 const index = await readFile(path.join(dist, 'index.html'), 'utf8');
 assert(!index.includes('Brainstorm. Sharpen. Create.'), 'Retired subtitle present');
-for (const m of index.matchAll(/<a\b[^>]*class="[^"]*(?:button|nav-cta)[^"]*"[^>]*>\s*Get Idea Man/g)) assert(/href="#install"/.test(m[0]), 'Get Idea Man CTA must target #install');
-if (!config.repositoryUrl) assert(!/github/i.test(index), 'GitHub wording visible while repositoryUrl is null');
+assert(!/Film, series, music video|Free creative director for Claude|Only 7\+|Only ideas scoring 7/i.test(index), 'Retired positioning or quality guarantee');
+assert(index.includes('not a live AI demo') && index.includes('nothing you select is sent to a model'), 'Illustrative demo boundary missing');
+const tasks = [...index.matchAll(/data-task="([^"]+)"/g)].map(x => x[1]);
+assert.deepEqual(tasks, ['diagnose','decide','invent','research','refine','execute'], 'Task examples must cover distinct jobs');
+assert(index.includes('A simple task can stay simple'), 'Simple-task scope missing');
+for (const m of index.matchAll(/<a\b[^>]*class="[^"]*(?:button|nav-cta)[^"]*"[^>]*>\s*Get Idea-Man/g)) assert(/href="#install"/.test(m[0]), 'Get Idea-Man CTA must target #install');
+if (!config.repositoryUrl) assert(!/github\.com|View on GitHub|GitHub Releases/i.test(index), 'GitHub installation link visible while repositoryUrl is null');
 for (const sel of ['id="sample-output"', 'id="install"']) assert(index.includes(sel), `Missing section ${sel}`);
 assert.equal((index.match(/class="install-host"/g) || []).length, 3, 'Three install-host blocks required');
 // shipped art must match the plugin assets byte for byte
-for (const file of ['invisible-nerd.png', 'lightbulb-hero.png', 'invisible-nerd-1024.webp', 'lightbulb-hero-1024.webp', 'mark.svg', 'icon.png']) {
+for (const file of ['invisible-nerd.png', 'lightbulb-hero.png', 'invisible-nerd-1024.webp', 'lightbulb-hero-1024.webp', 'mark.svg', 'icon.png', 'invisible-nerd-cutout.png', 'lightbulb-hero-cutout.png']) {
   assert.equal(hash(await readFile(path.join(assetSource, file))), hash(await readFile(path.join(dist, 'assets', file))), `Asset differs from plugin source: ${file}`);
 }
 assert(!index.includes('plugins_6adbe347257481919f70f99db17daa40') || config.marketplacePublicVerified, 'Private listing exposed');
-if (!config.marketplacePublicVerified) assert(!index.includes('>Install Idea Man '), 'Unverified marketplace install claim');
+if (!config.marketplacePublicVerified) assert(!index.includes('>Install Idea-Man '), 'Unverified marketplace install claim');
+for (const rel of ['index.html', 'support/index.html', 'privacy/index.html', 'terms/index.html']) {
+  const page = await readFile(path.join(dist, rel), 'utf8');
+  const suffix = rel === 'index.html' ? '' : rel.replace('index.html', '');
+  assert(page.includes('rel="canonical" href="' + new URL(suffix, config.siteUrl).href + '"'), 'Incorrect Pages canonical: ' + rel);
+}
+assert(index.includes('host supports and permits it'), 'Critic host boundary missing');
+assert(index.includes('label a sequential review as non-independent'), 'Critic fallback boundary missing');
+assert(!index.includes('Only 7+ gets presented') && !index.includes('a blind critic kills'), 'Guaranteed blind critic claim remains');
+assert(index.includes('all 17 thinking methods') && index.includes('Eleven skills'), 'Toolkit counts missing');
 console.log(`Static checks passed: ${pages.length} pages, ${checkedRefs} local references and ${checkedImgs} images verified, anchors resolve, CTAs point to #install, GitHub hidden while repositoryUrl is null, asset hashes match.`);
+
+const brandPage = await readFile(path.join(dist, 'brand/index.html'), 'utf8');
+assert(brandPage.includes('Idea-Man'), 'Brand spelling missing');

@@ -1,6 +1,7 @@
 # Insight Engine
 
-Insight before ideas. An insight is the catapult for the idea, not the idea itself. This
+Use this craft reference when a grounded tension would help the task; it is not a universal stage.
+An insight can be the catapult for an idea. This
 file covers what an insight is, where to dig for one, how to test it, and how to turn it
 into How-Might-We questions that aim the generation phase.
 
@@ -43,7 +44,9 @@ credibly resolve or dramatise.
 
 ## 2. Seven mines to dig in
 
-Dig in at least three before choosing. Different mines produce different kinds of ideas.
+Choose mines that could reveal a useful missing distinction. A grounded insight that already
+serves the task needs no extra mining. Expand only when another lens could change the
+understanding; preserve requested scope and count.
 
 1. **Human truth** — a universal feeling, fear, desire or contradiction people live with.
    ("Nobody wants a drill; they want the hole — and actually they want the shelf, and the
@@ -72,7 +75,9 @@ should love?"; "what is the cost of the status quo, in their words?".
 
 ## 3. The insight tests
 
-Run every candidate through all eight. Keep the ones that pass at least seven.
+Use the diagnostics relevant to the brief. There is no seven-of-eight passing bar.
+Evidence and usefulness govern; a suitable technical insight need not produce discomfort,
+audience recognition or multiple executions. Mark unsupported explanations as hypotheses.
 
 - [ ] **Why, not what.** It explains a motivation, not a behaviour or a statistic.
 - [ ] **Tension.** Two forces pull against each other (want vs barrier, belief vs behaviour,
@@ -87,9 +92,10 @@ Run every candidate through all eight. Keep the ones that pass at least seven.
   was probably reverse-engineered from an idea you already liked.
 - [ ] **Human-sized.** One sentence, no jargon, no "consumers", no "leverage".
 
-If no candidate passes, you don't have enough material. Say so and either dig in another
-mine, ask the user one sharp question, or (with web access) research the audience's own
-words: reviews, forums, comments, interviews.
+If a consequential explanation lacks support, identify the missing observation. Investigate
+only when it could change the task's outcome. Otherwise continue from known requirements,
+state the uncertainty, or deliver the requested evidence-limited conclusion. Do not loop
+until a craft checklist passes or invent audience motives.
 
 ---
 
@@ -112,7 +118,8 @@ How-Might-We questions turn the insight into an aimable problem. The practice is
 traced to Min Basadur's work at Procter & Gamble in the 1970s and was later adopted by IDEO
 and design thinking.
 
-Write **three HMWs at three altitudes**:
+When reframing could help, consider the useful altitude; one question can be sufficient.
+These are optional alternatives, not three required deliverables:
 
 - **Wide:** reframes the whole goal ("HMW make exercise feel like it belongs to women who
   are afraid of being watched?").
@@ -122,8 +129,8 @@ Write **three HMWs at three altitudes**:
 
 A good HMW is not so broad that anything answers it ("HMW make people happy?") and not so
 narrow that it already contains the solution ("HMW add a share button?"). Each HMW should
-suggest several possible directions. Pick the one with the most tension and most room; keep
-the others for the next loop if the first round fails.
+suggest useful directions. Choose the question that serves the actual outcome and constraints;
+retain alternatives only when another pass has a specific purpose.
 
 ---
 
@@ -146,6 +153,10 @@ the others for the next loop if the first round fails.
 
 ## 7. Worked mini-examples
 
+These are craft illustrations. Audience motives and causal explanations in an example
+are hypotheses until supported for the user's actual setting; they are not interviews,
+research findings or permission to skip diagnosis.
+
 **Brief:** launch a new kids' animated short on YouTube.
 - Fact: parents use kids' videos to buy themselves ten minutes.
 - Observation: they leave the room.
@@ -160,3 +171,17 @@ the others for the next loop if the first round fails.
   happens in private.*
 - HMW (narrow): how might the video show the performance and the private collapse in the same
   frame at the same time?
+
+## Optional framing procedures
+
+Use only when the brief needs insight/framing work; a sufficient brief or precise edit proceeds directly. Treat unsupported audience explanations as hypotheses, including apparently recognizable tensions.
+
+**Problem -> insight -> advantage -> strategy:** distinguish the observed symptom from the underlying problem; propose an explanation with a tension; identify the project's real relevant strength; state a directive that joins the explanation to that strength. Check each link against evidence. Hypothetical: sign-ups stall (symptom); terms may be unclear (hypothesis); a genuinely plain-language service could demonstrate its terms before registration (proposed strategy). Verify the cause and actual advantage before claiming either.
+
+**Jobs layers:** separate functional progress, social context and emotional stakes. Ask what people currently use or do instead, including doing nothing. Interview or inspect behavior rather than assigning motives from demographics. These layers complement the existing struggling-moment mine.
+
+**Abstraction ladder:** ask why the stated solution matters, then how the broader need could be met concretely. Stop at the level that preserves the actual goal and allows useful alternatives; do not require a fixed number of upward/downward steps. A request for a chair might concern posture, rest or belonging; the right alternative depends on which need is real.
+
+**Assumption map:** list consequential assumptions and separate importance from confidence. Prioritize high-importance, low-confidence assumptions for evidence or a reversible test. Record source, uncertainty, what could disconfirm it and which decision depends on it. Low confidence does not mean false; a compelling new frame does not validate it.
+
+Where useful, sharpen the insight as audience wants X, but Y, because Z. The because clause is a causal hypothesis until supported. Keep desire, barrier and explanation distinct; do not force this sentence form onto technical findings or invent discomfort to pass a checklist.

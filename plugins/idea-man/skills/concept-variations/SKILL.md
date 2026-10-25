@@ -33,3 +33,5 @@ design variables. Preserve approved constraints across tools and retries.
 
 Present the requested alternatives and their meaningful differences. A useful shortlist
 is a recommendation; it is not user approval or permission to discard other favorites.
+
+For a diagnosed structural, reframing or divergence obstacle, load only the matching section of ../creative-director/references/supplementary-methods.md via the mode map in thinker-arsenal.md. These subprocedures preserve the existing mode IDs, requested count and locked reference properties; none requires a fixed method combination.
