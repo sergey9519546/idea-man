@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir, copyFile, access, readdir, rm } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, copyFile, access, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -45,14 +45,6 @@ for (const file of siteAssets) {
   await copyFile(from, path.join(dist, 'assets', file));
 }
 await copyFile(path.join(assetSource, 'favicon.ico'), path.join(dist, 'favicon.ico'));
-await mkdir(path.join(dist, 'brand'), { recursive: true });
-for (const file of await readdir(assetSource)) {
-  if (file === 'brand-kit.html') {
-    const brandPage = (await readFile(path.join(assetSource, file), 'utf8'));
-    await writeFile(path.join(dist, 'brand', 'index.html'), brandPage);
-  }
-  else if (!file.endsWith('.md')) await copyFile(path.join(assetSource, file), path.join(dist, 'brand', file));
-}
 const supportLink = repository ? `<a class="button button-dark" href="${escape(repository.replace(/\/$/, '') + '/issues')}" target="_blank" rel="noopener noreferrer">Open a GitHub issue <span aria-hidden="true">↗</span></a>` : '<p class="status-label">Support opens with the public release.</p>';
 const pages = {
   support: {
@@ -70,7 +62,7 @@ const pages = {
 };
 for (const [slug, page] of Object.entries(pages)) {
   const pageCanonical = site ? `<link rel="canonical" href="${escape(new URL(`${slug}/`, site.endsWith('/') ? site : site + '/').href)}">` : '';
-  const document = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#F6F43C"><title>${page.title} — Idea-Man</title><meta name="description" content="Idea-Man ${page.title.toLowerCase()} information. Published by Sergey Avetisyan.">${pageCanonical}<link rel="icon" href="../favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png"><link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"><link rel="stylesheet" href="../styles.css"></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><nav class="wrap navigation" aria-label="Main navigation"><a class="brand" href="../"><img src="../assets/mark.svg" width="44" height="44" alt=""><span>Idea-Man<span class="brand-dot">.</span></span></a><a class="nav-cta" href="../#install">Get Idea-Man ↗</a></nav></header><main id="main"><section class="document-hero"><div class="wrap"><p class="eyebrow">Idea-Man / ${page.title}</p><h1>${page.title.toUpperCase()}.</h1><p>${page.subtitle}</p></div></section><article class="wrap document-body">${page.body}</article></main><footer class="footer"><div class="wrap footer-top"><a class="brand" href="../">Idea-Man.</a><nav class="legal-links" aria-label="Information"><a href="../support/">Support</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><a href="../brand/">Brand kit</a></nav><p>Published by Sergey Avetisyan</p></div></footer></body></html>`;
+  const document = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#F6F43C"><title>${page.title} — Idea-Man</title><meta name="description" content="Idea-Man ${page.title.toLowerCase()} information. Published by Sergey Avetisyan.">${pageCanonical}<link rel="icon" href="../favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png"><link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"><link rel="stylesheet" href="../styles.css"></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><nav class="wrap navigation" aria-label="Main navigation"><a class="brand" href="../"><img src="../assets/mark.svg" width="44" height="44" alt=""><span>Idea-Man<span class="brand-dot">.</span></span></a><a class="nav-cta" href="../#install">Get Idea-Man ↗</a></nav></header><main id="main"><section class="document-hero"><div class="wrap"><p class="eyebrow">Idea-Man / ${page.title}</p><h1>${page.title.toUpperCase()}.</h1><p>${page.subtitle}</p></div></section><article class="wrap document-body">${page.body}</article></main><footer class="footer"><div class="wrap footer-top"><a class="brand" href="../">Idea-Man.</a><nav class="legal-links" aria-label="Information"><a href="../support/">Support</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a></nav><p>Published by Sergey Avetisyan</p></div></footer></body></html>`;
   await mkdir(path.join(dist, slug), { recursive: true });
   await writeFile(path.join(dist, slug, 'index.html'), document);
 }

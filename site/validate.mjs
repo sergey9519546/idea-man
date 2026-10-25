@@ -19,7 +19,7 @@ async function htmlFiles(dir) {
   return out;
 }
 const pages = await htmlFiles(dist);
-assert(pages.length >= 5, 'Expected index, support, privacy and terms pages');
+assert(pages.length >= 4, 'Expected index, support, privacy and terms pages');
 let checkedRefs = 0, checkedImgs = 0;
 for (const file of pages) {
   const rel = path.relative(dist, file);
@@ -86,5 +86,5 @@ assert(!index.includes('Only 7+ gets presented') && !index.includes('a blind cri
 assert(index.includes('all 17 thinking methods') && index.includes('Eleven skills'), 'Toolkit counts missing');
 console.log(`Static checks passed: ${pages.length} pages, ${checkedRefs} local references and ${checkedImgs} images verified, anchors resolve, CTAs point to #install, GitHub hidden while repositoryUrl is null, asset hashes match.`);
 
-const brandPage = await readFile(path.join(dist, 'brand/index.html'), 'utf8');
-assert(brandPage.includes('Idea-Man'), 'Brand spelling missing');
+assert(!await access(path.join(dist, 'brand')).then(() => true, () => false), 'Brand kit must remain outside the public site');
+for (const file of pages) assert(!/href="(?:\.\.\/)?brand\//.test(await readFile(file, 'utf8')), 'Public brand-kit link remains');
