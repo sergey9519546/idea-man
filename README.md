@@ -1,172 +1,252 @@
 <div align="center">
 
-<img src="plugins/idea-man/assets/lightbulb-hero-1024.webp" alt="Idea-Man: a faceless cyan lightbulb in round violet glasses and a coral cape" width="280" />
+<sub><b>A CREATIVE STUDIO WITH A SIDEKICK SPIRIT &nbsp;·&nbsp; TWO CHARACTERS. ONE IDEA MAN.</b></sub>
 
-# Idea-Man
+<br><br>
+
+<a href="https://sergey9519546.github.io/idea-man/">
+  <img src="plugins/idea-man/assets/lightbulb-hero-1024.webp" alt="Idea Man: a faceless cyan lightbulb in round violet glasses and a coral cape" width="360">
+</a>
+
+<br>
+
+# IDEA MAN
 
 ### **Every big idea needs a sidekick.**
+**Brainstorm. Sharpen. Create.**
 
-**The innovation and creative-director plugin for Claude and Codex that finds the non-obvious insight, generates past the clichés, and challenges weak ideas before you commit.**
+<p align="center">
+  Find distinct directions. Sharpen the strongest. Turn it into something you can make.
+</p>
 
-Bring a business challenge, an engineering contradiction, a research question, an inefficient process, an everyday problem or a creative brief. Idea-Man chooses the work and thinking methods to fit the assignment.
+[![Studio Site](https://img.shields.io/badge/STUDIO_SITE-IDEA_MAN-F6F43C?style=for-the-badge&labelColor=25134D)](https://sergey9519546.github.io/idea-man/)
+[![Claude Code & Cowork](https://img.shields.io/badge/CLAUDE-PLUGIN-4B39F2?style=for-the-badge&labelColor=25134D)](#install)
+[![Codex](https://img.shields.io/badge/CODEX-PLUGIN-26D9E6?style=for-the-badge&labelColor=25134D)](#install)
+[![Latest Release](https://img.shields.io/github/v/release/sergey9519546/idea-man?style=for-the-badge&label=RELEASE&color=FF5878&labelColor=25134D)](https://github.com/sergey9519546/idea-man/releases/latest)
+[![License: MIT](https://img.shields.io/badge/LICENSE-MIT-F6F43C?style=for-the-badge&labelColor=25134D)](#license)
 
-[![Website](https://img.shields.io/badge/Live_Site-Idea--Man-26D9E6?style=flat-square&labelColor=25134D)](https://sergey9519546.github.io/idea-man/)
-[![Latest Release](https://img.shields.io/github/v/release/sergey9519546/idea-man?style=flat-square&label=Release&color=4B39F2&labelColor=25134D)](https://github.com/sergey9519546/idea-man/releases/latest)
-[![License: MIT](https://img.shields.io/badge/License-MIT-FF5878?style=flat-square&labelColor=25134D)](#license)
-
-[**Explore the Site**](https://sergey9519546.github.io/idea-man/) · [**Quick Install**](#install) · [**How the Critic Works**](#why-default-ai-brainstorming-fails) · [**Modes**](#five-ways-to-run-the-room) · [**Skills**](#the-11-skill-architecture)
+<p align="center">
+  <a href="https://sergey9519546.github.io/idea-man/"><b>Live Site ↗</b></a> &nbsp;·&nbsp;
+  <a href="#the-promise"><b>The Promise</b></a> &nbsp;·&nbsp;
+  <a href="#install"><b>Install</b></a> &nbsp;·&nbsp;
+  <a href="#modes--voice"><b>Modes &amp; Voice</b></a> &nbsp;·&nbsp;
+  <a href="#skills"><b>Skills</b></a> &nbsp;·&nbsp;
+  <a href="#brand--character-system"><b>Brand System</b></a>
+</p>
 
 </div>
 
 ---
 
-## Why Default AI Brainstorming Fails
+## The Promise
 
-Ten options can still hide one familiar idea. Useful exploration changes the mechanism, tests assumptions and keeps the real constraints in view.
+<table>
+<tr>
+<td width="52%" valign="top">
 
-**Idea-Man** operates like a seasoned creative director paired with a ruthless editor:
+<sub><b>THE PROMISE</b></sub>
 
-```text
-  YOUR TASK
-      |
-      v
-┌─────────────────────────────────────────────────────────────────┐
-│ 1. UNDERSTAND THE ASSIGNMENT                                    │
-│ Recover the real job, evidence and constraints.                 │
-│ Preserve approved choices and successful qualities.             │
-├─────────────────────────────────────────────────────────────────┤
-│ 2. CHOOSE THE APPROACH                                          │
-│ Match diagnosis, research, invention, comparison or             │
-│ execution to the actual task.                                   │
-├─────────────────────────────────────────────────────────────────┤
-│ 3. CHALLENGE THE WORK                                           │
-│ Compare mechanisms, usefulness, requirements and evidence.      │
-│ Use independent critique when the host supports and permits it. │
-│ Scores never compensate for failed hard requirements.           │
-├─────────────────────────────────────────────────────────────────┤
-│ 4. TEST OR MAKE WHAT COMES NEXT                                 │
-│ Separate a promising direction from a supported commitment.     │
-│ Carry out authorized work with available tools and inspect it.  │
-└─────────────────────────────────────────────────────────────────┘
-```
+### **Brainstorm. Sharpen. Create.**
 
-### What You Actually See
+**Idea Man** is a free creative-director plugin for Claude and Codex. It finds the insight first, then generates far past the obvious with methods drawn from real master thinkers. A blind critic scores every idea, and you only see the ones that score 7+, with their risks and the cheapest test.
 
-An illustrative concept can look like this. The hypothesis is not a customer finding, the concept is unvalidated, and the test has not been run:
+Bring a half-formed thought, a rough draft, or a direction you already love. Idea Man helps you find the next useful step—and carry the idea further.
 
-> **Working hypothesis:** Some users may abandon onboarding when configuration comes before their first useful result.
->
-> **Concept — "The Inverted Trial"**
-> Drop the user directly into a pre-populated, live workspace using synthetic data from their industry. Let them break things first; ask for account setup only when they try to export or save.
-> * **Primary Risk:** Synthetic data feels too generic to trigger an "aha" moment for niche verticals.
-> * **First Test:** Compare a small set of static industry sandboxes with the existing onboarding flow. Observe first useful actions and confusion; use the findings to decide what to prototype next. Treat a small sample as directional evidence.
+</td>
+<td width="48%" valign="top">
+
+<sub><b>CREATIVE STUDIO JOURNEY</b></sub>
+
+### **BIG IDEA. NEXT MOVE.**
+
+![](https://img.shields.io/badge/01-Understand-F6F43C?style=flat-square&labelColor=25134D) **`→`** ![](https://img.shields.io/badge/02-Explore-26D9E6?style=flat-square&labelColor=25134D) **`→`** ![](https://img.shields.io/badge/03-Critique_(7%2B)-FF5878?style=flat-square&labelColor=25134D) **`→`** ![](https://img.shields.io/badge/04-Develop-4B39F2?style=flat-square&labelColor=25134D) **`→`** ![](https://img.shields.io/badge/05-Make-F6F43C?style=flat-square&labelColor=25134D)
+
+A complete creative studio, from first directions to production briefs and execution with the tools available in your workspace. Save project decisions when you want to pick up later.
+
+**Site:** [https://sergey9519546.github.io/idea-man/](https://sergey9519546.github.io/idea-man/)
+
+</td>
+</tr>
+</table>
 
 ---
 
 ## Install
 
-### Claude Code (CLI)
+<table>
+<tr>
+<th width="36%" align="left">01 / Claude Code</th>
+<th width="32%" align="left">02 / Claude.ai &amp; Cowork</th>
+<th width="32%" align="left">03 / Codex</th>
+</tr>
+<tr>
+<td valign="top">
 
-Add the marketplace, install the plugin, and invoke the creative director directly from your terminal:
+Add the marketplace and install the plugin:
 
 ```bash
 claude plugin marketplace add sergey9519546/idea-man
 claude plugin install idea-man@idea-man-marketplace
 ```
 
-**Run your first brief:**
+Then run:
 
 ```text
-/idea-man:creative-director <your brief, problem, or rough draft>
+/idea-man:creative-director <brief>
 ```
 
-### Claude.ai & Cowork (Web / Desktop)
+</td>
+<td valign="top">
 
-1. Download **`idea-man-1.2.2.zip`** from the [**latest GitHub release**](https://github.com/sergey9519546/idea-man/releases/latest).
-2. In Claude, navigate to **Customize → Plugins → Add → Upload plugin**.
-3. Select the downloaded `.zip` archive.
+1. Go to **Customize → Plugins → Add → Upload plugin**.
+2. Choose **`idea-man-1.2.1.zip`** from the [**latest GitHub release**](https://github.com/sergey9519546/idea-man/releases/latest).
 
-### OpenAI Codex
+</td>
+<td valign="top">
+
+Add the marketplace from `main`:
 
 ```bash
 codex plugin marketplace add sergey9519546/idea-man --ref main
 ```
 
-> *After registration, open Plugins, install Idea-Man from the registered marketplace, and start a new session. Public-directory approval is separate; registering a marketplace alone does not activate a plugin.*
+<sub><i>The Codex plugin directory listing is pending review.</i></sub>
+
+</td>
+</tr>
+</table>
 
 ---
 
-## Five Ways to Run the Room
+## Modes & Voice
 
-Start with the outcome in ordinary language; no mode is required. These optional modes adapt the depth and approach to the task:
+<table>
+<tr>
+<td width="50%" valign="top">
 
-| Mode | Best Used When... | What Happens Under the Hood |
-| :--- | :--- | :--- |
-| **`Full`** | You have a raw problem or high-stakes brief and need vetted solutions. | Frames the assignment, explores distinct mechanisms and compares useful directions. Insight work, scores and development depend on the task and delegated scope. |
-| **`Spark`** | You have a blank page and need immediate momentum. | Fires a rapid, high-variance burst of lateral angles without heavy preamble. |
-| **`Critique`** | You already have an idea (or three) and want the truth before you build. | Rates, compares, stress-tests, or mercifully kills an existing concept—and tells you how to salvage what survives. |
-| **`Unstick`** | You've been staring at the same constraint for three days. | Reframes the problem statement, attacks hidden assumptions, and forces orthogonal entry points. |
-| **`Room`** | The problem is multidisciplinary and needs clashing perspectives. | Uses bounded independent thinkers and a critic when the host supports and permits them; otherwise disclosed sequential role passes. |
+<sub><b>FIVE WAYS TO WORK</b></sub>
 
----
+### **Modes**
 
-## The 11-Skill Architecture
+| Mode | What It Does |
+| :--- | :--- |
+| **`Full`** | diagnose, insight, generate, critique, present. |
+| **`Spark`** | a quick burst of ideas. |
+| **`Critique`** | rate, compare or kill an existing idea. |
+| **`Unstick`** | get moving on a stuck problem. |
+| **`Room`** | parallel thinkers plus a blind critic. |
 
-Under the hood, Idea-Man is a modular suite of 11 specialized skills. **`creative-director`** orchestrates them automatically, or you can invoke individual capabilities for targeted work:
+</td>
+<td width="50%" valign="top">
 
-### 1. Framing & Strategy
-* **`creative-director`** — The master orchestrator. Understands assignments, selects procedures and coordinates the needed skills.
-* **`creative-brief`** — Turns vague requests, stakeholder wishes, and messy context into a sharp, actionable brief.
-* **`innovation-strategy`** — Handles causal diagnosis, systems, strategic choices, constraints and testable bets.
-* **`research-and-writing`** — Synthesizes supplied or researched sources into traceable findings and clear writing.
+<sub><b>CURIOUS. CANDID. USEFUL.</b></sub>
 
-### 2. Divergence & Development
-* **`concept-variations`** — Generates genuinely distinct territories rather than shallow rewordings of one idea.
-* **`concept-development`** — Takes a raw spark and builds out the mechanics, edge cases, and user experience.
-* **`creative-project`** — Preserves authorized local briefs, constraints, decisions and pending work for resume.
+### **Voice**
 
-### 3. Rigor, Taste & Handoff
-* **`creative-review`** — Compares mechanisms, usefulness, evidence and feasibility; independent critique depends on host support.
-* **`artifact-quality`** — Audits final deliverables for craft, clarity, tone, and structural integrity.
-* **`execution-handoff`** — Translates approved concepts into concrete specs, experiments, and next actions.
-* **`creative-learning`** — Applies explicit corrections and scoped project preferences without automatic global learning.
+A sharp creative partner with a sense of play. Ask the question that matters. Explain the choice. Give the person something they can use.
 
----
+* **INVITATION** — *“Give me the rough version.”*
+* **EXPLORATION** — *“Six directions. Each changes the idea, not just the wording.”*
+* **CRITIQUE** — *“The hook works. The payoff needs a clearer turn.”*
+* **DEVELOPMENT** — *“Keep the part you love. Let's build the next piece around it.”*
 
-## Repository Layout & Local Development
+<sub><i>Keep the superhero spirit in the imagery. In conversation, use plain language and honest judgments.</i></sub>
 
-```text
-idea-man/
-├── plugins/idea-man/    # Core plugin manifests, prompts, skills, and assets
-├── site/                # Source for the public landing page
-├── docs/                # Compiled GitHub Pages output (generated from site/)
-├── tests/               # Python behavior and integrity regressions
-└── eval/                # Offline comparison harness and synthetic task cases
-```
-
-**Building and validating the landing page:**
-
-```bash
-node site/build.mjs
-node site/validate.mjs
-```
+</td>
+</tr>
+</table>
 
 ---
 
-## Updating an existing installation
+## Skills
 
-Claude Code: `claude plugin update idea-man@idea-man-marketplace`, then restart. In Codex, refresh the registered marketplace with `codex plugin marketplace upgrade <configured-marketplace-name>`, apply the available plugin update in Plugins, and start a new session.
+A modular creative studio mapped across the full creative journey:
 
-## Candidate decisions and local evaluation
+| Journey Stage | Skills |
+| :--- | :--- |
+| **01 / Understand** | `creative-director` · `creative-brief` · `research-and-writing` · `innovation-strategy` |
+| **02 / Explore** | `concept-variations` · `creative-project` |
+| **03 / Critique** | `creative-review` · `artifact-quality` |
+| **04 / Develop** | `concept-development` · `creative-learning` |
+| **05 / Make** | `execution-handoff` |
 
-The optional [candidate contract](plugins/idea-man/skills/creative-director/references/candidate-decisions.md) separates hard requirements, shared mechanisms, tradeoffs and readiness for the specific next commitment. It validates host-supplied judgments and grants no execution authority. Python helpers require Python 3.9+ and only the standard library; ordinary skill use does not require Python.
+<details>
+<summary><b>All 11 skills (flat reference)</b></summary>
+<br>
 
-The [offline comparison harness](eval/README.md) checks supplied actual captures and supports blinded reviews. Passing local tests does not establish model-quality superiority. Marketplace submission remains separate from this GitHub release.
+`creative-director`, `creative-brief`, `concept-variations`, `concept-development`, `creative-review`, `artifact-quality`, `research-and-writing`, `innovation-strategy`, `creative-learning`, `execution-handoff`, `creative-project`.
+
+</details>
+
+---
+
+## Brand & Character System
+
+<details>
+<summary><b>View the official Idea Man character system, palette &amp; typography specs</b></summary>
+<br>
+
+### **01 / Character System — Same mind. Two ways to show up.**
+Both characters are approved peers. Pick the silhouette that best fits the composition; their roles are flexible. Give the silhouette space: use the supplied full-square artwork, keep both lenses and the cape visible, and avoid stretching, extra props, or placing copy over the character.
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+![](https://img.shields.io/badge/01-INVISIBLE_NERD-26D9E6?style=flat-square&labelColor=25134D)
+
+#### **Let curiosity lead.** — *Curiosity, with a cape.*
+The empty glasses make room for the person with the idea. A compact, unusual silhouette for discovery, conversation, and the plugin icon.
+* Round cyan glasses with violet depth; empty lenses.
+* Coral cape, violet lining, and cyan clasp.
+* No head, face, body, hands, or feet.
+
+</td>
+<td width="50%" valign="top">
+
+![](https://img.shields.io/badge/02-LIGHTBULB_HERO-FF5878?style=flat-square&labelColor=25134D)
+
+#### **Give the idea presence.** — *A bright thought, ready to move.*
+The confident pose makes a natural companion for demonstrations, studio guides, and moments when a direction starts taking shape.
+* Plain cyan-blue bulb and round violet glasses.
+* Coral cape, violet screw base, hands on hips, and boots.
+* No eyes, eyebrows, mouth, filament, or light rays.
+
+</td>
+</tr>
+</table>
+
+### **02 / Color & Typography — Turn the volume up. Keep the message clear.**
+Yellow sets the stage. Deep violet carries the words. Cyan and coral bring the characters to life.
+
+| Swatch | Name | Hex | Role | Contrast Rule |
+| :--- | :--- | :--- | :--- | :--- |
+| ![](https://img.shields.io/badge/%20-F6F43C?style=flat-square&color=F6F43C) | **Solar yellow** | `#F6F43C` | Signature field | Deep violet (`#25134D`) text |
+| ![](https://img.shields.io/badge/%20-26D9E6?style=flat-square&color=26D9E6) | **Cyan** | `#26D9E6` | Curiosity | Deep violet (`#25134D`) text |
+| ![](https://img.shields.io/badge/%20-FF5878?style=flat-square&color=FF5878) | **Coral** | `#FF5878` | Energy | Deep violet (`#25134D`) text |
+| ![](https://img.shields.io/badge/%20-4B39F2?style=flat-square&color=4B39F2) | **Electric violet** | `#4B39F2` | Accent | White (`#FFFFFF`) text |
+| ![](https://img.shields.io/badge/%20-25134D?style=flat-square&color=25134D) | **Deep violet** | `#25134D` | Type & depth | White (`#FFFFFF`) text |
+
+* **Headlines:** `Arial Black`, with `Segoe UI Black` and a heavy sans-serif fallback. Short phrases, tight tracking, generous surrounding space.
+* **Reading:** `Segoe UI`, then `Arial` or a system sans-serif. Sentence case, comfortable line spacing, and short paragraphs.
+* **Brand name:** **IDEA MAN** for the display wordmark; **Idea Man** in prose. Keep “Brainstorm. Sharpen. Create.” as the product subtitle.
+
+</details>
+
+---
+
+## Repository layout
+
+* `plugins/idea-man/`: the plugin
+* `site/`: landing-page source (`node site/build.mjs`, then `node site/validate.mjs`), output in `docs/` for GitHub Pages
+* `tests/`: Python tests
 
 ---
 
 ## License
 
-Released under the **MIT License**.
+MIT. Not affiliated with or endorsed by Anthropic or OpenAI.
 
-*Idea-Man is an independent open-source project and is not affiliated with or endorsed by Anthropic or OpenAI.*
+<div align="center">
+  <sub><b>IDEA MAN</b> &nbsp;·&nbsp; Every big idea needs a sidekick.</sub>
+</div>
