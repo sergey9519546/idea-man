@@ -394,7 +394,7 @@ idea-man/
 
 ## Release and local development
 
-This working tree prepares **v1.2.3**. Published ZIPs are listed on [GitHub Releases](https://github.com/sergey9519546/idea-man/releases); installed copies receive changes only through a separate update. Marketplace submission remains on hold.
+**v1.2.3 is released.** Published ZIPs are listed on [GitHub Releases](https://github.com/sergey9519546/idea-man/releases); installed copies receive changes only through a separate update. Marketplace submission remains on hold.
 
 Version 1.2.3 strengthens task-fit routing, evidence and selection checks, recovery, constraint-preserving handoffs and portable project exports. Current goals and constraints come from available context and inspected sources. Authorized local records support return visits; Idea-Man does not recover unseen conversations or guarantee drift-free behavior.
 
