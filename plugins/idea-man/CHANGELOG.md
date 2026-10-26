@@ -1,3 +1,24 @@
+# 1.2.3
+
+Idea-Man 1.2.3 strengthens task-fit routing, evidence and selection checks, recovery, constraint-preserving handoffs and portable project exports. Host tools and supplied context determine available execution; no hidden conversation memory is claimed.
+
+# Unreleased local candidate - October 26, 2026
+
+- Bind changed inline user facts and learner attempts, carry accepted predecessor output identities into ready-step handoffs, and distinguish committed saves from subsequent lock-cleanup failures.
+- Strengthen numerical baseline/resource-conservation checks, feedback on the first actual learner error and complete compact delivery. These procedures still require actual host execution and output inspection.
+- Connect per-step specialist paths, selected method sections and matching rubric references; bind those assignments before receipt reuse. Add a read-only ready-step context reader instead of loading every specialist and procedure at once.
+- Route saving/restoration to creative-project, option comparison to creative-review and development to concept-development; report canon synthesis among the actual research services. Preserve host tool/authorization boundaries and existing execution evidence.
+- Record explicit withdrawal of an approved choice or constraint without inventing a replacement; preserve other approvals and history, export the inactive state and withhold stale checkpoints until reconciled. Updated readers support later evidence-backed reapproval.
+- Route calculations, formal arguments, explanations and coaching by their actual operation; preserve direct answers and requested learning pace without a compulsory handoff packet.
+- Assign selected methods to the phases they support and bind their applications and required verification contracts before receipt reuse. Optional method breadth does not reduce necessary checks.
+- Isolate temporary source/evidence read failures to affected work, hash and parse snapshots from the same bytes, and traverse deep dependency graphs without recursion-limit failures.
+- Verify concurrent record saves, stale retries, failed replacement recovery and malformed-record preservation locally. Synthetic journey cases remain hypotheses until actual conversation tests are available.
+- Review the inspected source before an authorized repair; verify the changed result separately.
+- Check acceptance conditions for research, briefs and standalone reviews, including inline text, without adding production to review-only work.
+- Reject conflicting duplicate JSON fields and non-finite numbers before changing saved task records or accepting plan/snapshot data; retain valid existing records.
+- Add local CLI journeys covering source preservation, ordered repair, acceptance checks and stale finding invalidation. These are helper checks, not model-output or customer validation.
+- Preserve the eleven skills, seventeen thinking methods, approved artwork and existing installation. Publication remains on hold.
+
 # 1.2.2 - October 25, 2026
 
 - Standardize the display name as Idea-Man, preserving technical identifiers.

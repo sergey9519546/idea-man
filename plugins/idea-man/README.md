@@ -64,7 +64,7 @@ methods take precedence within the assignment's scope.
 | artifact-quality | Evidence-backed checks for analysis, decisions, experiments, processes, writing, media and code |
 | creative-learning | Explicit corrections, scoped preferences, exceptions and workflow lessons |
 | creative-brief | Desired outcome, constraints, assumptions and decisive unknown |
-| concept-variations | Requested alternatives with protected invariants and distinct mechanisms |
+| concept-variations | Requested alternatives on permitted axes; protected invariants and mechanisms stay fixed during refinement |
 | creative-review | Concept comparison, tradeoffs and useful critique |
 | concept-development | Expand a selected direction into its domain-specific result |
 | execution-handoff | Bind execution inputs and create requested artifacts with actual host tools |
@@ -93,6 +93,13 @@ Both fields participate in receipt bindings; changed contracts require reinspect
 Actions describe operations, not phase order; use dependent workstreams when the
 user's requested sequence differs from the planner's standard template.
 
+An explicitly requested method can support an exact edit without broadening it.
+Research methods attach to evidence work rather than report packaging. When review
+precedes proposed changes, its findings are a dependency of that subsequent work.
+Combined decision-and-record tasks save the resulting decision, not a premature
+snapshot. Without file writing, an explicitly unsaved recap remains available while
+the requested persistent save stays incomplete.
+
 The helper does not classify raw language, execute providers or certify the truth of an
 inspection note. Version 1 assessments remain supported for compatibility. New work should
 use the v2 schema under skills/creative-director/references/router-schema-v2.md.
@@ -114,7 +121,8 @@ identity is not imposed on customer projects. Both approved assets are included.
 
 ## Version and validation
 
-Package version 1.2.2 is released on GitHub; public-directory review is separate.
+Package version 1.2.3 contains the task-fit, recovery and continuity repairs.
+Installed copies require an update or reload; public-directory review is separate.
 Mechanical tests, source-conditioned conversation probes, independent grading and host
 initialization checks are separate evidence. They do not establish automatic skill
 activation, semantic routing accuracy or end-to-end execution. No claim of perfect or

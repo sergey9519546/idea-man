@@ -6,6 +6,8 @@ and checks checkpoint bindings. It never classifies prose or executes a provider
 import copy
 import hashlib
 import json
+import math
+import stat
 from pathlib import Path
 
 PACKAGE = Path(__file__).resolve().parents[3]
@@ -59,7 +61,9 @@ def registry():
     data=json.loads((PACKAGE/'references/innovation-registry.json').read_text(encoding='utf-8'))
     for entry in data['specialists'].values():
         p=(PACKAGE/entry['path']).resolve()
-        need(p.is_relative_to(PACKAGE.resolve()) and p.is_file(), 'Specialist file is unavailable: '+entry['path'])
+        need(p.is_relative_to(PACKAGE.resolve()), 'Specialist file is outside package: '+entry['path'])
+        # Availability belongs to the assigned step; an unused missing specialist
+        # must not disable an otherwise independent task or portfolio branch.
     return data
 
 
@@ -182,19 +186,27 @@ def live_sources(sources):
         item=dict(source)
         if item['kind']=='file' and item['status']=='available':
             p=Path(item['locator'])
-            if not p.is_file():
+            try:
+                info=p.stat()
+                if not stat.S_ISREG(info.st_mode):
+                    item.update(status='missing',inspected=False)
+                else:
+                    actual=file_hash(p)
+                    if item['revision']!=actual: item['inspected']=False
+                    item['revision']=actual
+            except (FileNotFoundError,NotADirectoryError):
                 item.update(status='missing',inspected=False)
-            else:
-                actual=file_hash(p)
-                if item['revision']!=actual: item['inspected']=False
-                item['revision']=actual
+            except OSError as error:
+                # Keep unknown availability distinct from absence. A transient read
+                # failure must not abort unrelated workstreams or preserve inspection.
+                item.update(inspected=False,observation_error=type(error).__name__)
         result.append(item)
     return result
 
 
 def pick_specialist(a):
     actions=set(a['effective_actions'])-{'resume','status','record'}
-    if not actions: return 'creative-learning' if 'record' in a['effective_actions'] else 'creative-director'
+    if not actions: return 'creative-project' if 'record' in a['effective_actions'] else 'creative-director'
     if 'review' in actions and actions<={'review','produce'}: return 'artifact-quality'
     if a['scope']=='exact' and actions<= {'revise','produce'}: return 'execution-handoff'
     if actions<= {'handoff','produce'}: return 'execution-handoff'
@@ -209,12 +221,30 @@ def pick_specialist(a):
     return 'creative-director'
 
 
+def step_specialist(key, primary):
+    return {'inspect_context':'creative-director','answer_status':'creative-director',
+            'present':'creative-director','resolve_source':'creative-director',
+            'record_decisions':'creative-project','prepare_unsaved_recap':'creative-project','restore_checkpoint':'creative-project',
+            'clarify_brief':'creative-brief','develop_solution':'concept-development'}.get(key,primary)
+
+
+def step_capabilities(a,key):
+    required=set({'record_decisions':['file_write'],'research_live':['web']}.get(key,[]))
+    if key=='produce_artifact':
+        required.update(a['required_capabilities'])
+        if a['deliverable'] in PRODUCTION_CAP: required.add(PRODUCTION_CAP[a['deliverable']])
+        if a['delivery_mode']=='artifact' and a['deliverable'] in {'text','code'}: required.add('file_write')
+    return sorted(required)
+
+
 def pick_methods(a,data):
     acts=set(a['effective_actions']); p=a['problem']
     reasoning=acts & {'brief','diagnose','ideate','vary','decide','experiment'}
     if 'develop' in acts and p['novelty']!='none' and p['kind']!='execution': reasoning.add('develop')
-    if a['scope']=='exact':
-        need(not a['requested_methods'],'Explicit thinking methods with exact scope require clarification; confirm compatible bounded work or remove requested_methods')
+    if a['scope']=='exact' and not a['requested_methods']:
+        # Exact scope suppresses automatic method casting, not an explicitly
+        # requested procedure within the protected delta. normalize() still
+        # rejects ideation/variation; phase assignment adds no new work stages.
         return []
     if a['requested_methods']:
         chosen=a['requested_methods']; reason='Explicit user-requested methods; apply within scope'
@@ -245,20 +275,21 @@ def pick_methods(a,data):
             chosen=ordered[:budget]
         reason='Problem: '+p['kind']+'; bottleneck: '+p['bottleneck']+'; style: '+a['thinking_style']
     return [{'id':m,'reason':reason,'procedure':data['methods'][m]['procedure'],
-             'output':data['methods'][m]['output'],'reference':data['methods'][m]['reference']} for m in chosen]
+             'output':data['methods'][m]['output'],'reference':data['methods'][m]['reference'],
+             'section_prefix':data['methods'][m]['section_prefix']} for m in chosen]
 
 
 def binding_for(a,sources,specialist,methods,rubric,upstream):
     keys=('task_id','objective','domain','artifact_kind','scope','problem','effective_actions','deliverable',
           'selection','constraints','requested_count','evidence_mode','capabilities','required_capabilities',
           'acceptance','feedback','project_revision','thinking_style','effort','brief','material_ambiguity',
-          'delivery_mode','live_research_dependency')
+          'delivery_mode','live_research_dependency','evidence')
     value={k:a[k] for k in keys}
     value['effective_actions']=[x for x in a['effective_actions'] if x not in {'resume','status','record'}]
     # Stage/receipt list are execution bookkeeping; semantic inputs remain bound.
-    # Bind only resolved selected contracts, not unrelated registry cards. Reference
-    # locators are bound; their external document contents are not auto-inspected.
-    contracts=[{key:method[key] for key in ('id','procedure','output','reference')} for method in methods]
+    # Bind only resolved selected contracts, not unrelated registry cards. Selected
+    # packaged content is bound separately per step by the shared context selector.
+    contracts=[{key:method[key] for key in ('id','procedure','output','reference','section_prefix')} for method in methods]
     value.update(sources=sources,specialist=specialist,methods=contracts,rubric=rubric,upstream=upstream)
     return digest(value)
 
@@ -266,24 +297,150 @@ def binding_for(a,sources,specialist,methods,rubric,upstream):
 def output_current(out):
     if out['kind']=='file':
         p=Path(out['locator'])
-        return p.is_file() and file_hash(p)==out['revision']
+        try:
+            return p.is_file() and file_hash(p)==out['revision']
+        except OSError:
+            # An unavailable prior observation is not reusable completion evidence.
+            return False
     # Remote/context versions require host inspection; no fabricated remote checks.
     return False
 
 
-def step_binding(task_binding, key, predecessors):
+def step_binding(task_binding, key, predecessors, contract=None):
     """Bind this step to accepted predecessor identities, transitively.
 
     Legacy task-wide receipt bindings deliberately do not match this namespace.
     Replan and remint ready steps; accepting old bindings would bypass output checks.
     """
-    return digest({'version':'step-output-v1','task_binding':task_binding,'step':key,
+    value={'version':'step-output-v1','task_binding':task_binding,'step':key,
                    'predecessors':[{'step':node['id'],'binding':node['input_binding'],
                        'output':node.get('completion_output') if node['state']=='done' else None}
-                       for node in predecessors]})
+                       for node in predecessors]}
+    if contract: value['contract']=contract
+    return digest(value)
+
+
+def pick_rubric(a,data,specialist):
+    """Verify task substance first; a file extension does not define the job."""
+    if a['deliverable']=='code': return 'code'
+    if a['deliverable']=='image': return 'visual'
+    kinds={'analysis':'analysis','diagnosis':'analysis','causal_analysis':'analysis',
+           'decision':'decision','decision_memo':'decision',
+           'experiment_plan':'experiment','test_protocol':'experiment',
+           'process':'process','process_spec':'process','operating_procedure':'process',
+           'article':'factual_writing','research_brief':'factual_writing',
+           'calculation':'quantitative','estimate':'quantitative','optimization':'quantitative',
+           'statistical_analysis':'quantitative',
+           'proof':'formal_reasoning','formal_proof':'formal_reasoning','derivation':'formal_reasoning',
+           'explanation':'explanation','explainer':'explanation',
+           'coaching':'coaching','coaching_turn':'coaching',
+           'presentation':'presentation','pitch_deck':'presentation'}
+    if a['artifact_kind'] in kinds: return kinds[a['artifact_kind']]
+    if specialist=='research-and-writing': return 'factual_writing'
+    if a['deliverable']=='deck': return 'presentation'
+    return data['domain_rubrics'][a['domain']]
+
+
+def needs_source_review(actions):
+    return 'review' in actions and bool(actions & {
+        'diagnose','ideate','vary','revise','decide','develop','experiment','handoff'})
+
+
+def methods_by_phase(a,methods):
+    """Assign supplied procedures to work they support, not just the first node."""
+    acts=set(a['effective_actions']); available=set()
+    for action,step in [('diagnose','diagnose_problem'),('revise','revise_source'),
+                        ('develop','develop_solution'),('experiment','design_experiment')]:
+        if action in acts: available.add(step)
+    if acts & {'ideate','vary'}: available.add('generate_options')
+    if 'vary' in acts: available.add('design_variations')
+    if acts & {'decide','ideate','vary'} or 'review' in acts and not needs_source_review(acts):
+        available.add('evaluate_options')
+    if 'brief' in acts or a['brief']=='assumptions_ok': available.add('frame_problem')
+    if 'produce' in acts: available.add('produce_artifact')
+    # Research is substantive work even when its answer stays inline. Attach a
+    # requested procedure to evidence work, never merely to report packaging.
+    if 'research' in acts:
+        available.add('research_live' if a['evidence_mode'] in {'live','mixed'} else 'synthesize_sources')
+    assignments={}
+    applications={
+        'diagnose_problem':'Use the procedure to distinguish causes, alternatives and evidence gaps.',
+        'design_variations':'Use the procedure to define useful varying axes while protecting invariants.',
+        'generate_options':'Use the procedure to derive distinct useful interventions or mechanisms, not more cause labels.',
+        'evaluate_options':'Use the procedure to examine relevant evidence, tradeoffs and failure conditions.',
+        'design_experiment':'Use the procedure to specify a discriminating observation and prospective decision rule.',
+        'frame_problem':'Use the procedure to establish the outcome, boundary and decisive assumptions.',
+        'revise_source':'Apply the procedure only within the authorized bounded revision.',
+        'develop_solution':'Use the procedure to develop the selected mechanism and its consequential edge cases.',
+        'synthesize_sources':'Apply the requested procedure to the supplied evidence; distinguish source support, assumptions and unknowns without inventing observations.',
+        'research_live':'Apply the requested procedure while gathering and synthesizing relevant evidence; preserve source support, freshness, confounds and uncertainty. A hypothesis or proposed test is not an executed experiment.',
+        'produce_artifact':'Apply the explicitly requested procedure within the actual output task; preserve its format, factual, quantitative or formal checks. An analogy or heuristic does not substitute for calculation, evidence or proof.'}
+    if 'vary' in acts and 'ideate' not in acts:
+        applications['generate_options']='Use the procedure to derive meaningful variants within permitted axes; preserve explicit locks, including a chosen mechanism when fixed. Shared locked properties do not make variants duplicates.'
+    for method in methods:
+        if method['id']=='D2':
+            priorities=['design_experiment','evaluate_options','diagnose_problem','generate_options',
+                        'frame_problem','revise_source','develop_solution']
+        elif method['id'] in {'Y1','Y2','H1','H2','H3'}:
+            priorities=['diagnose_problem','design_variations','generate_options','frame_problem',
+                        'evaluate_options','revise_source','develop_solution','design_experiment']
+        else:
+            priorities=['design_variations','generate_options','diagnose_problem','frame_problem',
+                        'evaluate_options','revise_source','develop_solution','design_experiment']
+        target=next((key for key in priorities+['research_live','synthesize_sources','produce_artifact'] if key in available),None)
+        need(target is not None,'Requested thinking method has no compatible substantive step; clarify the operation or remove requested_methods')
+        targets=[target]
+        # Causal/system procedures also generate interventions; a diagnosis pass
+        # cannot consume the later phase's required generating work.
+        if 'generate_options' in available and method['id']!='D2':
+            if target=='design_variations' or target=='diagnose_problem' and method['id'] in {'Y1','Y2','H1','H2','H3'}:
+                targets.append('generate_options')
+        for key in targets:
+            assignments.setdefault(key,[]).append({**method,'application':applications[key]})
+    return assignments
+
+
+def verification_for_step(a,key,rubric):
+    """Required checks are task contracts; optional method breadth cannot remove them."""
+    checks={
+        'prepare_unsaved_recap':['explicitly_unsaved_recap','requested_persistence_remains_blocked'],
+        'diagnose_problem':['observations_vs_causes','competing_explanations_and_discriminating_evidence'],
+        'generate_options':['distinct_useful_mechanisms','hard_constraints_and_hypothetical_effects','resource_totals_and_existing_baseline'],
+        'design_variations':['protected_invariants_and_meaningful_axes'],
+        'design_experiment':['hypothesis_observation_confounds_decision_rule','planned_vs_executed_results'],
+        'synthesize_sources':['source_support_coverage_and_missing_material'],
+        'research_live':['source_support_freshness_and_scope'],
+        'frame_problem':['requested_outcome_constraints_and_decisive_unknown'],
+        'revise_source':['authorized_delta_and_protected_properties'],
+        'develop_solution':['selected_mechanism_dependencies_and_failure_limits','resource_totals_and_existing_baseline']}.get(key,[])
+    checks=list(checks)
+    if key=='generate_options' and 'vary' in a['effective_actions'] and 'ideate' not in a['effective_actions']:
+        checks=[check for check in checks if check!='distinct_useful_mechanisms']
+        checks[:0]=['distinct_useful_variants_within_permitted_axes','explicit_locks_and_authorized_variation_scope']
+    if key in {'verify_output','evaluate_options','review_source','produce_artifact'}:
+        checks += ['requested_scope_count_format','protected_constraints_and_authority','actual_output_and_evidence_limits']
+        checks += {
+            'quantitative':['quantity_model_inputs_units','calculation_validity','bounds_sanity_precision','compared_quantities_use_same_basis_when_applicable'],
+            'formal_reasoning':['definitions_claim_and_assumptions','assumptions_inference_cases_counterexamples','proof_vs_computation_or_conjecture'],
+            'explanation':['requested_question_level_and_accuracy','examples_and_material_limits'],
+            'coaching':['requested_learning_interaction_no_premature_solution','feedback_on_actual_attempt','next_interaction_addresses_first_material_error'],
+            'analysis':['source_support_and_valid_quantities','observations_vs_causes','competing_explanations_and_discriminating_evidence'],
+            'experiment':['hypothesis_observation_confounds_decision_rule','planned_vs_executed_results'],
+            'decision':['criteria_tradeoffs_sensitivity_and_commitment_scope'],
+            'process':['owners_handoffs_exceptions_and_shifted_burden'],
+            'code':['requested_behavior_errors_and_executed_check_limits'],
+            'visual':['delivered_pixels_and_approved_reference_fidelity']}.get(rubric,[])
+        if a['artifact_kind']=='statistical_analysis':
+            checks.append('sample_comparison_confounds_and_inference_limits')
+        if a['evidence_mode'] in {'supplied','live','mixed','canon'}:
+            checks.append('claims_match_inspected_sources_and_evidence_mode')
+    if checks and (a['problem']['stakes']=='high' or a['problem']['reversibility']=='irreversible'):
+        checks.append('consequential_uncertainty_and_failure_limits')
+    return {'rubric':rubric,'checks':list(dict.fromkeys(checks))} if checks else None
 
 
 def plan_single(raw,upstream=None,upstream_ready=True):
+    from workflow_context import reference_contracts, load_resource
     a,data=normalize(raw); acts=set(a['effective_actions']); sources=live_sources(a['sources'])
     for receipt in a['receipts']:
         if 'transition' in receipt:
@@ -291,37 +448,65 @@ def plan_single(raw,upstream=None,upstream_ready=True):
             if frozen is not None:
                 sources=[copy.deepcopy(frozen) if src['id']==frozen['id'] else src for src in sources]
     specialist=pick_specialist(a); methods=pick_methods(a,data)
-    rubric=data['domain_rubrics'][a['domain']]
-    if a['domain']=='engineering' and a['deliverable']!='code': rubric='analysis'
-    if a['deliverable']=='image': rubric='visual'
-    if a['deliverable'] in {'deck','document'}: rubric='presentation'
-    if specialist=='research-and-writing': rubric='factual_writing'
-    if a['artifact_kind'] in {'decision','decision_memo'}: rubric='decision'
-    if a['artifact_kind']=='experiment_plan': rubric='experiment'
-    if a['deliverable']=='code': rubric='code'
+    rubric=pick_rubric(a,data,specialist)
+    phase_methods=methods_by_phase(a,methods)
     binding=binding_for(a,sources,specialist,methods,rubric,upstream or [])
     steps=[]; by_id={}; receipts={r['step']:r for r in a['receipts']}; ignored=[]
+    guidance_cache={}
     def add(key,reason,depends=(),output=None,state=None,skill=None):
         need(key not in by_id,'Duplicate step '+key)
         deps=list(dict.fromkeys(depends)); need(all(d in by_id for d in deps),'Missing or unordered dependency')
         node={'id':key,'depends_on':deps,'reason':reason,'output':output or reason,'state':state or 'pending',
-              'skill':skill or specialist,'acceptance':a['acceptance'] if key=='verify_output' else []}
-        node['input_binding']=step_binding(binding,key,[by_id[d] for d in deps])
+              'skill':skill or step_specialist(key,specialist),'acceptance':a['acceptance'] if key=='verify_output' or
+                      key=='evaluate_options' and acts-{'status','resume','record'}=={'review'} else []}
+        need(node['skill'] in data['specialists'],'Unregistered step specialist: '+node['skill'])
+        registered=data['specialists'][node['skill']]
+        need(registered['path']=='skills/'+node['skill']+'/SKILL.md','Step specialist path does not match its identity')
+        node['skill_contract']={'id':node['skill'],**registered}
+        node['required_capabilities']=step_capabilities(a,key)
+        node['missing_capabilities']=sorted(set(node['required_capabilities'])-set(a['capabilities']))
+        if node['missing_capabilities'] and state is None: node['state']='unavailable'
+        if key in phase_methods: node['method_contracts']=copy.deepcopy(phase_methods[key])
+        node['reference_contracts']=reference_contracts(key,rubric,node.get('method_contracts',[]),actions=acts)
+        guidance=[{'path':registered['path'],'selector':{'kind':'all'}}]+node['reference_contracts']
+        node['guidance_content']=[]
+        for resource in guidance:
+            cache_key=digest(resource)
+            if cache_key not in guidance_cache:
+                try:
+                    loaded=load_resource(resource,package=PACKAGE)
+                    guidance_cache[cache_key]={**copy.deepcopy(resource),'content_sha256':loaded['content_sha256']}
+                except (OSError,ValueError,UnicodeError) as error:
+                    guidance_cache[cache_key]={**copy.deepcopy(resource),'error':str(error)}
+            identity=copy.deepcopy(guidance_cache[cache_key])
+            node['guidance_content'].append(identity)
+            if 'error' in identity:
+                node['state']='unavailable'
+        verification=verification_for_step(a,key,rubric)
+        if verification: node['verification_contract']=verification
+        contract={name:node[name] for name in ('skill_contract','reference_contracts','guidance_content','required_capabilities','method_contracts','verification_contract') if name in node}
+        node['input_binding']=step_binding(binding,key,[by_id[d] for d in deps],contract)
         dependencies_ready=all(by_id[d]['state']=='done' for d in deps)
         if key=='inspect_context': dependencies_ready=dependencies_ready and upstream_ready
         old=receipts.get(key)
         if old and key!='present' and state is None:
-            if old['binding']==node['input_binding'] and output_current(old['output']) and dependencies_ready and ('transition' not in old or transition_preimage(raw,old) is not None):
+            if node['state']!='unavailable' and not node['missing_capabilities'] and old['binding']==node['input_binding'] and output_current(old['output']) and dependencies_ready and ('transition' not in old or transition_preimage(raw,old) is not None):
                 node.update(state='done',completion_evidence=old['evidence'],
                             completion_output=copy.deepcopy(old['output']))
             else: ignored.append({'step':key,'reason':'Changed task/source/predecessor/output, unmet dependency, legacy binding, or non-file evidence requires reinspection'})
         if node['state']=='pending': node['state']='ready' if dependencies_ready else 'waiting'
         steps.append(node); by_id[key]=node
         return key
+    def add_record(depends):
+        key=add('record_decisions','Save the accepted scoped results and decisions',depends)
+        if 'file_write' not in a['capabilities']:
+            add('prepare_unsaved_recap','Provide an explicitly unsaved recap while requested persistence remains blocked',depends,
+                output='Unsaved recap only; file_write is unavailable and the requested durable save is still unfulfilled')
+        return key
     inspect=add('inspect_context','Inspect active task, authoritative sources, approvals and actual capabilities',output='Verified task contract')
-    if 'status' in acts: add('answer_status','Report current evidence and preserve the unfinished objective',[inspect])
-    if 'record' in acts: add('record_decisions','Save authorized scoped decisions, or deliver an explicitly unsaved recap',[inspect],state=None if 'file_write' in a['capabilities'] else 'unavailable',skill='creative-learning')
     creative=acts-{'resume','status','record'}
+    if 'status' in acts: add('answer_status','Report current evidence and preserve the unfinished objective',[inspect])
+    if 'record' in acts and not creative: add_record([inspect])
     if 'resume' in acts and not (a['continuity'] and a['continuity']['source_rechecked']):
         add('restore_checkpoint','Inspect the project record and reconstruct pending actions before planning dependent work',[inspect],state='needs_input')
     if not creative:
@@ -331,8 +516,12 @@ def plan_single(raw,upstream=None,upstream_ready=True):
         source_bound_live=a['evidence_mode'] in {'live','mixed'} and a['live_research_dependency']=='source_bound'
         needs_source=bool(acts & {'revise','review','vary'}) or a['selection']['status']=='user' or a['evidence_mode'] in {'supplied','mixed','canon'} or source_bound_live
         missing=[s['id'] for s in sources if s['status']=='missing']
-        if missing or needs_source and not sources:
-            base.append(add('resolve_source','Locate exact required sources: '+(', '.join(missing) or 'none identified'),[inspect],state='needs_input'))
+        unreadable=[s['id'] for s in sources if s.get('observation_error')]
+        if missing or unreadable or needs_source and not sources:
+            detail='; '.join(filter(None,['missing: '+', '.join(missing) if missing else '',
+                                          'unreadable: '+', '.join(unreadable) if unreadable else '']))
+            base.append(add('resolve_source','Resolve exact required sources: '+(detail or 'none identified'),[inspect],
+                            state='unavailable' if unreadable else 'needs_input'))
         if a['brief']=='blocked' or a['material_ambiguity']:
             base.append(add('clarify_brief','Resolve only the consequential ambiguity; continue independent work',[inspect],state='needs_input'))
         if 'resume' in acts and 'restore_checkpoint' in by_id: base.append('restore_checkpoint')
@@ -344,21 +533,27 @@ def plan_single(raw,upstream=None,upstream_ready=True):
         if a['evidence_mode'] in {'live','mixed'}:
             # Only explicitly independent queries bypass supplied-source preparation.
             live_deps=list(base) if source_bound_live else [inspect]
-            base.append(add('research_live','Retrieve current external evidence for material claims',live_deps,state=None if 'web' in a['capabilities'] else 'unavailable',skill='research-and-writing'))
+            base.append(add('research_live','Retrieve current external evidence for material claims',live_deps,skill='research-and-writing'))
         if a['feedback']['verdict']=='rejection':
             base=[add('diagnose_feedback','Distinguish wrong goal, mechanism, taste and execution; unknown reasons remain unknown',base,skill='creative-learning')]
         cursor=base
+        if needs_source_review(acts):
+            cursor=[add('review_source','Inspect the authoritative source and establish evidence-linked findings before subsequent requested work',cursor,
+                        output='Read-only findings and scoped implications for the inspected source',skill='artifact-quality')]
         if 'diagnose' in acts:
             cursor=[add('diagnose_problem','Model causes, alternatives and a discriminating check before prescribing solutions',cursor,output='Evidence-linked diagnosis and unresolved competing explanations')]
         if acts & {'ideate','vary'}:
-            if 'vary' in acts: cursor=[add('design_variations','Lock invariants and vary mechanism-level dimensions',cursor,skill='concept-variations')]
+            if 'vary' in acts: cursor=[add('design_variations','Preserve explicit locks and identify meaningful permitted variation axes',cursor,skill='concept-variations')]
             count=a['requested_count'] if a['requested_count'] is not None else 3
-            cursor=[add('generate_options','Generate distinct feasible or clearly hypothetical mechanisms',cursor,output=str(count)+' requested options')]
+            variation_only='vary' in acts and 'ideate' not in acts
+            reason='Generate meaningful variants within permitted axes while preserving explicit locks' if variation_only else 'Generate distinct feasible or clearly hypothetical mechanisms'
+            cursor=[add('generate_options',reason,cursor,output=str(count)+' requested options')]
             by_id[cursor[0]]['requested_count']=count
         if 'revise' in acts:
             cursor=[add('revise_source','Apply only requested changes to the authoritative source',cursor)]
-        if acts & {'review','decide','ideate','vary'}:
-            cursor=[add('evaluate_options','Check relevant criteria, evidence, tradeoffs and assumptions',cursor,skill='artifact-quality')]
+        if acts & {'decide','ideate','vary'} or 'review' in acts and not needs_source_review(acts):
+            cursor=[add('evaluate_options','Check relevant criteria, evidence, tradeoffs and assumptions',cursor,
+                        skill='creative-review' if acts & {'ideate','vary','decide'} else 'artifact-quality')]
         report_actions=acts-{'produce','status','resume','record'}
         report_only=bool(report_actions) and report_actions<={'brief','diagnose','research','review','decide'}
         # Authoring a recommendation/report does not commit to its subject.
@@ -371,46 +566,39 @@ def plan_single(raw,upstream=None,upstream_ready=True):
             cursor=[add('develop_solution','Develop the chosen mechanism into the requested usable result',cursor)]
         if 'experiment' in acts:
             cursor=[add('design_experiment','Specify hypothesis, falsifier, cheapest informative test and decision rule',cursor,output='Executable experiment plan with unknowns; no invented results')]
-        if acts & {'handoff','produce'}:
+        direct_inline=acts-{'status','resume','record'}=={'produce'} and a['delivery_mode']=='inline' and a['deliverable']=='text' and rubric in {'quantitative','formal_reasoning','explanation','coaching'}
+        if 'handoff' in acts or 'produce' in acts and not direct_inline:
             cursor=[add('prepare_handoff','Bind inputs, constraints, owner/recipient and acceptance conditions',cursor,skill='execution-handoff')]
         if 'produce' in acts:
-            required=set(a['required_capabilities'])
-            if a['deliverable'] in PRODUCTION_CAP: required.add(PRODUCTION_CAP[a['deliverable']])
-            if a['delivery_mode']=='artifact' and a['deliverable'] in {'text','code'}: required.add('file_write')
-            gaps=sorted(required-set(a['capabilities']))
             cursor=[add('produce_artifact','Use available tools to create the actual requested deliverable',cursor,
-                        state='unavailable' if gaps else None,output='Requested '+a['deliverable']+' ('+a['delivery_mode']+')',skill='execution-handoff')]
-            by_id[cursor[0]]['missing_capabilities']=gaps
-        if acts-{'research','brief','record','status','resume','review'}:
+                        output='Requested '+a['deliverable']+' ('+a['delivery_mode']+')',skill='execution-handoff')]
+        if acts-{'record','status','resume','review'}:
             cursor=[add('verify_output','Inspect the actual result against scoped acceptance conditions and rubric',cursor,skill='artifact-quality')]
+        if 'record' in acts:
+            cursor=[add_record(cursor)]
         add('present','Deliver requested result, evidence and material limits; distinguish plans from executed work',list(by_id))
-    # Procedures belong inside substantive work, not a duplicate ceremony after it.
-    for method in methods:
-        priorities=(['design_experiment','evaluate_options','diagnose_problem','generate_options','frame_problem','revise_source','develop_solution']
-                    if method['id']=='D2' else
-                    ['diagnose_problem','design_variations','generate_options','frame_problem','evaluate_options','revise_source','develop_solution','design_experiment'])
-        target=next((key for key in priorities if key in by_id),None)
-        need(target is not None,'Requested thinking method has no compatible substantive step; clarify the operation or remove requested_methods')
-        by_id[target].setdefault('method_contracts',[]).append(method)
+    need(set(phase_methods)<=set(by_id),'Assigned thinking method has no actual work step')
     unknown=set(receipts)-set(by_id)
-    supported={'inspect_context','answer_status','record_decisions','restore_checkpoint','resolve_source','clarify_brief',
-               'frame_problem','synthesize_sources','research_live','diagnose_feedback','diagnose_problem',
+    supported={'inspect_context','answer_status','record_decisions','prepare_unsaved_recap','restore_checkpoint','resolve_source','clarify_brief',
+               'frame_problem','synthesize_sources','research_live','diagnose_feedback','review_source','diagnose_problem',
                'design_variations','generate_options','revise_source','evaluate_options','resolve_selection',
                'select_option','develop_solution','design_experiment','prepare_handoff','produce_artifact','verify_output','present'}
     need(unknown<=supported,'Receipts refer to unknown steps: '+', '.join(sorted(unknown-supported)))
     ignored.extend({'step':key,'reason':'Step is absent from the current plan; obsolete receipt'} for key in sorted(unknown))
     services=[]
-    if a['evidence_mode'] in {'supplied','live','mixed'}: services.append('research-and-writing')
-    if any(s['skill']=='artifact-quality' for s in steps): services.append('artifact-quality')
-    if a['feedback']['verdict']!='none' or acts & {'record','resume'}: services.append('creative-learning')
+    for service in ('research-and-writing','artifact-quality','creative-learning','creative-project'):
+        if any(s['skill']==service for s in steps): services.append(service)
     return {'schema_version':2,'task_id':a['task_id'],'objective':a['objective'],'domain':a['domain'],
             'effective_actions':a['effective_actions'],'delivery_mode':a['delivery_mode'],
             'live_research_dependency':a['live_research_dependency'],'specialist':{'id':specialist,**data['specialists'][specialist]},
             'services':services,'methods':methods,'rubric':rubric,'input_binding':binding,
+            'effort_policy':{'optional_method_budget':{'quick':1,'standard':2,'deep':3}[a['effort']],
+                             'required_checks_reduced':False,
+                             'basis':'Scope, evidence, dependencies, stakes and acceptance govern required work; effort limits optional breadth and does not set response length.'},
             'sources':sources,'steps':steps,'ignored_receipts':ignored,
             'receipt_binding_version':'step-output-v1',
-            'method_contract_coverage':'Selected id/procedure/output/reference are bound; referenced document contents require separate host inspection.',
-            'receipt_compatibility':'Legacy task-wide v2 receipts are ignored; replan and remint each ready step using its input_binding.',
+            'method_contract_coverage':'Selected method/section content, assigned skill content, reference selectors, phase applications and required check contracts are bound. Hashes do not prove host inspection or correctness.',
+            'receipt_compatibility':'Receipts predating selected-content binding or using legacy task-wide v2 bindings are ignored; actually reinspect affected work and remint ready steps using their input_binding.',
             'blockers':[s['id'] for s in steps if s['state'] in {'needs_input','unavailable'}],
             'execution_complete':False,'semantic_assessment':'supplied_by_host_model',
             'note':'Plan validation is not proof of semantic recognition, tool execution or output quality.'}
@@ -429,13 +617,17 @@ def plan_v2(raw):
     for key,stream in by.items():
         array(stream['depends_on'],set(by),'workstream dependencies'); need(key not in stream['depends_on'],'Self dependency')
     ordered=[]; visiting=set(); visited=set()
-    def visit(key):
-        need(key not in visiting,'Cyclic workstream dependencies')
-        if key in visited:return
-        visiting.add(key)
-        for dep in by[key]['depends_on']: visit(dep)
-        visiting.remove(key); visited.add(key); ordered.append(key)
-    for key in by: visit(key)
+    for root in by:
+        stack=[(root,False)]
+        while stack:
+            key,finish=stack.pop()
+            if key in visited: continue
+            if finish:
+                visiting.remove(key); visited.add(key); ordered.append(key)
+                continue
+            need(key not in visiting,'Cyclic workstream dependencies')
+            visiting.add(key); stack.append((key,True))
+            stack.extend((dep,False) for dep in reversed(by[key]['depends_on']))
     plans={}; terminal={}
     for key in ordered:
         upstream=[]; dependencies_done=True
@@ -467,8 +659,22 @@ def execution_contract(raw):
 
 def load_snapshot(path,revision):
     p=Path(path)
-    need(p.is_file() and file_hash(p)==revision,'Execution snapshot changed or missing')
-    snap=json.loads(p.read_text(encoding='utf-8'))
+    payload=p.read_bytes()
+    need(hashlib.sha256(payload).hexdigest()==revision,'Execution snapshot changed or missing')
+    def pairs(items):
+        result={}
+        for key,value in items:
+            need(key not in result,'Duplicate JSON key: '+key)
+            result[key]=value
+        return result
+    def finite_number(token):
+        value=float(token)
+        need(math.isfinite(value),'Non-finite JSON number: '+token)
+        return value
+    def constant(token):
+        raise ValueError('Non-finite JSON constant: '+token)
+    snap=json.loads(payload.decode('utf-8-sig'),object_pairs_hook=pairs,
+                    parse_float=finite_number,parse_constant=constant)
     need(isinstance(snap,dict) and set(snap)=={'version','assessment','source_id','binding','task_id'},'Invalid execution snapshot')
     need(type(snap['version']) is int and snap['version']==1 and text(snap['source_id']) and text(snap['binding']),'Invalid execution snapshot')
     normalized,_=normalize(snapshot_target(snap))
@@ -541,17 +747,24 @@ def begin_step(raw,source_id,task_id=None):
          'Snapshot requires an unchanged identified file source')
     flat_id=task_id+'/revise_source' if 'workstreams' in p else 'revise_source'
     graph={n['id']:n for n in p['steps']}
-    predecessors=set()
-    def collect(key):
-        for dep in graph[key]['depends_on']:
-            if dep not in predecessors:
-                predecessors.add(dep); collect(dep)
-    collect(flat_id)
+    predecessors=set(); pending=list(graph[flat_id]['depends_on'])
+    while pending:
+        dependency=pending.pop()
+        if dependency not in predecessors:
+            predecessors.add(dependency)
+            pending.extend(graph[dependency]['depends_on'])
     target_path=Path(source['locator']).resolve()
-    need(not any(graph[key].get('completion_output',{}).get('kind')=='file'
-                 and Path(graph[key]['completion_output']['locator']).resolve()==target_path
-                 for key in predecessors),
-         'In-place target is an accepted predecessor output; preserve immutable predecessor evidence and revise a separate working copy')
+    for key in predecessors:
+        output=graph[key].get('completion_output',{})
+        if output.get('kind')!='file':
+            continue
+        predecessor_path=Path(output['locator']).resolve()
+        try:
+            same=predecessor_path==target_path or predecessor_path.samefile(target_path)
+        except OSError as error:
+            raise ValueError('Cannot verify in-place target file identity; preserve predecessor evidence and retry after resolving access') from error
+        need(not same,
+             'In-place target is an accepted predecessor output; preserve immutable predecessor evidence and revise a separate working copy')
     return {'version':1,'assessment':copy.deepcopy(raw),'source_id':source_id,'binding':node['input_binding'],'task_id':task_id}
 
 

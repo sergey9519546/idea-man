@@ -15,6 +15,20 @@ Extract the user's acceptance conditions, protected decisions, requested count a
 
 For an exact edit, compare the requested delta and protected properties. For an exploratory solution, judge mechanism, constraints and fit while keeping expected effects unproven. For an analysis or decision, inspect the evidence and reasoning that support the conclusion. For a finished artifact, inspect the form the user will actually receive.
 
+For calculations, formal arguments, explanations and coaching, use the matching
+quantitative, formal_reasoning, explanation or coaching rubric. A coaching turn may
+be one requested question or feedback, not the full answer. Mixed work needs relevant
+checks at the phase they govern: correct arithmetic cannot certify an empirical claim,
+and a creative mechanism does not establish numerical feasibility. Required checks
+follow consequence and uncertainty, not method count or response length. Missing
+verification narrows the conclusion; it is never silently counted as a pass.
+
+When a result claims a numerical improvement, verify the original and proposed
+quantities on the same basis and conserve the total available resources. For coaching,
+inspect the user's actual attempt and the next interaction's response to its first
+material error. Reject a hard-constraint violation, wrong calculation or unfinished
+requested output even when it has the right headings, count or method labels.
+
 ## Record findings
 
 Each finding uses:
@@ -43,7 +57,13 @@ Readiness is scoped to this request. It does not authorize publication, payment,
 
 ## Output contract
 
-Lead with the verdict and the strongest thing to preserve. Show the consequential findings with specific evidence, the repair when authorized, and what remains unverified. Include numerical scores only if the user requests them; define the rubric and keep critical failures and coverage visible outside the score.
+For a requested audit/review report, lead with the verdict and the strongest thing to
+preserve. Show consequential findings with specific evidence, the repair when
+authorized, and what remains unverified. During embedded verification, return the
+needed checks to the conductor without adding a user-facing review section to a
+calculation, explanation or coaching turn. The user's requested format and interaction
+still control delivery. Include numerical scores only if requested; define the rubric
+and keep critical failures and coverage visible outside the score.
 
 ## Activation examples
 

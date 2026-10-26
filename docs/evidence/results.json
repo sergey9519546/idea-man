@@ -1,0 +1,388 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "authored_synthetic_worked_examples",
+  "model_runs": 0,
+  "baseline_comparisons": 0,
+  "independent_quality_reviews": 0,
+  "status": "worked_examples_only",
+  "scope": "Authored responses with checked arithmetic and actual local helper execution. Not captured plugin/model conversations or evidence of superiority.",
+  "source_hash_algorithm": "sha256-utf8-lf",
+  "source_hashes": {
+    "eval/cases.json": "63d49949e3f6ec3357087758abd74f59a1773c59c2255b548c864484c26eedf7",
+    "eval/worked_examples.py": "875eb9409c63649ed2bc3d8ff3547236be1d8f4728480949bc4c515f148d03e4",
+    "plugins/idea-man/skills/creative-director/scripts/candidates.py": "f0b3d3d33cf597322a5e24ee36038d0be51a2ab75eed2e103fc6bb6b62b86575"
+  },
+  "examples": [
+    {
+      "id": "queue_diagnosis",
+      "title": "Investigate before redesigning",
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Our repair shop misses dates. Last week: intake median 10 minutes, work 45 minutes, approval wait 2 days; 8 of 10 late jobs waited for approval. Same staffing next month. What should we investigate and test before redesigning the whole shop?"
+        }
+      ],
+      "approach": "Queue diagnosis and a bounded test. The user asked what to investigate, not for a new shop concept.",
+      "worked_response": "Approval wait is worth investigating: its reported median is two days, versus 10 minutes for intake and 45 for work. Eight of ten late jobs waited for approval. That is 80% of late jobs, not an 80% risk of lateness and not proof of causation. We do not know how often on-time jobs also waited. Track ready-for-approval, approval and completion timestamps, job complexity, and late/on-time status for all jobs. Test one earlier approval check using the existing team, with workload and overtime monitored. Compare approval wait and missed dates with comparable jobs; stop if it displaces necessary work. Do not promise a time saving from these summaries.",
+      "mechanical_checks": {
+        "late_jobs_waiting_fraction": 0.8,
+        "late_jobs_total": 10,
+        "on_time_approval_denominator_available": false
+      },
+      "limits": "Reported medians describe different stages; they do not establish the bottleneck or a causal effect. No shop pilot was run."
+    },
+    {
+      "id": "choice_sensitivity",
+      "title": "A recommendation that can change",
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Should we automate a weekly process? Setup costs $4,000; manual work costs $200/week. Automation still needs exceptions handled, but we have no exception estimate. Compare the decision and explain what missing evidence could reverse it. No purchase or implementation is authorized."
+        }
+      ],
+      "approach": "Decision analysis with sensitivity. Generate alternatives only if they help the actual decision.",
+      "worked_response": "The zero-overhead payback is 20 weeks: $4,000 / $200. That is a lower bound, not a launch recommendation. With $50/week of exceptions and maintenance it becomes 26.67 weeks; at $200/week there is no payback. For an illustrative 26-week horizon, total weekly overhead must stay below $46.15 to produce positive net savings. The user did not supply that horizon. Ask for the useful lifetime, then measure exception volume and handling time before committing. No purchase or implementation is authorized.",
+      "mechanical_checks": {
+        "naive_payback_weeks": 20.0,
+        "payback_with_50_weekly_overhead": 26.666666666666668,
+        "illustrative_horizon_weeks": 26,
+        "break_even_weekly_overhead": 46.15384615384616,
+        "positive_savings_at_40_overhead": 160,
+        "negative_savings_at_50_overhead": -100
+      },
+      "limits": "Arithmetic is checked. Useful lifetime, exception costs and customer value are not observed. The 26-week scenario is illustrative."
+    },
+    {
+      "id": "weak_pilot",
+      "title": "A promising result is not rollout evidence",
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Our original pilot rule was at least 20% lower median wait without more errors."
+        },
+        {
+          "role": "assistant",
+          "content": "Please return the baseline, pilot results and relevant changes before interpretation."
+        },
+        {
+          "role": "user",
+          "content": "Baseline: 40 jobs, median 50 minutes, 2 errors. Pilot: 5 jobs, median 35 minutes, 1 error. Pilot week was quieter and used our most experienced worker. Is it proven? Should we roll it out?"
+        }
+      ],
+      "approach": "Evaluate against the original acceptance rule and check comparability before deciding readiness.",
+      "worked_response": "Median wait fell from 50 to 35 minutes, a 30% reduction. The observed wait statistic clears the 20% target. The baseline has 2 errors in 40 jobs (5%); the pilot has 1 in 5 (20%). Raw error counts fell, but the error rate rose; clarify whether the original safety criterion meant counts or rates before deciding it passed. Five jobs, a quieter week and the most experienced worker prevent attribution to the new workflow. Do not call it proven or authorize rollout. Repeat a bounded comparison with normal staffing and comparable load, record both error counts and denominators, and retain the original wait target. An exploratory repeat can inform the decision; it cannot silently replace the agreed acceptance rule.",
+      "mechanical_checks": {
+        "median_wait_reduction": 0.3,
+        "baseline_error_rate": 0.05,
+        "pilot_error_rate": 0.2,
+        "baseline_jobs": 40,
+        "pilot_jobs": 5,
+        "observed_wait_target_met": true
+      },
+      "limits": "These are sample statistics, not a causal estimate or proof that the error rate truly increased. No new pilot was executed."
+    }
+  ],
+  "helper_probes": [
+    {
+      "label": "Bounded repeat proposal",
+      "input": {
+        "schema_version": 1,
+        "decision": "Determine readiness after a confounded pilot",
+        "commitment": {
+          "level": "test",
+          "text": "Evaluate a bounded repeat proposal; this is not permission to run it",
+          "evidence_refs": [
+            "brief"
+          ]
+        },
+        "sources": [
+          {
+            "id": "brief",
+            "locator": "eval/cases.json#weak_pilot",
+            "revision": "63d49949e3f6ec3357087758abd74f59a1773c59c2255b548c864484c26eedf7"
+          }
+        ],
+        "constraints": [
+          {
+            "id": "staff",
+            "text": "Use existing staff"
+          }
+        ],
+        "criteria": [],
+        "candidates": [
+          {
+            "id": "repeat",
+            "mechanism": "Compare under comparable load and normal staffing",
+            "checks": [
+              {
+                "constraint_id": "staff",
+                "status": "pass",
+                "evidence_refs": [
+                  "brief"
+                ],
+                "detail": "The authored repeat proposal uses existing staff"
+              }
+            ],
+            "ratings": [],
+            "assumptions": [
+              {
+                "id": "effect",
+                "text": "The workflow causes the wait improvement without safety loss",
+                "status": "unresolved",
+                "critical": true,
+                "evidence_refs": []
+              }
+            ],
+            "next_test": {
+              "hypothesis": "The improvement persists under comparable conditions",
+              "observation": "Record wait, error counts and denominators, workload and staffing",
+              "decision_rule": "Retain the wait target, clarify safety measure before testing, and do not roll out from this small confounded sample"
+            }
+          }
+        ],
+        "comparisons": []
+      },
+      "output": {
+        "candidates": [
+          {
+            "assumptions": [
+              {
+                "critical": true,
+                "evidence_refs": [],
+                "id": "effect",
+                "status": "unresolved",
+                "text": "The workflow causes the wait improvement without safety loss"
+              }
+            ],
+            "checks": [
+              {
+                "constraint_id": "staff",
+                "detail": "The authored repeat proposal uses existing staff",
+                "evidence_refs": [
+                  "brief"
+                ],
+                "status": "pass"
+              }
+            ],
+            "critical_assumptions": [
+              {
+                "critical": true,
+                "evidence_refs": [],
+                "id": "effect",
+                "status": "unresolved",
+                "text": "The workflow causes the wait improvement without safety loss"
+              }
+            ],
+            "failed_constraints": [],
+            "id": "repeat",
+            "mechanism": "Compare under comparable load and normal staffing",
+            "next_test": {
+              "decision_rule": "Retain the wait target, clarify safety measure before testing, and do not roll out from this small confounded sample",
+              "hypothesis": "The improvement persists under comparable conditions",
+              "observation": "Record wait, error counts and denominators, workload and staffing"
+            },
+            "ratings": [],
+            "readiness": "ready_for_scoped_next_step",
+            "readiness_gaps": [],
+            "unresolved_constraints": []
+          }
+        ],
+        "commitment": {
+          "evidence_refs": [
+            "brief"
+          ],
+          "level": "test",
+          "text": "Evaluate a bounded repeat proposal; this is not permission to run it"
+        },
+        "constraints": [
+          {
+            "id": "staff",
+            "text": "Use existing staff"
+          }
+        ],
+        "criteria": [],
+        "decision": "Determine readiness after a confounded pilot",
+        "eligible_for_scoped_next_step": [
+          "repeat"
+        ],
+        "equivalent_mechanism_groups": [],
+        "execution_authorized": false,
+        "mechanism_comparisons": [],
+        "mechanism_pair_coverage": {
+          "explicit_relations": 0,
+          "total_pairs": 0,
+          "unassessed_pairs": [],
+          "unknown_pairs": []
+        },
+        "note": "Host judgments and supplied source identities only. Ratings are subjective; readiness applies only to this commitment. No result proves novelty or demand.",
+        "rating_comparison": {
+          "frontier": [],
+          "pairs": [],
+          "status": "not_requested",
+          "unranked": []
+        },
+        "readiness_basis": "conditional_on_host_reported_evidence",
+        "schema_version": 1,
+        "selection_made": false,
+        "semantic_truth_verified": false,
+        "sources": [
+          {
+            "id": "brief",
+            "locator": "eval/cases.json#weak_pilot",
+            "revision": "63d49949e3f6ec3357087758abd74f59a1773c59c2255b548c864484c26eedf7"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Broad rollout proposal",
+      "input": {
+        "schema_version": 1,
+        "decision": "Determine readiness after a confounded pilot",
+        "commitment": {
+          "level": "make",
+          "text": "Consider broad rollout",
+          "evidence_refs": [
+            "brief"
+          ]
+        },
+        "sources": [
+          {
+            "id": "brief",
+            "locator": "eval/cases.json#weak_pilot",
+            "revision": "63d49949e3f6ec3357087758abd74f59a1773c59c2255b548c864484c26eedf7"
+          }
+        ],
+        "constraints": [
+          {
+            "id": "staff",
+            "text": "Use existing staff"
+          }
+        ],
+        "criteria": [],
+        "candidates": [
+          {
+            "id": "repeat",
+            "mechanism": "Compare under comparable load and normal staffing",
+            "checks": [
+              {
+                "constraint_id": "staff",
+                "status": "pass",
+                "evidence_refs": [
+                  "brief"
+                ],
+                "detail": "The authored repeat proposal uses existing staff"
+              }
+            ],
+            "ratings": [],
+            "assumptions": [
+              {
+                "id": "effect",
+                "text": "The workflow causes the wait improvement without safety loss",
+                "status": "unresolved",
+                "critical": true,
+                "evidence_refs": []
+              }
+            ],
+            "next_test": {
+              "hypothesis": "The improvement persists under comparable conditions",
+              "observation": "Record wait, error counts and denominators, workload and staffing",
+              "decision_rule": "Retain the wait target, clarify safety measure before testing, and do not roll out from this small confounded sample"
+            }
+          }
+        ],
+        "comparisons": []
+      },
+      "output": {
+        "candidates": [
+          {
+            "assumptions": [
+              {
+                "critical": true,
+                "evidence_refs": [],
+                "id": "effect",
+                "status": "unresolved",
+                "text": "The workflow causes the wait improvement without safety loss"
+              }
+            ],
+            "checks": [
+              {
+                "constraint_id": "staff",
+                "detail": "The authored repeat proposal uses existing staff",
+                "evidence_refs": [
+                  "brief"
+                ],
+                "status": "pass"
+              }
+            ],
+            "critical_assumptions": [
+              {
+                "critical": true,
+                "evidence_refs": [],
+                "id": "effect",
+                "status": "unresolved",
+                "text": "The workflow causes the wait improvement without safety loss"
+              }
+            ],
+            "failed_constraints": [],
+            "id": "repeat",
+            "mechanism": "Compare under comparable load and normal staffing",
+            "next_test": {
+              "decision_rule": "Retain the wait target, clarify safety measure before testing, and do not roll out from this small confounded sample",
+              "hypothesis": "The improvement persists under comparable conditions",
+              "observation": "Record wait, error counts and denominators, workload and staffing"
+            },
+            "ratings": [],
+            "readiness": "needs_evidence",
+            "readiness_gaps": [],
+            "unresolved_constraints": []
+          }
+        ],
+        "commitment": {
+          "evidence_refs": [
+            "brief"
+          ],
+          "level": "make",
+          "text": "Consider broad rollout"
+        },
+        "constraints": [
+          {
+            "id": "staff",
+            "text": "Use existing staff"
+          }
+        ],
+        "criteria": [],
+        "decision": "Determine readiness after a confounded pilot",
+        "eligible_for_scoped_next_step": [],
+        "equivalent_mechanism_groups": [],
+        "execution_authorized": false,
+        "mechanism_comparisons": [],
+        "mechanism_pair_coverage": {
+          "explicit_relations": 0,
+          "total_pairs": 0,
+          "unassessed_pairs": [],
+          "unknown_pairs": []
+        },
+        "note": "Host judgments and supplied source identities only. Ratings are subjective; readiness applies only to this commitment. No result proves novelty or demand.",
+        "rating_comparison": {
+          "frontier": [],
+          "pairs": [],
+          "status": "no_eligible_candidates",
+          "unranked": []
+        },
+        "readiness_basis": "conditional_on_host_reported_evidence",
+        "schema_version": 1,
+        "selection_made": false,
+        "semantic_truth_verified": false,
+        "sources": [
+          {
+            "id": "brief",
+            "locator": "eval/cases.json#weak_pilot",
+            "revision": "63d49949e3f6ec3357087758abd74f59a1773c59c2255b548c864484c26eedf7"
+          }
+        ]
+      }
+    }
+  ],
+  "helper_limit": "Inputs and evidence judgments are authored. The helper checks structure and readiness rules; it does not inspect source truth or choose the method."
+}

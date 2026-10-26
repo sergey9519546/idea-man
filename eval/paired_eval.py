@@ -172,6 +172,19 @@ def comparability(captures):
         mismatches.append("unknown_intervention_revision")
     return mismatches
 
+def evaluator_revision():
+    """Bind reviews to this actual evaluator, not a manually maintained label."""
+    return hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+
+def grading_contract():
+    """One authored scoring standard, delivered to reviewers and frozen with results."""
+    guidance = (HERE / 'README.md').read_text(encoding='utf-8-sig')
+    start, end = '## Human grading', '## What the report means'
+    need(guidance.count(start) == 1 and guidance.count(end) == 1,
+         'Missing or ambiguous human grading contract')
+    need(guidance.index(start) < guidance.index(end), 'Invalid human grading contract boundaries')
+    return guidance.split(start, 1)[1].split(end, 1)[0].strip()
+
 def packet_for(case, captures, mapping, packet_id):
     outputs = {}
     for label, arm in mapping.items():
@@ -185,6 +198,9 @@ def packet_for(case, captures, mapping, packet_id):
         outputs[label] = {"response": cap["final_response"], "artifacts": assets}
     return {"schema_version": 1, "packet_id": packet_id, "case_id": case["id"],
             "synthetic_case": True, "conversation": case["turns"], "rubric": case["rubric"],
+            "evaluation_contract": {"mechanical_check": case["check"],
+                                    "human_grading": grading_contract(),
+                                    "evaluator_sha256": evaluator_revision()},
             "pair_sha256": digest(captures), "outputs": outputs,
             "review_instruction": "Grade actual outputs, cite evidence, list constraint failures. Do not infer quality from format checks."}
 
@@ -231,7 +247,8 @@ def validated_packet(run, packet_id):
     case = cases()[case_id]
     packet = read(run / "packets" / (packet_id + ".json"))
     expected = packet_for(case, pair(run, case), key["mapping"], packet_id)
-    need(digest(packet) == key["packet_sha256"] == digest(expected), "Packet or capture changed since blinding")
+    need(digest(packet) == key["packet_sha256"] == digest(expected),
+         "Packet, capture or evaluation contract changed since blinding; retain this run and re-review in a new run")
     return packet, key
 
 def validate_judgment(data, run):
@@ -246,6 +263,8 @@ def validate_judgment(data, run):
     for path in (run / "judgments").glob("*.json"):
         previous = read(path)
         need(isinstance(previous, dict), "Stored judgment must be an object")
+        need(text(previous.get('packet_id')) and text(previous.get('reviewer_id')),
+             'Stored judgment requires text packet/reviewer identifiers')
         need(not (previous.get("reviewer_id") == data["reviewer_id"]
                   and previous.get("packet_id", "").startswith(case_prefix)
                   and previous.get("packet_id") != data["packet_id"]),

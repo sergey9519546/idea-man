@@ -37,6 +37,12 @@ illustrations whose details are not documented; say so if you cite them.
    procedure does. Always run the procedure.
 4. Justify each casting in one line tied to the Phase 1 trap.
 
+Numbers, scores, timings and sequences within historical exercises are optional working
+settings, not quality gates or minimum output counts. Scale them to the actual task;
+stop an exercise when it stops adding relevant evidence or useful alternatives. Preserve
+the user's constraints, authority and requested format. A historical success illustrates
+a mechanism; it does not prove that applying the method will improve this task.
+
 **Domain leanings** (starting points, not rules)
 | Domain | Lean on |
 |---|---|
@@ -248,12 +254,14 @@ Optional subprocedure: read supplementary-methods.md, section "S1 Map & Disrupt 
 
 #### Far-analogy transfer — Dedre Gentner (structure-mapping, 1983); Franke, Poetz & Schreier (*Management Science*, 2014)
 - **Procedure:** 1) Strip the problem to its relationships without nouns ("a fragile thing
-  must survive impact", not "a phone case"). 2) List ≥5 domains facing the same relationship,
-  from near to far. 3) Map structure one-to-one; ignore surface features. 4) Carry the solution
-  across. 5) Make it usable — far analogies are more novel but less immediately usable.
+  must survive impact", not "a phone case"). 2) Find relevant domains facing that relationship;
+  one useful analogy can suffice for an explanation. Explore more distant domains only when
+  fixation is the obstacle. 3) Map structure one-to-one; ignore surface features. 4) Carry the
+  proposed mechanism across. 5) Check where the mapping breaks and whether it is feasible;
+  an analogy generates a hypothesis, not proof of the target claim.
 - **Evidence:** solvers from analogous markets produced substantially more novel ideas, and
-  the effect grew with distance — but other studies find a distance sweet spot; one far probe
-  per round.
+  the effect grew with distance — but other studies find a distance sweet spot. No fixed
+  number or mandatory far probe follows for this task.
 - **Story:** Rutherford's atom borrowed the solar system's *relationships* (orbiting around a
   centre), not its attributes (the sun's heat).
 
@@ -350,9 +358,11 @@ Optional subprocedure: read supplementary-methods.md, section "S1 Map & Disrupt 
 
 #### The multi-problem test — Shigeru Miyamoto (as relayed by Satoru Iwata, *Ask Iwata*, 2021)
 - **Move:** a good idea solves several problems at once.
-- **Procedure:** 1) List every open problem (technical, budget, story, UX, brand). 2) Count how
-  many each candidate solves. 3) Promote ideas solving three or more. 4) For one-problem ideas,
-  ask what tweak would also solve another.
+- **Procedure:** 1) List the relevant open problems (technical, budget, story, UX, brand).
+  2) Identify which each candidate plausibly solves and what it makes worse. 3) Prefer a
+  compatible shared intervention when evidence supports its value; the count of claimed
+  benefits is not a promotion gate. 4) Keep a focused one-problem fix when it best serves
+  the task; add another benefit only if it earns its cost and preserves constraints.
 - **Story:** Mario's cap removed the need to animate hair; the moustache and big nose made the
   face readable without drawing a mouth; contrasting overalls made arm movement visible — one
   design answering the hardware's limits.
@@ -436,11 +446,15 @@ Optional subprocedure: read supplementary-methods.md, section "S1 Map & Disrupt 
 **Trap:** treating symptoms; reasoning by analogy ("it's always done this way").
 
 #### Five Whys + genchi genbutsu — Taiichi Ohno (*Toyota Production System*, 1978), credited to Sakichi Toyoda's attitude
-- **Procedure:** go and see the actual place; ask "why?" until you reach a cause you can fix
-  for good. Ohno's own chain: a machine stopped → overloaded fuse → insufficient bearing
+- **Procedure:** inspect the actual event; ask "why?" to generate possible mechanisms,
+  then test the links against observations, competing explanations and interventions where
+  feasible. Write symptom → mechanism → constraining condition → user consequence, marking
+  which links are observed, reproduced or still hypotheses. Five Whys is a hypothesis generator, not causal proof.
+  Ohno's illustrative chain: a machine stopped → overloaded fuse → insufficient bearing
   lubrication → pump not drawing oil → worn pump shaft → no strainer, so metal scrap got in.
-  Fix the strainer, not the fuse.
-- **Note:** too basic alone for deep multi-cause problems — branch the whys.
+  In that account the intervention targets the strainer, not only the fuse.
+- **Note:** branch for multiple causes, include counterexamples and verify the resulting
+  state after repair. A plausible chain or correlated change is not proof of a permanent cure.
 
 #### Poka-yoke (mistake-proofing) — Shigeo Shingo (*Zero Quality Control*, 1986)
 - **Move:** human error is certain; design the geometry so the error can't happen.
@@ -527,8 +541,10 @@ Optional subprocedure: read supplementary-methods.md, section "S1 Map & Disrupt 
   present it as a parable.
 
 #### MAYA — Raymond Loewy ("Most Advanced, Yet Acceptable")
-- **Procedure:** score novelty and typicality 1–5 each; give very novel ideas one familiar
-  anchor and very familiar ideas one advanced element; keep ideas ≥3 on both.
+- **Procedure:** inspect novelty and familiarity separately; give unfamiliar ideas a useful
+  familiar anchor and overly familiar ideas a meaningful new element when the brief calls for it.
+  Optional 1–5 scores are discussion aids, not validated cutoffs. Judge fit for the actual
+  audience and preserve an intentionally conventional or unfamiliar direction when appropriate.
 - **Use for:** pop songs, visual styles, logos, product design, pitches.
 
 #### SUCCESs — Chip & Dan Heath (*Made to Stick*, 2007)
@@ -541,7 +557,8 @@ Optional subprocedure: read supplementary-methods.md, section "S1 Map & Disrupt 
 
 #### Inherent drama — Leo Burnett
 - **Procedure:** 1) Interrogate the product or project: how it's made, who makes it, what's odd
-  about it. 2) List 20 true facts; circle those with tension or emotion. 3) Dramatise one fact,
+  about it. 2) Collect supported facts, keeping unknowns separate; circle those with relevant
+  tension or emotion. Do not fabricate facts to fill a quota. 3) Dramatise one fact,
   possibly as a character, instead of borrowing an outside premise. 4) Swap test: could a
   competitor run it? Then back to 1.
 - **Stories:** archetypes rooted in the product itself: the Jolly Green Giant, Tony the Tiger,
@@ -681,9 +698,11 @@ Optional subprocedure: read supplementary-methods.md, section "D1 Diverge & Incu
 - **Procedure:** make the cheapest testable version today; change one variable per iteration.
 
 #### Dreamer / Realist / Critic — Robert Dilts' model of Walt Disney (*Strategies of Genius*, 1994)
-- **Procedure:** three separated passes (or agents): the Dreamer with no limits; the Realist
-  planning how it would actually be done; the Critic attacking the plan as questions. Loop the
-  questions back to the Dreamer 2–3 times. Never mix the roles in one pass.
+- **Procedure:** when useful, separate Dreamer (possibilities within authorized exploration),
+  Realist (how it could be done) and Critic (specific failure questions) passes. Revisit a
+  question only when another pass can resolve it or improve the result; no fixed loop count.
+  Keep hard constraints throughout. Sequential roles are self-review; separate agents require
+  host capability, permission and a useful reason for delegation.
 
 #### Incubation — Graham Wallas (*The Art of Thought*, 1926); Henri Poincaré
 - **Procedure:** Preparation (load every constraint) → Incubation (step away) → Illumination
@@ -713,9 +732,11 @@ Optional subprocedure: read supplementary-methods.md, section "D2 Test: Six Thin
   proven more accurate ones.
 
 #### Working Backwards (PR/FAQ) — Amazon (Colin Bryar & Bill Carr, *Working Backwards*, 2021)
-- **Procedure:** write the press release for the finished thing (headline, the customer's
-  problem, the solution, a customer quote) plus the hardest FAQ; if the release is dull,
-  change the idea before building. AWS was developed through more than a year of PR/FAQs.
+- **Procedure:** draft a prospective press release (headline, customer problem, proposed
+  solution and hardest FAQ). If useful, label a hypothetical customer quote explicitly as
+  fictional; never present it as observed feedback or a testimonial. Separate promised
+  outcomes from supported capabilities. Use weak or unclear benefits to identify what
+  needs testing, not merely to polish the claim. AWS was developed through more than a year of PR/FAQs.
 
 #### What would have to be true? — Roger Martin with A.G. Lafley (*Playing to Win*, 2013)
 - **Procedure:** for each of 3–5 genuinely different options, list what would have to be true for

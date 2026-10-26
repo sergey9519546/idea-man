@@ -1,7 +1,7 @@
 interface:
   display_name: "Idea-Man - Execution Handoff"
   short_description: "Produce the result or prepare a clear execution handoff."
-  default_prompt: "Use $execution-handoff to turn this approved concept into the requested deliverable."
+  default_prompt: "Use $execution-handoff to carry this assignment or chosen approach through to the requested deliverable within my constraints."
   brand_color: "#4B39F2"
   icon_small: "../../assets/icon.png"
   icon_large: "../../assets/lightbulb-hero.png"

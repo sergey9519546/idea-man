@@ -17,18 +17,17 @@ validate adaptations on the actual task rather than treating citations as mandat
 
 ## 1. The two failure modes
 
-**Typicality.** A language model's first answers are its most probable answers, and
-the most probable answer is the cliché. Preference training measurably rewards
-"typical" text (Zhang et al. 2025). Different models also converge on strikingly
-similar outputs (Jiang et al., NeurIPS 2025 "Artificial Hivemind"). Left alone, an
-LLM idea session produces competent, homogeneous, forgettable work. When ads are
-compressed or summarised, metaphor and emotion are the first things lost and the
-output regresses to clichés (Keon et al. 2025).
+**Typicality risk.** Studies of preference training, cross-model convergence and
+creative summarization motivate checking for homogeneous or conventional output
+(Zhang et al. 2025; Jiang et al., NeurIPS 2025 "Artificial Hivemind"; Keon et al. 2025).
+This is not evidence that every first answer is a cliché or that a conventional answer
+is wrong. Inspect the actual task and result before expanding generation.
 
 **Self-flattery.** Models recognise and prefer their own outputs (Panickssery et al.
-2024), flip verdicts when the order of options is swapped, reward length, and cannot
-reliably fix their own reasoning without outside feedback (Huang et al. 2024). An idea
-engine that grades its own work in the same breath will love everything it makes.
+2024), can change verdicts when option order changes, and can reward length. Intrinsic
+self-correction failed in studied reasoning settings (Huang et al. 2024). These are
+reasons to seek task-appropriate external checks, not proof that every self-review fails
+or that a second model guarantees correct judgment.
 
 Everything below attacks one of these two.
 
@@ -51,9 +50,10 @@ repetition or an evidence boundary.
 **G3. Independent contexts, then pool.** Pooled solo work produces about twice the ideas of
 interacting groups (Diehl & Stroebe 1987), and building on each other's ideas did not
 improve quality (Girotra et al.). Ideas already in context anchor the next ones. In ROOM
-mode, run each thinker as a separate subagent that cannot see the others; merge only at
-the end. In single-context mode, generate each method's batch before reading the previous
-batch back.
+mode, when authorized and useful, give each separate thinker only its bounded brief and
+needed evidence; omit other candidates before pooling. Inspect what was actually shared:
+a role label or instruction not to read earlier answers does not erase shared context.
+In single-context mode, separate passes can organize work but remain non-independent.
 
 **G4. Task-fit method diversity.** Use zero to three methods as assigned by the
 recognition playbook; honor a requested single method. Contrasting families may help
@@ -112,9 +112,11 @@ self-preference, self-correction failure). In Claude Code / Cowork, that is the
 that it is not blind and cannot remove shared-context bias. Agent dispatch depends on
 host capability, authorization and useful information value.
 
-**S2. Normalise before judging.** Rewrite every surviving idea into the same template and
-length (one-sentence idea, what people experience, mechanism). Length and polish bias
-judges (Zheng et al. 2023).
+**S2. Reduce irrelevant presentation bias.** For concept comparison, use equivalent
+evidence and concise neutral summaries where useful (idea, experience, mechanism).
+Length and polish can bias judges (Zheng et al. 2023). Preserve access to the actual
+artifact: voice, detail and form may themselves be criteria, and normalization must not
+remove evidence or become an unrequested rewrite of the user's work.
 
 **S3. Absolute scores triage; pairwise comparison ranks.** 1–10 rubric scores are fine for
 cutting a long list to a shortlist (coarse agreement with humans is comparable for single
@@ -122,8 +124,11 @@ and pairwise grading). For the finalists, compare head-to-head: pairwise ranking
 better with humans than direct scoring (Liu et al. 2024), and tournaments were used by Si
 et al. and Google's AI co-scientist (Gottweis et al. 2025).
 
-**S4. Swap order on every comparison.** Judges flip verdicts when options are swapped
-(Zheng et al.; Wang et al. 2024). Compare A-vs-B and B-vs-A; a split verdict is a tie.
+**S4. Check order sensitivity when it could affect a judgment.** For consequential,
+subjective or close pairwise judgments, compare neutral A-vs-B and B-vs-A when useful
+(Zheng et al.; Wang et al. 2024). A split verdict is inconclusive; inspect evidence or
+report the tie. Deterministic calculations and tiny faithful edits need their actual
+correctness checks, not an obligatory second preference comparison.
 
 **S5. Novelty, usefulness and feasibility are separate axes.** The standard definition of
 creativity is originality *and* effectiveness (Runco & Jaeger 2012; Stein 1953). Novelty

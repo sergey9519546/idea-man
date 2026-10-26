@@ -5,6 +5,10 @@ An artifact can be an analysis, recommendation, experiment protocol or operating
 | Rubric ID / artifact | Core checks | Evidence needed | Avoid |
 |---|---|---|---|
 | `analysis` / diagnosis, causal analysis, research synthesis | Correct question/boundary; observations distinguished from hypotheses; alternative explanations; source support; valid units/denominators/calculations; uncertainty proportional to evidence; useful conclusion | Actual analysis and inspected source passages/data; reproducible calculation where material | Declaring root cause from correlation, fabricated measurements, analysis of the wrong system, hiding contradictory evidence |
+| `quantitative` / calculation, estimate, optimization, statistical analysis | Requested quantity; definitions/model; inputs, units and assumptions; correct operations; bounds/edge cases; proportionate separate sanity check; honest precision and uncertainty | Actual calculation/derivation and input provenance; tool result when used; sample/comparison/measurement support for statistical inference | Invented inputs, false precision, mixing rate/time bases, calling descriptive arithmetic causal or statistically established evidence |
+| `formal_reasoning` / proof, derivation, counterexample | Exact claim/domain; definitions and assumptions; valid implications; necessary cases and quantifiers; counterexample validity; argument limits | Actual argument and its premises; checker evidence only if a checker was used | Treating examples, analogies or empirical patterns as general proof; claiming machine verification without execution |
+| `explanation` / explanation, explainer | Correct question answered at the requested level; accurate relationships; useful examples; analogy limits; protected facts and format | Actual explanation and relevant source/calculation support | A generic article instead of the answer; creative presentation changing facts; imposing a quiz or extra research without need |
+| `coaching` / coaching turn, practice feedback | Requested pace and interaction; response to the actual attempt; appropriate next question/feedback; opportunity for the user to reason retained | Actual exchange/attempt and delivered next turn; relevant factual/numerical support | Solving the exercise before requested, inventing learner characteristics, claiming learning or retention without evidence |
 | `decision` / strategy, choice, recommendation | Actual decision and authority; hard constraints; criteria tied to user goals; feasible alternatives; explicit tradeoff; uncertainty/sensitivity; revisiting trigger | Compared options and their evidence, constraints, assumptions and applicable calculations | Arbitrary weighted scores presented as measurements; invented ROI/demand; making an unrequested commitment |
 | `experiment` / validation or research protocol | Testable assumption; target population/system; intervention or stimulus; observation/measure; comparison/control where feasible; confounds; decision rule; executable steps and limits | Actual protocol plus available resources, prior evidence and any executed observations | Calling a plan a completed experiment; manufactured samples, significance or results; changing success criteria after seeing results without disclosure |
 | `process` / service or operations redesign | Current versus proposed flow; bottleneck/mechanism; ownership; handoffs; exception paths; constraints; stakeholder burden; dependencies; reversible pilot and outcome measure | Process description or observed workflow; relevant measurements; proposed/implemented distinction | Optimizing a local step while worsening the whole system; hiding shifted costs/work; checking only the happy path |
@@ -26,10 +30,20 @@ Before judging polish, check that the result answers the requested operation. A 
 - Scope, requested count and format are fulfilled; approved decisions and hard constraints are preserved.
 - Source and output versions match the actual inspected artifacts. Recheck dependent findings after a changed source or constraint; do not reuse a stale pass.
 - Proposed mechanisms, assumptions, estimates, observed data and validated conclusions are labelled distinctly.
+- For a numerical comparison, recompute the source baseline and proposed scenario on the same units/time/resource basis. Check resource totals across roles and phases, not each role in isolation. A repeated existing arrangement is not an improvement.
+- For coaching, check whether the next interaction responds to the actual attempt and its first material error; a question mark alone does not establish useful feedback.
 - Material counterevidence and uncertainty remain visible. Missing tools or evidence produce `not_checked`, not a passing criterion.
 - Completion claims match the action performed. A prototype can be implemented but not behavior-tested; a concept can be ready for discussion but untested with users.
+- Inspect completeness as well as formatting: a truncated result or missing requested alternative/check needs repair or an explicit delivery limit, not a passing verdict.
 
 For a narrow edit, check the requested change and protected properties rather than running the entire table. For multiple deliverables, apply the relevant rubric to each and disclose the resulting coverage. A failed critical acceptance condition cannot be hidden by averaging unrelated passing checks.
+
+Required verification follows the claim and consequence, not the response length or
+number of methods selected. Apply the relevant checks to each phase of mixed work;
+a quantitative feasibility check cannot substitute for empirical performance evidence.
+If time/tools cannot support a required check, narrow or qualify the conclusion and
+mark that check not_checked. Do not silently certify it, exceed an explicit budget,
+or add unrelated checks merely because they are available.
 
 ## Readiness for a specific next commitment
 

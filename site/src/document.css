@@ -13,3 +13,12 @@
 .document-body .status-label{display:inline-flex;margin-top:25px}
 .document-body a{overflow-wrap:anywhere}
 @media(max-width:760px){.document-hero{padding:40px 0 34px}.document-body{padding-top:35px;padding-bottom:50px}.document-body h2{font-size:24px}.document-body p,.document-body li{font-size:15px}.document-hero>.wrap>p:last-child{font-size:20px}}
+
+.evidence-link{font-size:16px;font-weight:750;margin-top:25px}
+.evidence-notice{padding:24px;background:var(--ink);color:var(--paper);border-left:6px solid var(--cyan);border-radius:6px}
+.evidence-nav{display:flex;flex-wrap:wrap;gap:16px;margin:28px 0}
+.worked-case{margin:48px 0;padding-top:30px;border-top:2px solid var(--ink)}
+.worked-case h2{margin-top:12px}.worked-case h3{font-size:19px;margin:24px 0 10px}
+.worked-case details{margin:24px 0}.worked-case details p{margin:16px 0}
+.document-body pre{max-width:100%;overflow:auto;padding:20px;background:var(--ink);color:var(--paper);border-radius:6px;font-size:13px}
+.evidence-limit{padding:18px;background:#eeebf5;border-radius:6px;margin-top:22px}

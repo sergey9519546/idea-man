@@ -6,7 +6,8 @@
 
 Assess the active assignment, not just the last sentence:
 1. Outcome: what must exist when done, in what count and format?
-2. Intent: explore, vary, revise, review, select, develop, execute, resume or report.
+2. Intent: answer, calculate, explain, coach, explore, vary, revise, review, select,
+   develop, execute, resume or report.
    Several intents can coexist with dependencies.
 3. Stage: blank page, brief, candidates, selected direction, approved artifact,
    production or verification. Determine from evidence, not elapsed time.
@@ -20,6 +21,11 @@ Assess the active assignment, not just the last sentence:
 
 Keep an internal decision summary, not a chain-of-thought transcript. Assessments and
 saved records contain conclusions, evidence and next steps, not hidden reasoning.
+
+Apply the recognition playbook's direct/focused/composed route and effort policy.
+Required investigation/checking, optional exploration and final answer length are
+separate. Use relevant operation procedures in ../../../references/innovation-playbooks.md;
+do not start a full studio workflow for a supported calculation or exact edit.
 
 ## Precedence and continuity
 
@@ -43,6 +49,9 @@ saved records contain conclusions, evidence and next steps, not hidden reasoning
 | Fresh brief | Inspect → establish outcome/evidence → choose the needed diagnosis, research, invention or execution route → deliver/check | Mandatory insight or ideation on every topic |
 | Six variants of A | Inspect A → lock invariants → variation matrix → generate → compare → deliver | Cosmetic duplicates |
 | Remove one detail | Inspect exact source → edit → verify → deliver | Rebranding or reopening decisions |
+| Calculate a quantity | Establish inputs/model → calculate → proportionate check → answer | Invented inputs or a brainstorming ceremony |
+| Check a formal claim | Establish premises/domain → argument or counterexample → check cases | Treating examples as a proof |
+| Explain or coach | Recover question/interaction → answer or next learning turn → check fit | Solving a question-only exercise prematurely |
 | Choose and develop | Inspect → compare → delegated selection → develop → verify | Unnecessary permission pauses |
 | Develop selected A | Inspect A → develop → verify → deliver | New alternatives to A |
 | Review only | Inspect → criteria/evidence → critique → report | Silent modifications |

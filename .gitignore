@@ -6,3 +6,8 @@ Thumbs.db
 node_modules/
 *.bak
 site/dist/
+outputs/
+test-runs/
+release_prepare.py
+# Historical design exploration retained locally, not approved release artwork.
+plugins/idea-man/assets/lightbulb-heroes-reference.png

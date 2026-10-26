@@ -1,12 +1,42 @@
 (() => {
   const examples = {
-    diagnose: {label:'Operations / Find the cause',title:'A delay needs a diagnosis.',prompt:'Our repair shop keeps missing deadlines. We can’t add staff. Help us work out why before suggesting fixes.',intent:'Investigate a recurring process problem within a fixed staffing limit.',route:['Map the handoffs','Compare possible causes','Design a small test'],outcome:'A short list of plausible bottlenecks, the evidence needed to tell them apart, and a pilot the current team can run. No invented cause or promised time saving.'},
-    decide: {label:'Business / Make a choice',title:'A choice needs a tradeoff.',prompt:'Should we offer a subscription or a one-time purchase? Use our costs and customer interviews. Show what could change the recommendation.',intent:'Compare two business models using supplied evidence and explicit decision criteria.',route:['Recover the criteria','Compare the tradeoffs','Check decisive assumptions'],outcome:'A recommendation with its supporting evidence, limits and the unknown most likely to change the answer. A recommendation does not commit you to an option.'},
-    invent: {label:'Engineering / Explore possibilities',title:'A constraint can open a new angle.',prompt:'Find three ways to make this enclosure lighter without reducing impact resistance. Keep the manufacturing constraints fixed.',intent:'Explore mechanisms for resolving a specific engineering contradiction.',route:['Define the contradiction','Explore different mechanisms','Propose validation tests'],outcome:'Three distinct approaches, their assumptions and practical checks. The requested count stays fixed; technical feasibility still needs validation.'},
-    research: {label:'Research / Understand evidence',title:'Sources need synthesis, not a story.',prompt:'Use only these interviews to write a findings memo. Separate what participants said from interpretation, and flag what the sample cannot tell us.',intent:'Synthesize supplied sources into a traceable findings memo.',route:['Read the sources','Separate findings from inference','Write and check the memo'],outcome:'A memo grounded in the interviews, with uncertainty and sample limits visible. No invented participants, quotations or extra research.'},
-    refine: {label:'Creative work / Improve what’s here',title:'One change can be exactly enough.',prompt:'Keep the approved round glasses, cape and colors. Change only the bulb silhouette in this image. Do not redesign the character.',intent:'Make a bounded revision to an identified source while protecting approved elements.',route:['Inspect the source','Make the specific edit','Check preserved details'],outcome:'A revised image when suitable editing tools are available, or a precise editing handoff when they are not. No new concept round or changed selection.'},
-    execute: {label:'Everyday life / Make it happen',title:'A plan needs something you can use.',prompt:'Turn our agreed weekly study routine into a one-page checklist. Keep the times and subjects fixed. Use only the plan I attached.',intent:'Produce a usable checklist from an approved source, with no new schedule decisions.',route:['Inspect the agreed plan','Make the checklist','Check every time and subject'],outcome:'The checklist itself, in the requested format, checked against the source. A missing attachment needs resolving; it does not justify inventing the schedule.'}
-  };
+  "diagnose": {
+    "label": "Try an operations challenge",
+    "title": "Find the bottleneck behind the missed deadline.",
+    "prompt": "Our repair shop keeps missing dates. Help us figure out why before proposing fixes.",
+    "outcome": "Map the workflow, separate symptoms from possible causes, and identify the evidence needed to choose a practical improvement."
+  },
+  "decide": {
+    "label": "Try a business challenge",
+    "title": "Find the opportunity in what you already have.",
+    "prompt": "Find five business models for this unused equipment, using the resources we already have.",
+    "outcome": "Explore distinct models, compare assumptions and tradeoffs, then choose a small test before making a bigger commitment."
+  },
+  "invent": {
+    "label": "Try an engineering challenge",
+    "title": "Challenge the tradeoff. Keep the requirement.",
+    "prompt": "Resolve this engineering contradiction: lower weight without losing impact resistance. Keep the manufacturing constraints fixed.",
+    "outcome": "Explore different mechanisms for resolving the contradiction, surface assumptions, and propose tests. Engineering decisions still need domain validation."
+  },
+  "research": {
+    "label": "Try a research challenge",
+    "title": "Make the evidence easier to use.",
+    "prompt": "Use only these interviews to write a findings memo. Separate supported observations from interpretation and identify gaps.",
+    "outcome": "Work from the supplied sources, trace claims to evidence, preserve uncertainty, and develop a clear findings memo."
+  },
+  "refine": {
+    "label": "Try a creative challenge",
+    "title": "Go beyond six versions of the same idea.",
+    "prompt": "Give me six different concepts for this brief. Use analogy to change the underlying mechanism, while preserving the approved character and colors.",
+    "outcome": "Generate distinct directions within your constraints, compare what each makes possible, then develop the option you select."
+  },
+  "execute": {
+    "label": "Try an everyday challenge",
+    "title": "Make room for a better routine.",
+    "prompt": "Our mornings feel rushed. Help us find the real bottleneck and design one small change to try this week.",
+    "outcome": "Examine the sequence, consider everyone involved, and choose a manageable experiment with a simple way to judge whether it helps."
+  }
+};
   let selected = 'diagnose';
   let timer;
   const status = document.getElementById('copy-status');
@@ -16,18 +46,23 @@
     status.classList.add('visible');
     timer = setTimeout(() => status.classList.remove('visible'), 3500);
   }
-  document.querySelectorAll('[data-task]').forEach(button => button.addEventListener('click', () => {
+  document.querySelectorAll('[data-task]').forEach(button => button.addEventListener('click', event => {
     const item = examples[button.dataset.task];
     if (!item) return;
     selected = button.dataset.task;
     document.querySelectorAll('[data-task]').forEach(control => control.setAttribute('aria-pressed', String(control === button)));
-    for (const field of ['label','title','intent','outcome']) document.getElementById('task-' + field).textContent = item[field];
+    for (const field of ['label','title','outcome']) document.getElementById('task-' + field).textContent = item[field];
     document.getElementById('task-prompt').textContent = '“' + item.prompt + '”';
-    document.getElementById('task-route').replaceChildren(...item.route.map(text => {
-      const li = document.createElement('li');
-      li.textContent = text;
-      return li;
-    }));
+    // Reveal a changed example on narrow screens; preserve keyboard focus.
+    const panel = document.getElementById('task-panel');
+    if (event.detail > 0 && window.matchMedia('(max-width: 760px)').matches) {
+      const rect = panel.getBoundingClientRect();
+      if (rect.top < 0 || rect.top > window.innerHeight * 0.35) {
+        panel.scrollIntoView({block:'start', behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+      }
+    }
+
+
   }));
   async function copy(text, button) {
     let input;

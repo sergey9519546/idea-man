@@ -7,14 +7,25 @@ import argparse
 from contextlib import contextmanager
 from datetime import datetime, timezone
 import json
+import math
 import os
 from pathlib import Path
+import string
 import sys
 import tempfile
 
 
 class StudioError(ValueError):
     pass
+
+
+class LockCleanupError(StudioError):
+    def __init__(self, path, preceding=None):
+        self.path = path
+        message = 'Owned record lock cleanup failed; re-read the saved record and reconcile before retrying. Preserve the lock until no writer is active.'
+        if preceding is not None:
+            message += ' Preceding operation error: ' + str(preceding)
+        super().__init__(message)
 
 
 ACTIONS = {'brief', 'ideate', 'vary', 'revise', 'review', 'develop', 'handoff',
@@ -259,6 +270,7 @@ def apply_event(view, event):
              'constraint': ({'id', 'text', 'evidence'}, set()),
              'approve': ({'target_id', 'evidence'}, set()),
              'reject': ({'target_id', 'evidence'}, {'reason'}),
+              'withdraw': ({'target_id', 'evidence'}, {'reason'}),
              'supersede': ({'target_id', 'replacement_id', 'evidence'}, {'reason'}),
              'artifact': ({'id', 'path', 'status'}, {'note'}),
              'checkpoint': ({'assessment', 'pending_actions', 'evidence'}, set())}
@@ -296,13 +308,17 @@ def apply_event(view, event):
     elif kind in {'candidate', 'constraint'}:
         require(event['id'] not in view['items'], 'Duplicate item ID')
         view['items'][event['id']] = {**event, 'status': 'approved' if kind == 'constraint' else 'proposed'}
-    elif kind in {'approve', 'reject', 'supersede'}:
+    elif kind in {'approve', 'reject', 'withdraw', 'supersede'}:
         item = view['items'].get(event['target_id'])
         require(item is not None, 'Unknown decision target')
         require(item['status'] != 'superseded', 'Cannot change a superseded item')
         if kind == 'reject':
-            require(item['status'] != 'approved', 'Approved decisions require explicit supersede, not silent rejection')
+            require(item['status'] != 'approved', 'Approved decisions require explicit supersede or withdraw, not silent rejection')
             item['status'] = 'rejected'
+            item['reason'] = event.get('reason')
+        elif kind == 'withdraw':
+            require(item['status'] == 'approved', 'Withdrawal requires a currently approved item')
+            item['status'] = 'withdrawn'
             item['reason'] = event.get('reason')
         elif kind == 'approve':
             item['status'] = 'approved'
@@ -315,6 +331,7 @@ def apply_event(view, event):
             item['status'] = 'superseded'
             item['replacement_id'] = event['replacement_id']
             replacement['status'] = 'approved'
+            replacement['decision_evidence'] = event['evidence']
         item['decision_evidence'] = event['evidence']
     elif kind == 'artifact':
         require(event['id'] not in view['artifacts'], 'Duplicate artifact ID; use a new version ID')
@@ -340,7 +357,25 @@ def project_view(data):
 
 
 def read_json(path):
-    return json.loads(Path(path).read_text(encoding='utf-8-sig'))
+    """Read an unambiguous finite JSON contract before validating or mutating state."""
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            require(key not in result, 'Duplicate JSON key: ' + key)
+            result[key] = value
+        return result
+
+    def finite_number(token):
+        value = float(token)
+        require(math.isfinite(value), 'Non-finite JSON number: ' + token)
+        return value
+
+    def constant(token):
+        raise StudioError('Non-finite JSON constant: ' + token)
+
+    return json.loads(Path(path).read_text(encoding='utf-8-sig'),
+                      object_pairs_hook=pairs, parse_float=finite_number,
+                      parse_constant=constant)
 
 
 def record_path(raw):
@@ -366,7 +401,11 @@ def locked(path):
     finally:
         if fd is not None:
             os.close(fd)
-        lock.unlink()
+        preceding = sys.exc_info()[1]
+        try:
+            lock.unlink()
+        except OSError as error:
+            raise LockCleanupError(lock, preceding) from error
 
 
 def atomic_write(path, data):
@@ -389,37 +428,64 @@ def atomic_write(path, data):
 def init_project(raw_path, title):
     require(nonempty(title), 'Title is required')
     path = record_path(raw_path)
-    with locked(path):
-        require(not path.exists(), 'Project already exists; refusing to overwrite')
-        data = {'schema_version': 1, 'title': title, 'revision': 0, 'events': []}
-        atomic_write(path, data)
+    committed = False
+    try:
+        with locked(path):
+            require(not path.exists(), 'Project already exists; refusing to overwrite')
+            data = {'schema_version': 1, 'title': title, 'revision': 0, 'events': []}
+            atomic_write(path, data)
+            committed = True
+    except LockCleanupError as error:
+        if not committed:
+            raise
+        return committed_with_cleanup_warning(data, error)
     return project_view(data)
+
+
+def committed_with_cleanup_warning(data, error):
+    view = project_view(data)
+    view['write_status'] = {'state': 'committed', 'revision': data['revision'],
+                            'lock_cleanup': 'failed', 'lock_path': str(error.path),
+                            'next_action': 'Do not repeat this committed event. Re-read and reconcile the record; recover the known abandoned lock only after confirming no writer is active.'}
+    return view
 
 
 def record_event(raw_path, expected_revision, event):
     path = record_path(raw_path)
     require(type(expected_revision) is int and expected_revision >= 0, 'Expected revision is required')
-    with locked(path):
-        data = read_json(path)
-        view = project_view(data)
-        require(data['revision'] == expected_revision, 'Revision conflict; re-read and reconcile before retrying')
-        apply_event(view, event)
-        data['revision'] += 1
-        data['events'].append({'revision': data['revision'], 'at': utcnow(), 'event': event})
-        project_view(data)
-        atomic_write(path, data)
+    committed = False
+    try:
+        with locked(path):
+            data = read_json(path)
+            view = project_view(data)
+            require(data['revision'] == expected_revision, 'Revision conflict; re-read and reconcile before retrying')
+            apply_event(view, event)
+            data['revision'] += 1
+            data['events'].append({'revision': data['revision'], 'at': utcnow(), 'event': event})
+            project_view(data)
+            atomic_write(path, data)
+            committed = True
+    except LockCleanupError as error:
+        if not committed:
+            raise
+        return committed_with_cleanup_warning(data, error)
     return project_view(data)
 
 
 def markdown(view):
-    # Values are user text, not executable HTML. Keep each entry on one line.
+    # Dynamic values are literal text, not Markdown/HTML. Entity-encode punctuation
+    # so even links, images, backticks, HTML entities and reference definitions stay
+    # inert while rendering their original characters. Exporter headings stay markup.
+    # Preserve original values in the JSON record; flatten line breaks only here.
     def safe(value):
-        return str(value).replace('<', '&lt;').replace('>', '&gt;').replace('\r', ' ').replace('\n', ' ')
+        value = str(value).replace('\r', ' ').replace('\n', ' ')
+        return ''.join('&#' + str(ord(char)) + ';' if char in string.punctuation else char
+                       for char in value)
     lines = ['# ' + safe(view['title']), '', 'Local record revision: ' + str(view['revision']),
              '', 'Brief: ' + safe(view['brief']), '', '## Decisions', '']
     for key, item in view['items'].items():
         lines.append('- ' + safe(key) + ' [' + item['status'] + ']: ' + safe(item['text']))
-        if item['status'] == 'rejected':
+        if item['status'] in {'rejected', 'withdrawn'}:
             lines.append('  Reason: ' + safe(item.get('reason') or 'not supplied'))
     lines += ['', '## Artifacts', '']
     for key, item in view['artifacts'].items():
@@ -428,11 +494,24 @@ def markdown(view):
     lines += ['- ' + safe(note) for note in view['notes']]
     if view.get('checkpoint'):
         checkpoint = view['checkpoint']
+        assessment = checkpoint['assessment']
         lines += ['', '## Continuation checkpoint', '',
-                  'Saved objective: ' + safe(checkpoint['assessment']['objective']),
+                  'Saved objective: ' + safe(assessment['objective']),
                   'Outstanding actions: ' + safe(', '.join(checkpoint['pending_actions'])),
                   'Checkpoint revision: ' + str(view['checkpoint_revision']),
                   'Fresh inspection required; no saved execution authority.']
+        if view['checkpoint_revision'] != view['revision']:
+            lines += ['', 'Record changed after this checkpoint; reconcile later decisions before continuing.']
+        lines += ['', '### Saved task contract', '',
+                  'Historical checkpoint values; reconcile with current user decisions and host restrictions.',
+                  'Source identities are references only; their contents have not been loaded for this export.',
+                  'Saved capabilities and completion receipts are omitted; discover current tools and inspect results again.', '']
+        # Preserve the supplied task contract, including constraints, choice evidence,
+        # count/format, acceptance and source versions. Do not expand referenced files
+        # or restore session capabilities/receipt evidence into a portable handoff.
+        for key, value in assessment.items():
+            if key not in {'objective', 'capabilities', 'receipts'}:
+                lines.append('- ' + safe(key) + ': ' + safe(json.dumps(value, ensure_ascii=False, sort_keys=True)))
     lines += ['', 'Next: ' + safe(view['next_step']), '', 'Saved observations must be rechecked on resume.']
     return '\n'.join(lines) + '\n'
 
@@ -496,6 +575,10 @@ def main():
     commands = parser.add_subparsers(dest='command', required=True)
     p = commands.add_parser('plan')
     p.add_argument('--assessment', required=True)
+    p = commands.add_parser('context')
+    p.add_argument('--assessment', required=True)
+    p.add_argument('--step', required=True)
+    p.add_argument('--task-id')
     p = commands.add_parser('compare-candidates')
     p.add_argument('--assessment', required=True)
     p = commands.add_parser('fingerprint')
@@ -527,6 +610,9 @@ def main():
     try:
         if args.command == 'plan':
             result = plan(read_json(args.assessment))
+        elif args.command == 'context':
+            from workflow_context import ready_context
+            result = ready_context(read_json(args.assessment), args.step, args.task_id)
         elif args.command == 'compare-candidates':
             from candidates import assess as assess_candidates, load_assessment
             result = assess_candidates(load_assessment(args.assessment))

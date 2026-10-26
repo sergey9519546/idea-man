@@ -226,7 +226,7 @@ class RouterTests(unittest.TestCase):
 
     def test_artifact_specific_rubrics(self):
         self.assertEqual(router.plan_v2(assessment(domain='engineering'))['rubric'],'analysis')
-        self.assertEqual(router.plan_v2(assessment(domain='business',deliverable='deck',actions=['produce']))['rubric'],'presentation')
+        self.assertEqual(router.plan_v2(assessment(domain='business',deliverable='deck',artifact_kind='presentation',actions=['produce']))['rubric'],'presentation')
 
     def test_record_requires_write_capability(self):
         self.assertIn('record_decisions',router.plan_v2(assessment(actions=['record']))['blockers'])
@@ -449,12 +449,21 @@ class RouterTests(unittest.TestCase):
         self.assertEqual([m['id'] for m in revised['method_contracts']],['L3'])
         self.assertNotIn('generate_options',[s['id'] for s in p['steps']])
 
-    def test_exact_explicit_method_requires_scope_clarification(self):
-        with self.assertRaisesRegex(ValueError,'exact scope.*clarification'):
-            router.plan_v2(assessment(actions=['revise'],scope='exact',sources=[source()],requested_methods=['L2']))
+    def test_exact_explicit_method_is_retained_within_bounded_revision(self):
+        p=router.plan_v2(assessment(actions=['revise'],scope='exact',sources=[source()],requested_methods=['L2']))
+        self.assertEqual([m['id'] for m in p['methods']],['L2'])
+        revised=next(s for s in p['steps'] if s['id']=='revise_source')
+        self.assertEqual([m['id'] for m in revised['method_contracts']],['L2'])
+        self.assertIn('authorized bounded revision',revised['method_contracts'][0]['application'])
+        self.assertFalse({'generate_options','design_variations'} & {s['id'] for s in p['steps']})
+
+    def test_exact_explicit_method_does_not_authorize_ideation_or_variation(self):
+        for action in ['ideate','vary']:
+            with self.subTest(action=action),self.assertRaisesRegex(ValueError,'Exact scope conflicts'):
+                router.plan_v2(assessment(actions=['revise',action],scope='exact',sources=[source()],requested_methods=['L2']))
 
     def test_requested_method_without_substantive_target_rejected(self):
-        for action in ['status','handoff','produce','record']:
+        for action in ['status','handoff','record']:
             with self.subTest(action=action),self.assertRaisesRegex(ValueError,'no compatible substantive step'):
                 router.plan_v2(assessment(actions=[action],requested_methods=['L2']))
 
@@ -468,13 +477,17 @@ class RouterTests(unittest.TestCase):
         free=router.plan_v2(assessment(actions=['ideate']))
         self.assertNotIn('resolve_source',free['blockers'])
 
-    def test_cli_plan_returns_explicit_method_scope_error(self):
+    def test_cli_plan_retains_explicit_method_for_exact_revision(self):
         a=assessment(actions=['revise'],scope='exact',sources=[source()],requested_methods=['L2'])
         file=self.temp/'exact.json'; file.write_text(json.dumps(a),encoding='utf-8')
         result=subprocess.run([sys.executable,str(SCRIPTS/'studio.py'),'plan','--assessment',str(file)],
             capture_output=True,text=True)
-        self.assertEqual(result.returncode,2)
-        self.assertIn('clarification',json.loads(result.stderr)['error'])
+        self.assertEqual(result.returncode,0,result.stderr)
+        plan=json.loads(result.stdout)
+        self.assertEqual([m['id'] for m in plan['methods']],['L2'])
+        revised=next(s for s in plan['steps'] if s['id']=='revise_source')
+        self.assertEqual([m['id'] for m in revised['method_contracts']],['L2'])
+        self.assertFalse({'generate_options','design_variations'} & {s['id'] for s in plan['steps']})
 
 
 

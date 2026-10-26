@@ -19,7 +19,7 @@ async function htmlFiles(dir) {
   return out;
 }
 const pages = await htmlFiles(dist);
-assert(pages.length >= 5, 'Expected index, support, privacy and terms pages');
+assert(pages.length >= 4, 'Expected index, support, privacy and terms pages');
 let checkedRefs = 0, checkedImgs = 0;
 for (const file of pages) {
   const rel = path.relative(dist, file);
@@ -50,7 +50,7 @@ for (const file of pages) {
     const alt = tag.match(/\salt="([^"]*)"/)[1];
     if (alt === '' && !rel.startsWith('brand')) {
       const after = html.slice(m.index + tag.length, m.index + tag.length + 220).replace(/<[^>]+>/g, ' ');
-      assert(/idea[\s-]*man/i.test(after), `${rel}: decorative <img alt=""> not adjacent to brand text`);
+      assert(/idea[\s-]*(?:man|guy)/i.test(after), `${rel}: decorative <img alt=""> not adjacent to brand text`);
     }
     checkedImgs++;
   }
@@ -59,12 +59,13 @@ assert(await access(path.join(dist, '.nojekyll')).then(() => true, () => false),
 assert(!await access(path.join(dist, 'CNAME')).then(() => true, () => false), 'CNAME must not exist');
 assert(!/(?:src|href)="\//.test((await Promise.all(pages.map(f => readFile(f, 'utf8')))).join('')), 'root-absolute URL found');
 const index = await readFile(path.join(dist, 'index.html'), 'utf8');
-assert(!index.includes('Brainstorm. Sharpen. Create.'), 'Retired subtitle present');
+assert(!index.includes('brand-opening') && index.includes('id="hero-promise"'), 'Page must open with the illustrated hero');
+assert(!index.includes('<header class="header"') && !index.includes('character-section'), 'Unrequested navigation or character showcase returned');
 assert(!/Film, series, music video|Free creative director for Claude|Only 7\+|Only ideas scoring 7/i.test(index), 'Retired positioning or quality guarantee');
 assert(index.includes('not a live AI demo') && index.includes('nothing you select is sent to a model'), 'Illustrative demo boundary missing');
 const tasks = [...index.matchAll(/data-task="([^"]+)"/g)].map(x => x[1]);
 assert.deepEqual(tasks, ['diagnose','decide','invent','research','refine','execute'], 'Task examples must cover distinct jobs');
-assert(index.includes('A simple task can stay simple'), 'Simple-task scope missing');
+assert(index.includes('research, a decision, a precise edit') && index.includes('route that fits'), 'Task-fit scope missing');
 for (const m of index.matchAll(/<a\b[^>]*class="[^"]*(?:button|nav-cta)[^"]*"[^>]*>\s*Get Idea-Man/g)) assert(/href="#install"/.test(m[0]), 'Get Idea-Man CTA must target #install');
 if (!config.repositoryUrl) assert(!/github\.com|View on GitHub|GitHub Releases/i.test(index), 'GitHub installation link visible while repositoryUrl is null');
 for (const sel of ['id="sample-output"', 'id="install"']) assert(index.includes(sel), `Missing section ${sel}`);
@@ -80,11 +81,11 @@ for (const rel of ['index.html', 'support/index.html', 'privacy/index.html', 'te
   const suffix = rel === 'index.html' ? '' : rel.replace('index.html', '');
   assert(page.includes('rel="canonical" href="' + new URL(suffix, config.siteUrl).href + '"'), 'Incorrect Pages canonical: ' + rel);
 }
-assert(index.includes('host supports and permits it'), 'Critic host boundary missing');
-assert(index.includes('label a sequential review as non-independent'), 'Critic fallback boundary missing');
+assert(index.includes('when your host supports it'), 'Critic host boundary missing');
+assert(!index.includes('Only 7+ gets presented'), 'Guaranteed critic score claim remains');
 assert(!index.includes('Only 7+ gets presented') && !index.includes('a blind critic kills'), 'Guaranteed blind critic claim remains');
 assert(index.includes('all 17 thinking methods') && index.includes('Eleven skills'), 'Toolkit counts missing');
 console.log(`Static checks passed: ${pages.length} pages, ${checkedRefs} local references and ${checkedImgs} images verified, anchors resolve, CTAs point to #install, GitHub hidden while repositoryUrl is null, asset hashes match.`);
 
-const brandPage = await readFile(path.join(dist, 'brand/index.html'), 'utf8');
-assert(brandPage.includes('Idea-Man'), 'Brand spelling missing');
+assert(!await access(path.join(dist, 'brand')).then(() => true, () => false), 'Brand kit must remain outside the public site');
+for (const file of pages) assert(!/href="(?:\.\.\/)?brand\//.test(await readFile(file, 'utf8')), 'Public brand-kit link remains');

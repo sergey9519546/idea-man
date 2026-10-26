@@ -1,6 +1,6 @@
 ---
 name: concept-development
-description: "Develop a chosen or approved idea into a useful treatment, story bible, campaign, product concept, naming system or practical plan. Use for expand this, flesh it out, go deeper, or build on the selected direction."
+description: "Develop a chosen or approved idea into a usable operating model, technical proposal, service change, learning plan, product concept or creative artifact. Use for expand this, flesh it out, go deeper, or build on the selected direction."
 ---
 
 # Develop the chosen idea
@@ -16,6 +16,9 @@ approved concepts can remain separate active branches.
 Produce concrete substance appropriate to the stage:
 | Domain | Development pack |
 |---|---|
+| Business / service | Value and operating mechanism, responsible roles, resource assumptions, exception paths, feasibility and next evidence needed |
+| Research / experiment | Question, hypothesis, protocol, measures, confounders, interpretation limits and next decision; no invented findings |
+| Learning / everyday life | Actual goal and constraints, usable steps, practice/feedback, recovery path and observable check |
 | Film / short | Logline, character desire/contradiction, causal beats, ending, signature scenes, production limits |
 | Series / animation | Lead, world rules, repeatable engine, pilot beats, contrasting episodes, visual invariants |
 | Character / identity | Silhouette, behavior, proportions, expression rules, palette/materials, pose/state range, reference board |

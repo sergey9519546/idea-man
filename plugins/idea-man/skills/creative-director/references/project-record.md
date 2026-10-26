@@ -17,6 +17,26 @@ revision read by show; conflicts require re-reading and reconciliation. A short-
 exclusive lock serializes writers; never automatically remove an existing lock. Atomic
 replacement protects prior content on failed validation/write. Record events are
 append-only through this tool; originals remain in the history after superseding.
+Imported JSON rejects duplicate fields and non-finite numbers rather than silently
+choosing one of two conflicting instructions. Rejected events leave the record unchanged.
+
+If atomic saving succeeds but removing the owned lock fails, init/record return the
+committed revision with write_status.state=committed and lock_cleanup=failed. Report
+both the successful save and the cleanup warning; do not repeat the event. Re-read
+and reconcile the actual record, then apply the explicit abandoned-lock recovery
+below only after confirming no writer is active. An earlier validation/write failure
+is not turned into a committed result. The warning is response metadata, not a new
+record event or a change to the stored record schema.
+
+An abruptly terminated writer can leave a .json.lock file because process cleanup
+did not run. Reads remain available; a retry must not steal that lock. Recovery is
+an explicit operator action: stop or confirm the end of all writers to this record,
+preserve the record and lock as recovery evidence, and inspect/validate the record.
+Only after establishing that no writer is active may the operator remove that exact
+abandoned lock, re-read the current revision and reconcile the intended event before
+retrying. Lock age or its PID alone does not prove abandonment; the PID may be reused.
+Malformed content requires recovery from known valid evidence or a backup, never an
+automatic reset. This helper is not a backup service or a power-loss guarantee.
 
 Event JSON shapes (all listed fields required unless shown as optional):
 
@@ -29,6 +49,7 @@ Event JSON shapes (all listed fields required unless shown as optional):
 | constraint | id, text, evidence | Adds an explicitly required locked property |
 | approve | target_id, evidence | Approves an existing item using the user's instruction |
 | reject | target_id, evidence; optional reason | Rejects an unapproved item; missing reason stays unknown |
+| withdraw | target_id, evidence; optional reason | Explicitly withdraws an approved candidate or constraint without selecting a replacement |
 | supersede | target_id, replacement_id, evidence; optional reason | Explicitly replaces a decision with an existing item of the same type |
 | artifact | id, path, status; optional note | Adds a versioned artifact observation |
 
@@ -38,8 +59,20 @@ IDs are unique per item or artifact collection. For a new version use a new ID.
 
 Evidence must quote or accurately identify the actual user decision. The helper checks
 structure and transitions, not the truth of an assertion. Do not fabricate approval.
-An approved item cannot be silently rejected; use supersede with the changed user
-instruction. Multiple candidates can be approved simultaneously.
+An approved item cannot be silently rejected. Use supersede when the changed user
+instruction selects a replacement, or withdraw when it removes approval without a
+replacement. Withdrawal requires a currently approved target and actual changed user
+instruction evidence; it marks only that candidate or constraint withdrawn. Other
+approvals and the full event history remain intact. A later explicit approve event
+with fresh user evidence can reactivate a withdrawn item; do not invent a replacement
+or interpret a narrow correction as withdrawal. Multiple candidates can be approved
+simultaneously. When reconstructing current constraints, a withdrawn constraint is
+historical rather than active; reconcile the changed instruction before checkpointing.
+
+Existing records remain readable. Records containing withdraw events require this
+updated helper; older helpers reject the unknown event instead of silently treating
+withdrawn approval as active. Keep the original record rather than dropping events
+to make it readable by an older version.
 
 Example event:
 

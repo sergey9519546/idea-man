@@ -14,7 +14,7 @@ node verify-live.mjs
 
 The public directory listing remains pending unless `marketplacePublicVerified` is explicitly set after actual approval. Repository installation is separate from public-directory approval.
 
-The build copies approved artwork byte for byte from `../plugins/idea-man/assets/` and includes the brand kit at `docs/brand/`. Keep relative links compatible with the `/idea-man/` GitHub Pages base path. No Site registration or separate Sites deployment is needed.
+The build copies approved artwork byte for byte from `../plugins/idea-man/assets/` without publishing the internal brand kit. Keep relative links compatible with the `/idea-man/` GitHub Pages base path. No Site registration or separate Sites deployment is needed.
 
 `verify-live.mjs` anonymously checks the four public routes, canonical URLs, the support GitHub Issues link, and referenced same-site assets. It verifies the currently deployed site, which can precede local staged changes. Static checks verify the local build. Browser rendering and interactions require separate visual QA when browser access is available.
 

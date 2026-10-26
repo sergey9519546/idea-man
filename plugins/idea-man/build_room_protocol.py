@@ -56,6 +56,8 @@ def body(path: pathlib.Path) -> str:
     # Agent-relative references must remain valid in this generated fallback location.
     return text.replace("../references/orchestration.md", "../../../references/orchestration.md").replace(
         "../references/artifact-rubrics.md", "../../../references/artifact-rubrics.md"
+    ).replace(
+        "../skills/creative-director/references/candidate-decisions.md", "candidate-decisions.md"
     )
 
 

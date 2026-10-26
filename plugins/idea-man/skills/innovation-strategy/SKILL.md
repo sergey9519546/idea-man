@@ -1,6 +1,6 @@
 ---
 name: innovation-strategy
-description: "Solve and develop innovation problems in business, operations, engineering, research, products, services and everyday life. Use for problem framing, root-cause hypotheses, invention, tradeoffs, strategy choices and informative experiments. Also supports creative concepts when their mechanism needs development. Skip a full innovation process for exact edits, status questions or straightforward execution."
+description: "Solve and develop innovation problems in business, operations, engineering, research, products, services and everyday life. Use for framing, quantitative or formal reasoning, root-cause hypotheses, invention, tradeoffs, strategy choices and informative experiments. Also supports creative concepts when their mechanism needs development. Skip a full innovation process for exact edits, status questions or straightforward execution."
 ---
 
 # Innovation strategy
@@ -23,9 +23,16 @@ Identify the type of uncertainty that currently limits progress:
 
 These are diagnosis aids, not mandatory stages. A task may already have sufficient answers or request one narrow piece.
 
+Apply the recognition playbook's proportionality policy: necessary investigation and
+checking follow uncertainty, dependencies and consequence; optional breadth follows
+the user's budget; requested length follows presentation. One short high-stakes answer
+may need careful checks. A simple calculation does not need an innovation tournament.
+
 ## Perform the selected operation
 
 - **Frame:** express the problem as an outcome with constraints; examine whether the stated boundary hides the real bottleneck. Preserve the user's intended goal rather than substituting an easier problem.
+- **Calculate or reason formally:** select the relevant quantitative or formal-claim procedure in ../../references/innovation-playbooks.md. Establish definitions, inputs and assumptions, perform the operation and check the result. Do not treat uncertain adoption or a causal explanation as an exact calculation.
+- **Explain or coach:** use the corresponding playbook operation. The requested answer, question or feedback is the deliverable; do not replace a learning interaction with a solved artifact.
 - **Diagnose:** map the process or causal hypotheses, inspect actual evidence, consider alternative explanations and identify an observation that would distinguish them. A plausible root cause is still a hypothesis until tested.
 - **Invent:** generate alternatives that change the causal mechanism, arrangement, incentive, sequence, ownership or resource use. Use the requested count and preserve hard constraints. Separate a useful analogy from proof that it transfers.
 - **Decide:** compare feasible options against the user's objectives and constraints. Show the decisive tradeoff and sensitivity to uncertain assumptions. Recommend or select only to the extent the user delegated that decision.
@@ -33,7 +40,13 @@ These are diagnosis aids, not mandatory stages. A task may already have sufficie
 - **Test:** select the smallest informative test of the most consequential uncertain assumption. Specify the observation and resulting decision before seeing results.
 - **Execute or hand off:** create the requested artifact or use the available host tools within authorization. A plan does not substitute for implementation when implementation is requested and possible.
 
-Use `../research-and-writing/SKILL.md` for substantive source synthesis or evidence-led writing; use `../artifact-quality/SKILL.md` to inspect the delivered analysis, decision, experiment or process specification. Feedback can activate `../creative-learning/SKILL.md` within its scope.
+Use `../research-and-writing/SKILL.md` for substantive source synthesis or evidence-led writing; use `../artifact-quality/SKILL.md` to inspect the requested result with its matching rubric. Feedback can activate `../creative-learning/SKILL.md` within its scope.
+
+Assign procedures to the phase they support. A mixed assignment may need empirical
+diagnosis, creative alternatives, quantitative feasibility and implementation checks;
+completing one does not satisfy the others. Include only necessary phases, preserve
+accepted work and stop when the requested outcome is sufficiently supported or a
+concrete evidence/tool limit controls the conclusion.
 
 ## Make ideas concrete
 

@@ -1,4 +1,6 @@
-import { readFile, writeFile, mkdir, copyFile, access, readdir, rm } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { loadEvidence, evidenceBody, copyEvidence } from './evidence.mjs';
+import { readFile, writeFile, mkdir, copyFile, access, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -28,6 +30,10 @@ const releaseNotice = releaseStatus === 'released' ? `Version v${escape(String(c
 const claudeAiInstall = (repository ? `<p>Download an available plugin ZIP from the <a href="${escape(repository.replace(/\/$/, '') + '/releases')}" target="_blank" rel="noopener noreferrer">GitHub Releases page</a>, then use Customize / Plugins / Add / Upload plugin and choose the ZIP.</p>` : '<p>If you received a plugin ZIP, use Customize / Plugins / Add / Upload plugin and select that ZIP.</p>');
 let html = await readFile(path.join(root, 'src', 'index.html'), 'utf8');
 for (const [key, value] of Object.entries({ REPOSITORY_LINK: repositoryLink, RELEASE_STATUS: releaseNotice, MARKETPLACE_LINK: marketplaceLink, INSTALLATION_STEPS: installation, CODEX_INSTALL: codexInstall, CTA_LABEL: ctaLabel, CLAUDEAI_INSTALL: claudeAiInstall, INSTALL_HEADING: repository ? 'GET Idea-Man.' : 'INSTALL STEPS.', CLAUDE_INSTALL: claudeInstall, VERSION: escape(String(config.version)), CANONICAL: site ? `<link rel="canonical" href="${escape(site)}"><meta property="og:url" content="${escape(site)}">` : '' })) html = html.replaceAll(`{{${key}}}`, value);
+const scriptVersion = createHash('sha256').update(await readFile(path.join(root,'src/app.js'))).digest('hex').slice(0,12);
+const styleVersion = createHash('sha256').update(await readFile(path.join(root,'src/styles.css'))).update(await readFile(path.join(root,'src/document.css'))).digest('hex').slice(0,12);
+html = html.replace('src="app.js"', 'src="app.js?v=' + scriptVersion + '"').replace('href="styles.css"', 'href="styles.css?v=' + styleVersion + '"');
+const evidence = await loadEvidence(path.dirname(root));
 const dist = path.resolve(root, '../docs');
 if (dist !== path.join(path.dirname(root), 'docs')) throw new Error('Unexpected build output path');
 if (await import('node:fs/promises').then(({lstat}) => lstat(dist).then(s => s.isSymbolicLink(), () => false))) throw new Error('Build output must not be a symlink or junction');
@@ -38,23 +44,17 @@ await writeFile(path.join(dist, 'index.html'), html);
 for (const file of ['styles.css', 'app.js']) await copyFile(path.join(root, 'src', file), path.join(dist, file));
 await writeFile(path.join(dist, 'styles.css'), (await readFile(path.join(root, 'src/styles.css'), 'utf8')) + '\n' + (await readFile(path.join(root, 'src/document.css'), 'utf8')));
 const assetSource = path.resolve(root, '../plugins/idea-man/assets');
-const siteAssets = ['mark.svg', 'icon-32.png', 'icon-16.png', 'icon-48.png', 'icon-128.png', 'icon-256.png', 'icon.png', 'apple-touch-icon.png', 'invisible-nerd-1024.webp', 'lightbulb-hero-1024.webp', 'invisible-nerd.png', 'lightbulb-hero.png', 'invisible-nerd-cutout.png', 'lightbulb-hero-cutout.png'];
+const siteAssets = ['idea-man-logo-transparent.png', 'mark.svg', 'icon-32.png', 'icon-16.png', 'icon-48.png', 'icon-128.png', 'icon-256.png', 'icon.png', 'apple-touch-icon.png', 'invisible-nerd-1024.webp', 'lightbulb-hero-1024.webp', 'invisible-nerd.png', 'lightbulb-hero.png', 'invisible-nerd-cutout.png', 'lightbulb-hero-cutout.png'];
 for (const file of siteAssets) {
   const from = path.join(assetSource, file);
   try { await access(from); } catch { throw new Error(`Missing required asset: ${from}`); }
   await copyFile(from, path.join(dist, 'assets', file));
 }
 await copyFile(path.join(assetSource, 'favicon.ico'), path.join(dist, 'favicon.ico'));
-await mkdir(path.join(dist, 'brand'), { recursive: true });
-for (const file of await readdir(assetSource)) {
-  if (file === 'brand-kit.html') {
-    const brandPage = (await readFile(path.join(assetSource, file), 'utf8'));
-    await writeFile(path.join(dist, 'brand', 'index.html'), brandPage);
-  }
-  else if (!file.endsWith('.md')) await copyFile(path.join(assetSource, file), path.join(dist, 'brand', file));
-}
 const supportLink = repository ? `<a class="button button-dark" href="${escape(repository.replace(/\/$/, '') + '/issues')}" target="_blank" rel="noopener noreferrer">Open a GitHub issue <span aria-hidden="true">↗</span></a>` : '<p class="status-label">Support opens with the public release.</p>';
+await copyEvidence(path.dirname(root), dist);
 const pages = {
+  evidence: { title: 'Show your work', subtitle: 'See the facts. Follow the reasoning. Check the limits.', body: evidenceBody(evidence) },
   support: {
     title: 'Support', subtitle: 'Let’s get you unstuck.',
     body: `<h2>Get help with Idea-Man</h2><p>Idea-Man is published by Sergey Avetisyan as a free plugin. ${repository ? 'Use the public GitHub issue tracker for installation problems, reproducible bugs, feature requests or questions about the packaged skills.' : 'Support opens with the public release. Until then, there is no public support channel.'}</p>${supportLink}<h2>Include what helps</h2><ul><li>Your host application and version, operating system, and Idea-Man version.</li><li>The steps that led to the issue, what you expected, and what happened.</li><li>A small, non-sensitive example and relevant error text.</li></ul><p>${repository ? 'GitHub issues are public. ' : ''}Do not post passwords, API keys, private documents, personal information, or confidential conversation history. Redact sensitive details before sharing.</p><h2>Host or connected-service questions</h2><p>Account access, billing, host availability, model behavior and third-party tool connections are managed by their respective providers. Contact the relevant provider when an issue is outside Idea-Man’s packaged skills or local planner.</p><p>Support is provided as available; no response-time or availability guarantee is offered.</p>`
@@ -70,7 +70,7 @@ const pages = {
 };
 for (const [slug, page] of Object.entries(pages)) {
   const pageCanonical = site ? `<link rel="canonical" href="${escape(new URL(`${slug}/`, site.endsWith('/') ? site : site + '/').href)}">` : '';
-  const document = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#F6F43C"><title>${page.title} — Idea-Man</title><meta name="description" content="Idea-Man ${page.title.toLowerCase()} information. Published by Sergey Avetisyan.">${pageCanonical}<link rel="icon" href="../favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png"><link rel="apple-touch-icon" href="../assets/apple-touch-icon.png"><link rel="stylesheet" href="../styles.css"></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><nav class="wrap navigation" aria-label="Main navigation"><a class="brand" href="../"><img src="../assets/mark.svg" width="44" height="44" alt=""><span>Idea-Man<span class="brand-dot">.</span></span></a><a class="nav-cta" href="../#install">Get Idea-Man ↗</a></nav></header><main id="main"><section class="document-hero"><div class="wrap"><p class="eyebrow">Idea-Man / ${page.title}</p><h1>${page.title.toUpperCase()}.</h1><p>${page.subtitle}</p></div></section><article class="wrap document-body">${page.body}</article></main><footer class="footer"><div class="wrap footer-top"><a class="brand" href="../">Idea-Man.</a><nav class="legal-links" aria-label="Information"><a href="../support/">Support</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a><a href="../brand/">Brand kit</a></nav><p>Published by Sergey Avetisyan</p></div></footer></body></html>`;
+  const document = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#F6F43C"><title>${page.title} — Idea-Man</title><meta name="description" content="Idea-Man ${page.title.toLowerCase()} information. Published by Sergey Avetisyan.">${pageCanonical}<link rel="icon" type="image/png" href="../assets/icon-32.png"><link rel="icon" type="image/png" sizes="32x32" href="../assets/icon-32.png"><link rel="apple-touch-icon" href="../assets/icon-32.png"><link rel="stylesheet" href="../styles.css?v=${styleVersion}"></head><body><a class="skip" href="#main">Skip to content</a><header class="header"><nav class="wrap navigation" aria-label="Main navigation"><a class="brand" href="../"><img src="../assets/mark.svg" width="44" height="44" alt=""><span>Idea-Man<span class="brand-dot">.</span></span></a><a class="nav-cta" href="../#install">Get Idea-Man ↗</a></nav></header><main id="main"><section class="document-hero"><div class="wrap"><p class="eyebrow">Idea-Man / ${page.title}</p><h1>${page.title.toUpperCase()}.</h1><p>${page.subtitle}</p></div></section><article class="wrap document-body">${page.body}</article></main><footer class="footer"><div class="wrap footer-top"><a class="brand" href="../">Idea-Man.</a><nav class="legal-links" aria-label="Information"><a href="../support/">Support</a><a href="../privacy/">Privacy</a><a href="../terms/">Terms</a></nav><p>Published by Sergey Avetisyan</p></div></footer></body></html>`;
   await mkdir(path.join(dist, slug), { recursive: true });
   await writeFile(path.join(dist, slug, 'index.html'), document);
 }

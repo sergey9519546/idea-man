@@ -14,6 +14,9 @@ for (const repositoryUrl of ['https://github.com/sergey9519546/idea-man', null])
       await cp(path.join(root, 'site'), path.join(temporary, 'site'), { recursive: true });
       await mkdir(path.join(temporary, 'plugins/idea-man'), { recursive: true });
       await cp(path.join(root, 'plugins/idea-man/assets'), path.join(temporary, 'plugins/idea-man/assets'), { recursive: true });
+      await cp(path.join(root, 'eval'), path.join(temporary, 'eval'), { recursive: true });
+      await mkdir(path.join(temporary, 'plugins/idea-man/skills/creative-director/scripts'), { recursive: true });
+      await cp(path.join(root, 'plugins/idea-man/skills/creative-director/scripts/candidates.py'), path.join(temporary, 'plugins/idea-man/skills/creative-director/scripts/candidates.py'));
       const configPath = path.join(temporary, 'site/site-config.json');
       const config = JSON.parse(await readFile(configPath, 'utf8'));
       Object.assign(config, { repositoryUrl, releaseStatus, version: '1.2.2', marketplaceUrl: null, marketplacePublicVerified: false });

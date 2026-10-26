@@ -11,6 +11,12 @@ corrections. They are a starting test set, not a representative sample of all us
 No observed captures or human judgments ship with this repository. An empty report
 is `not_evaluated`, never a quality pass.
 
+For task-understanding coverage beyond the executable case set, see the
+[task-fit challenge journeys](task-fit-journeys.md): twelve contrastive multi-turn
+scripts with supplied facts, required and forbidden behavior, and minimal local
+verification. They are synthetic, unrun behavioral hypotheses, not captures or
+semantic success evidence; they add no cases or execution to this harness.
+
 ## Run a comparison
 
 1. Use two fresh independent sessions with the same model/version, settings, base
@@ -86,7 +92,14 @@ artifact remains a hard failure. A path in an answer alone does not prove delive
 Duplicate JSON keys and nonfinite numbers (including numeric overflow) are rejected
 before a capture file is created. Immutable imports refuse overwrite. Changed captures/artifacts invalidate bound
 packets and judgments. Use a fresh run to correct evidence, retaining the old run as
-provenance. IDs, source paths and timestamps are assertions from the capture owner;
+provenance. Packets also include and freeze the Human grading section below, the
+mechanical acceptance rule and the actual evaluator source hash. Changing any of
+these invalidates bound judgments, even when the
+conversation and qualitative rubric are unchanged. Preserve earlier runs and create
+new packets and reviews under the new evaluator; legacy packets without this binding
+must also be re-reviewed. Even a nonfunctional evaluator source edit changes that
+identity; this conservative rule avoids silently reusing a verdict with a different ruler.
+IDs, source paths and timestamps are assertions from the capture owner;
 the harness cannot prove they describe a real run. Model names might also leak
 through actual response text; reviewers must disclose loss of blinding, and such
 judgments cannot be imported as blinded.

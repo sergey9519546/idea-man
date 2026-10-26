@@ -14,15 +14,15 @@
         "composerIcon": "./assets/icon.png",
         "composerIconDark": "./assets/icon.png",
         "defaultPrompt": [
-          "Find three unexpected approaches to this challenge and develop the strongest within my constraints.",
+          "Find three unexpected directions for my creative brief and develop the strongest.",
           "Critique my idea honestly, identify its weak spots, and help me improve it.",
           "I am stuck. Help me reframe this problem and find a practical way forward."
         ],
         "developerName": "Sergey Avetisyan",
         "displayName": "Idea-Man",
-        "logo": "./assets/icon.png",
-        "logoDark": "./assets/icon.png",
-        "longDescription": "Find useful ideas and turn a chosen direction into a practical result. Bring a business challenge, engineering contradiction, research question, inefficient process, everyday problem or creative brief.\n\nIdea-Man identifies the outcome, evidence, constraints and current stage, then chooses useful thinking methods and specialist workflows. Explore reframing, inversion, subtraction, analogy, systems reasoning, first principles, contradiction resolution and experiments.\n\nEleven skills cover innovation strategy, research and writing, quality checks, scoped learning, briefing, variations, critique, concept development, execution handoff and optional local project continuity. Use supplied sources for research, preserve approved decisions during exact edits, and compare distinct approaches with clear tradeoffs.\n\nProduction uses tools available in your host. Optional Python helpers validate structured plans and local project records. Saving a project requires your authorization. Ideas and predictions remain hypotheses until evidence supports them; plans and prompts are distinguished from executed work.",
+        "logo": "./assets/lightbulb-hero.png",
+        "logoDark": "./assets/lightbulb-hero.png",
+        "longDescription": "Find useful ideas and turn a chosen direction into a practical result. Bring a business challenge, engineering contradiction, research question, inefficient process, everyday problem or creative brief.\n\nIdea-Man identifies the outcome, evidence, constraints and current stage, then chooses useful thinking methods and specialist workflows. Explore reframing, inversion, subtraction, analogy, systems reasoning, first principles, contradiction resolution and experiments.\n\nEleven skills cover innovation strategy, research and writing, quality checks, scoped learning, briefing, variations, critique, concept development, execution handoff and optional local project continuity. Use supplied sources for research, preserve approved decisions during exact edits, and compare distinct approaches with clear tradeoffs.\n\nProduction uses tools available in your host. Optional Python helpers validate structured plans and local project records. Saving a project requires your authorization. Ideas and predictions remain hypotheses until evidence supports them; plans and prompts are distinguished from executed work.\n\nSimple requests stay focused. Complex work can use staged investigation, calculation, candidate comparison and verification. Task anchors and checkpoints preserve current goals and constraints in available context; authorized local records support return visits. They do not recover unseen chat history or guarantee drift-free behavior.",
         "shortDescription": "Better ideas, clear next steps",
         "websiteURL": "https://sergey9519546.github.io/idea-man/",
         "supportURL": "https://sergey9519546.github.io/idea-man/support/",
@@ -42,7 +42,7 @@
         "commerce_description": "Idea-Man is free and does not sell products, process payments or offer purchases."
       },
       "publication": {
-        "release_notes": "Idea-Man 1.2.2 adds task-fit workflow repairs, evidence-linked candidate comparison, scoped readiness and local project continuity, with the updated website and brand system. Eleven skills and seventeen thinking methods remain available; actual tools depend on the host.",
+        "release_notes": "Idea-Man 1.2.3 strengthens task-fit routing, evidence and selection checks, recovery, constraint-preserving handoffs and portable project exports. Host tools and supplied context determine available execution; no hidden conversation memory is claimed.",
         "countries": []
       }
     }
@@ -74,5 +74,5 @@
   ],
   "license": "MIT",
   "name": "idea-man",
-  "version": "1.2.2"
+  "version": "1.2.3"
 }
