@@ -2,44 +2,77 @@
 
 <p align="center"><a href="https://sergey9519546.github.io/idea-man/"><img src=".github/assets/idea-man-hero-connected.webp" width="100%" align="top" alt="Idea-Man — Every big idea needs a sidekick. The faceless cyan lightbulb hero flies through a looping cyan ribbon on yellow."></a><a href="#01--install"><img src=".github/assets/nav-install.svg" width="25%" height="64" align="top" alt="Install Idea-Man"></a><a href="#02--modes"><img src=".github/assets/nav-modes.svg" width="25%" height="64" align="top" alt="Explore modes"></a><a href="#03--skills"><img src=".github/assets/nav-skills.svg" width="25%" height="64" align="top" alt="Browse skills"></a><a href="https://sergey9519546.github.io/idea-man/"><img src=".github/assets/nav-website.svg" width="25%" height="64" align="top" alt="Visit the website"></a></p>
 
-## The Promise
+**Idea-Man is a free innovation partner for Claude and Codex.** Bring a business problem, an engineering tradeoff, a research question, an everyday roadblock or a creative brief. It helps you understand what needs to change, find different ways forward, and develop the direction you choose.
+
+## See it at work
+
+Two recorded Codex tests using fictional briefs, with Idea-Man 1.2.4. [Full prompts, responses and test limits](eval/captured/README.md).
 
 <table>
-<tr>
-<td width="52%" valign="top">
+<tr><td><img src=".github/assets/demo-diagnosis.svg" width="100%" height="84" alt="Find the real delay. Recorded operations test."></td></tr>
+<tr><td>
 
-### **Insight first. Only ideas worth making.**
+**The problem**
 
-**Idea-Man** is a free innovation and creative-director plugin for Claude and Codex. It understands the assignment, chooses useful thinking methods, and challenges weak ideas before you commit. Bring a business challenge, an engineering contradiction, a research question, an inefficient process, an everyday problem or a creative brief.
+A repair shop finished 40 jobs; 18 were late. Parts arrived late for 12 of them. For six, parts were ready but work sat for three days. The shop has one scheduler, three mechanics and no hiring or software budget.
 
-Independent thinkers and a separate critic join when your host supports and permits them; otherwise role passes are disclosed as sequential. Scores are optional judgments, not guarantees. Hard requirements and evidence govern which direction is ready for the next step.
+</td></tr>
+<tr><td>
 
-Bring a half-formed thought, a rough draft, or a direction you already love. Idea-Man helps you find the next useful step—and carry the idea further.
+**The response**
 
-</td>
-<td width="48%" valign="top">
+> The evidence shows **two delay points, but doesn’t establish one overall bottleneck**.
 
-<sub><b>A JOURNEY THAT FITS THE TASK</b></sub>
+The response proposes a seven-day paper-queue test with the existing team. A five-minute morning review gives ready jobs an owner and a start slot. The success measure includes jobs still waiting at the end.
 
-### **BIG IDEA. NEXT MOVE.**
+[Read the captured response →](eval/captured/README.md#noncreative-diagnosis)
 
-![](https://img.shields.io/badge/01-Understand-F6F43C?style=flat-square&labelColor=25134D) **`→`** ![](https://img.shields.io/badge/02-Explore-26D9E6?style=flat-square&labelColor=25134D) **`→`** ![](https://img.shields.io/badge/03-Critique-FF5878?style=flat-square&labelColor=25134D) **`→`** ![](https://img.shields.io/badge/04-Develop-4B39F2?style=flat-square&labelColor=25134D) **`→`** ![](https://img.shields.io/badge/05-Make-F6F43C?style=flat-square&labelColor=25134D)
-
-1. **Understand** — Recover the real job, evidence and constraints. Preserve approved choices and the qualities that already work.
-2. **Explore** — Research, diagnose or develop distinct mechanisms using the methods the task needs.
-3. **Critique** — Compare usefulness, requirements, mechanisms and evidence. Surface weak assumptions and useful tradeoffs.
-4. **Develop** — Sharpen the direction you choose without displacing approved decisions or constraints.
-5. **Make** — Carry out authorized work with available tools, inspect the result, or prepare a clear handoff.
-
-<sub><i>Need research, a decision, a precise edit or the finished work? Take the route that fits. Simple requests stay focused. Save project decisions locally when you authorize it.</i></sub>
-
-</td>
-</tr>
+</td></tr>
 </table>
 
----
+<table>
+<tr><td colspan="2"><img src=".github/assets/demo-concepts.svg" width="100%" height="84" alt="Give a brief three lives. Recorded creative test."></td></tr>
+<tr><td colspan="2">
+
+**The brief:** three poster concepts for a free neighborhood repair café. Keep the event details. No tools in the artwork, no nostalgia, and no guaranteed-repair promise.
+
+The recorded response offered three different visual approaches:
+
+</td></tr>
+<tr><td width="35%" valign="top"><b>Bring Your Broken</b></td><td>A single dented toaster photographed against coral.</td></tr>
+<tr><td valign="top"><b>Neighbors Helping Neighbors</b></td><td>An overhead illustration of people around a repair table.</td></tr>
+<tr><td valign="top"><b>Let’s Take a Look</b></td><td>A cobalt question mark with a kettle forming its dot.</td></tr>
+<tr><td colspan="2">
+
+The event details stay in all three directions. The response leaves the choice to the user; it supplies concepts, not finished posters.
+
+[Read the captured response →](eval/captured/README.md#constrained-creative)
+
+</td></tr>
+</table>
 
 ## 01 / Install
+
+Choose the host you use. Install Idea-Man there, then start a fresh chat.
+
+<table width="100%">
+<tr><th align="left" width="100%"><img src="https://img.shields.io/badge/OPENAI-CODEX-26D9E6?style=flat-square&labelColor=25134D" alt="Codex"></th></tr>
+<tr><td>
+
+Add the plugin marketplace from `main`:
+
+```bash
+codex plugin marketplace add sergey9519546/idea-man --ref main
+```
+
+Open **Plugins** (or `/plugins` in Codex CLI), install **Idea-Man**, and start a new chat.
+
+Select **Idea-Man - Innovation Conductor**, or type `$idea-man:creative-director` followed by your task.
+
+Registration adds the marketplace; installation enables the plugin. This repository route is separate from public-directory approval.
+
+</td></tr>
+</table>
 
 <table width="100%">
 <tr><th align="left" width="100%"><img src="https://img.shields.io/badge/CLAUDE_CODE-CLI-F6F43C?style=flat-square&labelColor=25134D" alt="Claude Code"></th></tr>
@@ -52,11 +85,7 @@ claude plugin marketplace add sergey9519546/idea-man
 claude plugin install idea-man@idea-man-marketplace
 ```
 
-Then run:
-
-```text
-/idea-man:creative-director <brief>
-```
+Then use `/idea-man:creative-director` followed by your task.
 
 </td></tr>
 </table>
@@ -74,35 +103,23 @@ If your client offers plugin ZIP uploads, download the **plugin ZIP** from [**Gi
 </td></tr>
 </table>
 
-<table width="100%">
-<tr><th align="left" width="100%"><img src="https://img.shields.io/badge/OPENAI-CODEX-26D9E6?style=flat-square&labelColor=25134D" alt="Codex"></th></tr>
-<tr><td>
+<details>
+<summary><b>Your first task</b></summary>
 
-Add the plugin marketplace from `main`:
+Describe what you want and what must stay fixed. For example:
 
-```bash
-codex plugin marketplace add sergey9519546/idea-man --ref main
-```
+> Spark: give me four ways our library could reduce workshop no-shows without adding staff.
 
-<br>
+Or bring work you want reviewed:
 
-After registration, open Plugins, install Idea-Man from the registered marketplace, and start a new session. In Codex CLI, open `/plugins`.
+> Critique the proposal below using only my notes. Show me what holds up and what needs changing. Don’t rewrite it yet.
 
-Select **Idea-Man - Innovation Conductor**, or start with `$idea-man:creative-director` followed by your task. A bare `$creative-director` can select another skill. If an older Idea-Man marketplace installation exposes the same name, disable that old installation and keep the current one enabled; preserve its files.
-
-<sub><i>Registration adds the marketplace; you still need to install the plugin and start a new chat. Repository installation is separate from a public-directory listing.</i></sub>
-
-</td></tr>
-</table>
+</details>
 
 <details>
-<summary><b>Try a task</b></summary>
+<summary><b>Installed, but the wrong skill opens?</b></summary>
 
-Start with what you want to accomplish. You can add constraints or choose a mode:
-
-- **Investigate:** “Our repair shop keeps missing promised dates. We can't hire anyone this month. What should we check before changing the schedule?”
-- **Explore:** “Spark: give me four ways our library could reduce no-shows for free workshops, without adding staff.”
-- **Review:** “Critique this proposal using only the notes below. Tell me what holds up, what's uncertain, and what needs changing. Don't rewrite it yet.”
+In Codex, use the full `$idea-man:creative-director` name. A bare `$creative-director` can select a different skill. If an older Idea-Man installation exposes the same name, disable that old installation, preserve its files, and start a new chat with the current version enabled.
 
 </details>
 
@@ -165,20 +182,57 @@ Calculations, evidence reviews, and precise edits keep the workflows they need. 
 
 ---
 
+<a id="the-promise"></a>
+
+## How it works
+
+<table>
+<tr>
+<td width="45%" valign="top">
+
+### Insight first. Only ideas worth making.
+
+Bring a half-formed thought, a rough draft, or a direction you already love. Idea-Man starts by working out what you need: an answer, an investigation, new approaches, a decision, or help making the next piece.
+
+Tell it what must stay. An approved choice, a budget, a source restriction, or a detail you love should shape what happens next.
+
+The task determines the depth. A calculation or precise edit can stay brief. A harder assignment can combine research, analysis, ideas and checks.
+
+</td>
+<td width="55%" valign="top">
+
+### Big idea. Next move.
+
+![Understand](https://img.shields.io/badge/01-Understand-F6F43C?style=flat-square&labelColor=25134D) → ![Explore](https://img.shields.io/badge/02-Explore-26D9E6?style=flat-square&labelColor=25134D) → ![Critique](https://img.shields.io/badge/03-Critique-FF5878?style=flat-square&labelColor=25134D) → ![Develop](https://img.shields.io/badge/04-Develop-4B39F2?style=flat-square&labelColor=25134D) → ![Make](https://img.shields.io/badge/05-Make-F6F43C?style=flat-square&labelColor=25134D)
+
+1. **Understand** what you’re trying to accomplish and what’s getting in the way.
+2. **Explore** useful approaches, with research or different thinking methods where they help.
+3. **Critique** the options against your requirements and the available evidence.
+4. **Develop** the direction you choose, keeping approved strengths intact.
+5. **Make** the result with available tools, or prepare a clear handoff.
+
+These stages are selected to fit the task. You don’t need to work through all five for every request.
+
+</td>
+</tr>
+</table>
+
+---
+
 ## 03 / Skills
 
-**11 specialized skills** spanning innovation, research, decisions and creative work. The conductor selects the useful specialists; you can also invoke one directly:
+**11 skills** support the work behind the scenes. Idea-Man selects the useful ones for your task; each is also linked below if you want to inspect or invoke it directly.
 
-Seventeen thinking methods cover reframing, inversion, subtraction, analogy, systems reasoning, first principles, contradiction resolution and experiments. Use what helps the assignment; no fixed method count or score ceremony is required.
+The [17 thinking methods](plugins/idea-man/references/innovation-registry.json) include reframing, analogy, systems reasoning, first principles and experiments. The task determines which methods help; scores are optional.
 
-| Studio Stage | Skills | Role in the Studio |
+| Stage | Skills | What they help with |
 | :--- | :--- | :--- |
-| ![](https://img.shields.io/badge/01-Understand-F6F43C?style=flat-square&labelColor=25134D) | <a href="plugins/idea-man/skills/creative-director/SKILL.md"><kbd>creative-director</kbd></a> <a href="plugins/idea-man/skills/creative-brief/SKILL.md"><kbd>creative-brief</kbd></a> <a href="plugins/idea-man/skills/research-and-writing/SKILL.md"><kbd>research-and-writing</kbd></a> <a href="plugins/idea-man/skills/innovation-strategy/SKILL.md"><kbd>innovation-strategy</kbd></a> | Orchestrate the room, sharpen the brief, synthesize research, and set strategy. |
-| ![](https://img.shields.io/badge/02-Explore-26D9E6?style=flat-square&labelColor=25134D) | <a href="plugins/idea-man/skills/concept-variations/SKILL.md"><kbd>concept-variations</kbd></a> | Generate distinct directions that change the idea—not just the wording. |
-| ![](https://img.shields.io/badge/03-Critique-FF5878?style=flat-square&labelColor=25134D) | <a href="plugins/idea-man/skills/creative-review/SKILL.md"><kbd>creative-review</kbd></a> <a href="plugins/idea-man/skills/artifact-quality/SKILL.md"><kbd>artifact-quality</kbd></a> | Compare usefulness, evidence, tradeoffs and hard requirements; inspect the actual deliverable. |
-| ![](https://img.shields.io/badge/04-Develop-4B39F2?style=flat-square&labelColor=25134D) | <a href="plugins/idea-man/skills/concept-development/SKILL.md"><kbd>concept-development</kbd></a> <a href="plugins/idea-man/skills/creative-learning/SKILL.md"><kbd>creative-learning</kbd></a> | Build around approved strengths; apply explicit feedback with its scope and exceptions. |
-| ![](https://img.shields.io/badge/05-Make-F6F43C?style=flat-square&labelColor=25134D) | <a href="plugins/idea-man/skills/execution-handoff/SKILL.md"><kbd>execution-handoff</kbd></a> | Produce the authorized result or prepare a concrete handoff with the available tools. |
-| ![](https://img.shields.io/badge/06-Continue-26D9E6?style=flat-square&labelColor=25134D) | <a href="plugins/idea-man/skills/creative-project/SKILL.md"><kbd>creative-project</kbd></a> | Save authorized local decisions, preserve history, and resume from inspected project records. |
+| ![](https://img.shields.io/badge/01-Understand-F6F43C?style=flat-square&labelColor=25134D) | <a href="plugins/idea-man/skills/creative-director/SKILL.md"><kbd>creative-director</kbd></a> <a href="plugins/idea-man/skills/creative-brief/SKILL.md"><kbd>creative-brief</kbd></a> <a href="plugins/idea-man/skills/research-and-writing/SKILL.md"><kbd>research-and-writing</kbd></a> <a href="plugins/idea-man/skills/innovation-strategy/SKILL.md"><kbd>innovation-strategy</kbd></a> | Work out the task, clarify the brief, examine evidence and choose an approach. |
+| ![](https://img.shields.io/badge/02-Explore-26D9E6?style=flat-square&labelColor=25134D) | <a href="plugins/idea-man/skills/concept-variations/SKILL.md"><kbd>concept-variations</kbd></a> | Explore different approaches, or vary only the details you allow. |
+| ![](https://img.shields.io/badge/03-Critique-FF5878?style=flat-square&labelColor=25134D) | <a href="plugins/idea-man/skills/creative-review/SKILL.md"><kbd>creative-review</kbd></a> <a href="plugins/idea-man/skills/artifact-quality/SKILL.md"><kbd>artifact-quality</kbd></a> | Compare options and check the actual work against your requirements. |
+| ![](https://img.shields.io/badge/04-Develop-4B39F2?style=flat-square&labelColor=25134D) | <a href="plugins/idea-man/skills/concept-development/SKILL.md"><kbd>concept-development</kbd></a> <a href="plugins/idea-man/skills/creative-learning/SKILL.md"><kbd>creative-learning</kbd></a> | Develop your chosen direction and apply feedback without losing what works. |
+| ![](https://img.shields.io/badge/05-Make-F6F43C?style=flat-square&labelColor=25134D) | <a href="plugins/idea-man/skills/execution-handoff/SKILL.md"><kbd>execution-handoff</kbd></a> | Make the requested result with available tools, or give the next person a usable brief. |
+| ![](https://img.shields.io/badge/06-Continue-26D9E6?style=flat-square&labelColor=25134D) | <a href="plugins/idea-man/skills/creative-project/SKILL.md"><kbd>creative-project</kbd></a> | Save project decisions locally when you authorize it, then resume from those records. |
 
 <details>
 <summary><b>View flat list of all 11 skills</b></summary>
@@ -232,9 +286,15 @@ A sharp creative partner with a sense of play. Ask the question that matters. Ex
 
 ## Evidence and limitations
 
-The [evaluation tools](eval/README.md) check supplied captures and support blinded review. Passing local tests does not establish superior ideas or successful activation in every host.
+The [captured examples](eval/captured/README.md) record two existing Codex tests with synthetic prompts. They show those sessions’ responses and observed guidance reads, not a general success rate or a comparison with an ordinary assistant. No customer outcomes are claimed.
+
+The [evaluation tools](eval/README.md) support comparisons using actual captures. Local checks alone do not establish superior ideas or activation in every host.
 
 The [worked examples](eval/examples/README.md) cover diagnosis, decision sensitivity, and pilot review, with checked arithmetic and local readiness-helper results. They are authored synthetic examples, not captured model runs or customer validation. The [evidence page](https://sergey9519546.github.io/idea-man/evidence/) links the source conversations and their limits.
+
+## Support
+
+For installation help, see the [support guide](https://sergey9519546.github.io/idea-man/support/). Report a reproducible problem through [GitHub Issues](https://github.com/sergey9519546/idea-man/issues).
 
 ## Development
 

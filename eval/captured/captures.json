@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "captured_model_responses_to_synthetic_prompts",
+  "capture_date": "2026-10-26",
+  "host": "Codex",
+  "model": "gpt-6.1-sol",
+  "plugin_version": "1.2.4",
+  "plugin_revision": "1dcf14446a2258b499489947eb8ae0773b8be2fe",
+  "invocation": "$idea-man:creative-director",
+  "hash_algorithm": "sha256-utf8-lf",
+  "cases": [
+    {
+      "id": "noncreative-diagnosis",
+      "request": "$idea-man:creative-director Our repair shop completed 40 jobs last month; 18 were late. For 12 late jobs, parts arrived after the promised date. For six late jobs, parts were ready but work sat three days before a mechanic started. We have one scheduler, three mechanics, and no budget for software or hiring. Diagnose the bottleneck and propose one seven-day test with a clear success measure. Do not assume the supplier caused every delay. Use only these facts. Keep under 220 words. Do not save project records or change files.",
+      "response": "I’ll read the creative-director skill, then use only your facts to propose one seven-day test.\n\nThe evidence shows **two delay points, but doesn’t establish one overall bottleneck**. Of 40 jobs, 18 were late (45%). Twelve had parts arrive after the promise date; that could reflect supplier delivery, ordering timing, or unrealistic promises. Six waited three days despite parts being ready, demonstrating an internal queue. Dispatch practices versus mechanic capacity remains unresolved.\n\nRun **one seven-day test of the ready-to-start handoff**. Each morning, the scheduler spends five minutes with the three mechanics reviewing a paper queue, ordered by original promised date. Assign every ready job an owner and next available start slot without interrupting work already underway. Review new parts arrivals at midday.\n\nFor each job, tally the original promise, parts-ready time, assignment time, actual start, completion, and any reason it could not start. Keep original promises fixed.\n\n**Success target:** every job entering the ready queue during days 1–5 starts within one working day; include unstarted jobs as failures at the day-seven review. With no eligible jobs, the test is inconclusive.\n\nIf prompt assignments remove the wait, retain the routine. If waits persist because mechanics remain occupied, investigate workload and job duration. This tests the internal delay without claiming to resolve the parts-related delays.",
+      "request_sha256": "401d2970529c0c7c7606570c858de835ac05bc5178c568f97b7d42c8134df55d",
+      "response_sha256": "d870c5076761fd650f5eadbb69f8f2e000c2f6bb7b46ac65e56545299435012f",
+      "total_visible_words_recorded": 212,
+      "current_conductor_read_observed": true,
+      "all_references_loaded": false,
+      "startup_skill_budget_warning_observed": true
+    },
+    {
+      "id": "constrained-creative",
+      "request": "$idea-man:creative-director Write exactly three distinct poster concepts for a neighborhood repair cafe. The event is Saturday November 7, 10am to 2pm at Maple Library. People bring a broken small appliance; volunteer repairers help for free. No tools may be depicted, no nostalgia styling, and no claims that repairs are guaranteed. Each concept must have one short headline and a two-sentence visual description. Do not choose or combine them. Use only this supplied brief, no web search, image generation or file writing.",
+      "response": "I’ll use the creative-director skill and keep the three concepts distinct within your brief.\n\n1. **Bring Your Broken**  \nA sharply lit photograph places a dented toaster against a vivid coral background, with generous space around its imperfect shape. Crisp white typography carries “Neighborhood Repair Cafe,” “Saturday November 7, 10am to 2pm, Maple Library,” and “Bring a broken small appliance—volunteer repairers help for free.”\n\n2. **Neighbors Helping Neighbors**  \nA contemporary overhead illustration shows people gathered around a circular table, examining small appliances together in bold teal, lavender, and yellow shapes. Event details follow the table’s curve: “Neighborhood Repair Cafe,” “Saturday November 7, 10am to 2pm, Maple Library,” and “Bring a broken small appliance—volunteer repairers help for free.”\n\n3. **Let’s Take a Look**  \nAn enormous cobalt question mark dominates a white poster, with a small kettle silhouette forming its dot and the headline nestled inside its curve. A compact black text block reads “Neighborhood Repair Cafe,” “Saturday November 7, 10am to 2pm, Maple Library,” and “Bring a broken small appliance—volunteer repairers help for free.”",
+      "request_sha256": "9dc874a6c5393d71e4de213e532806cfe73dfc1fca18e8f288a355480f5dc55c",
+      "response_sha256": "4a2d47b43a7632a437efb2c0252a50572571b897f99b9d75342af927c95e7c87",
+      "total_visible_words_recorded": 172,
+      "current_conductor_read_observed": true,
+      "all_references_loaded": false,
+      "startup_skill_budget_warning_observed": true
+    }
+  ],
+  "limitations": [
+    "Two selected development test sessions; not customer conversations or evidence of customer demand.",
+    "No baseline comparison or general quality or success-rate claim.",
+    "Explicit qualified invocation and current conductor reads observed; automatic discovery and all-reference loading are not established.",
+    "Startup emitted skill-context budget warnings in the tested host configuration.",
+    "The diagnosis proposes a test; no repair-shop pilot ran. The creative response contains concepts; no posters were produced.",
+    "Private session IDs, machine paths and raw command traces are omitted. Hashes identify the published text, not independent proof of capture origin."
+  ]
+}
