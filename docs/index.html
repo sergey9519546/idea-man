@@ -12,9 +12,9 @@
   <link rel="canonical" href="https://sergey9519546.github.io/idea-man/"><meta property="og:url" content="https://sergey9519546.github.io/idea-man/">
   <link rel="icon" type="image/png" href="assets/icon-32.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
-  <link rel="apple-touch-icon" href="assets/icon-32.png">
-  <link rel="stylesheet" href="styles.css?v=d508ff4ef17a">
-  <script src="app.js?v=19b8770380f2" defer></script>
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css?v=1650bf317892">
+  <script src="app.js?v=66894078f3e5" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -53,7 +53,7 @@
 
   <section class="task-section section" id="sample-output" aria-labelledby="sample-title">
     <div class="wrap">
-      <div class="section-heading"><div><p class="eyebrow">02 / Start where you are</p><h2 id="sample-title">ANY PROJECT.<br> ANY STAGE.</h2></div><p>Full session, quick spark, critique, unstick, or room: pick the mode that fits where you are. Or bring your problem and let Idea-Man help you find a starting point.</p></div>
+      <div class="section-heading"><div><p class="eyebrow">02 / Start where you are</p><h2 id="sample-title">ANY PROJECT.<br> ANY STAGE.</h2></div><p>A deadline that keeps slipping. An opening scene that drags. A morning that never goes to plan. Bring the situation as you'd explain it to a colleague.</p></div>
       <div class="task-workbench">
         <div class="task-list" role="group" aria-label="Choose an example task">
           <button class="task-button" type="button" data-task="diagnose" aria-pressed="true" aria-controls="task-panel"><span>01</span>Operations<span aria-hidden="true">↗</span></button>
@@ -65,13 +65,13 @@
         </div>
         <article class="task-panel" id="task-panel" aria-live="polite" aria-atomic="true" aria-labelledby="task-title">
           <div class="panel-heading"><p class="eyebrow" id="task-label">Try an operations challenge</p><span class="example-stamp">Example</span></div>
-          <h3 id="task-title">Find the bottleneck behind the missed deadline.</h3>
-          <blockquote id="task-prompt">&#8220;Our repair shop keeps missing dates. Help us figure out why before proposing fixes.&#8221;</blockquote>
-          <div class="task-result"><p class="eyebrow">A useful direction</p><p id="task-outcome">Map the workflow, separate symptoms from possible causes, and identify the evidence needed to choose a practical improvement.</p></div>
+          <h3 id="task-title">Why are Friday repairs always late?</h3>
+          <blockquote id="task-prompt">&#8220;Our bike shop promises Friday pickup, then spends Friday calling customers to apologise. We have three mechanics and this month's job log. Find what's going wrong before we hire anyone.&#8221;</blockquote>
+          <div class="task-result"><p class="eyebrow">How it could help</p><p id="task-outcome">Check where jobs wait: approval, parts, or repair. If parts are the delay, try setting pickup dates after they arrive. Use the log to check that explanation first.</p></div>
           <button class="copy-button" type="button" id="copy-example">Copy this starting point <span aria-hidden="true">↗</span></button>
         </article>
       </div>
-      <p class="task-caption">Example prompts illustrate the workflow; results depend on your context and tools. These are not a live AI demo; nothing you select is sent to a model.</p>
+      <p class="task-caption">Illustrative prompts and possible directions. Choose one to read or copy; the selector doesn't send anything to an AI.</p>
       <noscript><p class="no-script">The example selector needs JavaScript. You can still use the operations example above, read how Idea-Man works, and follow the installation steps below.</p></noscript>
     </div>
   </section>
@@ -97,21 +97,23 @@
 
     <section class="sample-output section" id="worked-output" aria-labelledby="worked-title"><div class="wrap"><p class="eyebrow">05 / Sample output</p><h2 id="worked-title">WHAT YOU ACTUALLY GET.</h2>
       <dl>
-        <div class="sample-row"><dt>Brief</dt><dd>A tiny coffee roaster is launching decaf with $5k.</dd></div>
-        <div class="sample-row"><dt>Working hypothesis</dt><dd>People apologise when they order decaf.</dd></div>
-        <div class="sample-row sample-idea"><dt>The idea</dt><dd><strong>No Reason Needed.</strong> Ordering decaf becomes a small ritual, not a confession: an opt-in bell customers can choose to ring, so nobody is singled out.</dd></div>
-        <div class="sample-row"><dt>Why it could work</dt><dd>It removes the apology instead of hiding the product.</dd></div>
-        <div class="sample-row"><dt>Killed</dt><dd><ul><li><strong>Rename it “Midnight Roast.”</strong> Cosmetic: it hides the label, not the apology.</li><li><strong>Free decaf Fridays.</strong> Risk: a discount signals “lesser product,” reinforcing the stigma.</li></ul></dd></div>
-        <div class="sample-row"><dt>Cheapest test</dt><dd>One weekend, one counter, one bell and a small sign. Watch whether people order decaf without apologising.</dd></div>
+        <div class="sample-row"><dt>Brief</dt><dd>A tiny coffee roaster has $5,000 to launch decaf. It already sells at a Saturday market. Same stall, same team.</dd></div>
+        <div class="sample-row"><dt>Working hypothesis</dt><dd>Some customers skip coffee after dinner because of caffeine. A small decaf bag could let them keep that ritual. Check this with customers at the stall.</dd></div>
+        <div class="sample-row sample-idea"><dt>The idea</dt><dd><strong>One more cup.</strong> Sell a small take-home bag for after dinner. Let people taste the decaf at the stall first. Sign: “Save a cup for after dinner.” Keep “decaf” clear on the bag.</dd></div>
+        <div class="sample-row"><dt>Why try it</dt><dd>A taste answers “Will I like it?” A small bag lowers the cost of trying it at home.</dd></div>
+        <div class="sample-row"><dt>Passed over</dt><dd><ul><li>A full packaging run commits money before learning whether anyone wants it.</li><li>Free bags mix up interest in decaf with interest in a freebie.</li></ul></dd></div>
+        <div class="sample-row"><dt>First test</dt><dd>Cap one Saturday's tasting at $200. Price the small bag to cover coffee and packaging. Count tasters and paid purchases; ask buyers when they'd drink it and non-buyers why they passed. Check costs and feedback before spending more.</dd></div>
       </dl>
-      <p class="small">Illustrative example, written to show the format. Your results depend on your brief.</p></div></section>
+      <p class="small">Illustrative response written for this page, not a customer result or a recorded plugin run. The idea and test are proposals.</p></div></section>
 
   <section class="install section" id="install" aria-labelledby="install-title">
-    <div class="wrap"><div class="install-top"><div><p class="eyebrow">06 / Install</p><h2 id="install-title">GET Idea-Man.</h2><p class="install-intro">Start in the AI host you already use.</p></div><div class="install-actions"><p class="status-label"><span aria-hidden="true"></span>Marketplace listing pending</p><a class="text-link" href="https://github.com/sergey9519546/idea-man" target="_blank" rel="noopener noreferrer">View on GitHub <span aria-hidden="true">↗</span></a><p class="small">Free plugin · No in-plugin purchases</p></div></div>
-      <div class="install-host"><h3><span class="host-number">01</span>Claude Code</h3><div><pre><code>claude plugin marketplace add sergey9519546/idea-man
-claude plugin install idea-man@idea-man-marketplace</code></pre><p>Then run <code>/idea-man:creative-director</code> followed by your brief.</p></div></div>
-      <div class="install-host"><h3><span class="host-number">02</span>Claude.ai and Cowork</h3><div><p>Download an available plugin ZIP from the <a href="https://github.com/sergey9519546/idea-man/releases" target="_blank" rel="noopener noreferrer">GitHub Releases page</a>, then use Customize / Plugins / Add / Upload plugin and choose the ZIP.</p></div></div>
-      <div class="install-host"><h3><span class="host-number">03</span>Codex</h3><div><p>Add the marketplace, then install from the Plugins Directory:</p><pre><code>codex plugin marketplace add sergey9519546/idea-man --ref main</code></pre><p>Restart the app or start a new session after installing. The Codex plugin directory listing is pending review.</p></div></div>
+    <div class="wrap"><div class="install-top"><div><p class="eyebrow">06 / Install</p><h2 id="install-title">GET Idea-Man.</h2><p class="install-intro">Choose your host. Follow its setup. Bring your first brief.</p></div><div class="install-actions"><a class="button button-dark" href="https://github.com/sergey9519546/idea-man/releases" target="_blank" rel="noopener noreferrer">Get the plugin ZIP <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/sergey9519546/idea-man" target="_blank" rel="noopener noreferrer">View on GitHub <span aria-hidden="true">↗</span></a><p class="small">Free plugin · No in-plugin purchases</p></div></div>
+      <div class="install-hosts" role="group" aria-label="Installation by host">
+        <details class="install-host" name="install-host" open><summary><span class="host-number">01</span><span class="host-name">Claude.ai &amp; Cowork<small>Upload the plugin ZIP</small></span><span class="host-toggle" aria-hidden="true">+</span></summary><div class="host-instructions"><ol class="install-steps"><li><p>Download the plugin ZIP from <a href="https://github.com/sergey9519546/idea-man/releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a>. Choose the plugin asset, rather than GitHub’s source-code archive.</p></li><li><p>Open <strong>Customize → Plugins → Add → Upload plugin</strong> and choose the ZIP. In Cowork, open the Cowork tab first.</p></li><li><p>In a conversation, type <code>/</code> to choose an Idea-Man skill, then send your brief.</p></li></ol><p class="host-note">Requires a paid Claude plan with plugin access.</p></div></details>
+        <details class="install-host" name="install-host"><summary><span class="host-number">02</span><span class="host-name">Claude Code<small>Install from your terminal</small></span><span class="host-toggle" aria-hidden="true">+</span></summary><div class="host-instructions"><ol class="install-steps"><li><p>Add the marketplace and install Idea-Man from your terminal.</p><pre><code>claude plugin marketplace add sergey9519546/idea-man
+claude plugin install idea-man@idea-man-marketplace</code></pre></li><li><p>Start a new Claude Code session. Run <code>/idea-man:creative-director</code> followed by your brief.</p></li></ol></div></details>
+        <details class="install-host" name="install-host"><summary><span class="host-number">03</span><span class="host-name">Codex<small>Add the repository marketplace</small></span><span class="host-toggle" aria-hidden="true">+</span></summary><div class="host-instructions"><ol class="install-steps"><li><p>Add the repository marketplace from your terminal.</p><pre><code>codex plugin marketplace add sergey9519546/idea-man --ref main</code></pre></li><li><p>Restart the desktop app. Open the Plugins Directory, choose the Idea-Man marketplace, and install Idea-Man. In Codex CLI, open <code>/plugins</code>.</p></li><li><p>Start a new chat with Idea-Man enabled, then send your brief.</p></li></ol><p class="host-note">This uses the repository marketplace. A public directory listing is not required.</p></div></details>
+      </div>
       <p class="install-footnote">Compatible host access is required. Your host and connected services may have their own fees. Version v1.2.3.</p>
       <div class="starter"><div><p class="eyebrow">Your first brief</p><p id="starter-prompt">&#8220;A tiny coffee roaster is launching decaf with $5k. Find the insight first, then show me ideas worth making.&#8221;</p></div><button class="button button-dark" type="button" id="copy-starter">Copy prompt <span aria-hidden="true">↗</span></button></div>
     </div>

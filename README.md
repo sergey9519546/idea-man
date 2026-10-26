@@ -135,7 +135,7 @@ codex plugin marketplace add sergey9519546/idea-man --ref main
 
 After registration, open Plugins, install Idea-Man from the registered marketplace, and start a new session. In Codex CLI, open `/plugins`.
 
-<sub><i>Public-directory approval is separate; registering a marketplace alone does not activate the plugin. Marketplace submission remains on hold.</i></sub>
+<sub><i>Public-directory approval is separate; registering a marketplace alone does not activate the plugin. Public marketplace submission is authorized; directory approval is still pending.</i></sub>
 
 </td>
 </tr>
@@ -394,7 +394,7 @@ idea-man/
 
 ## Release and local development
 
-**v1.2.3 is released.** Published ZIPs are listed on [GitHub Releases](https://github.com/sergey9519546/idea-man/releases); installed copies receive changes only through a separate update. Marketplace submission remains on hold.
+**v1.2.3 is released.** Published ZIPs are listed on [GitHub Releases](https://github.com/sergey9519546/idea-man/releases); installed copies receive changes only through a separate update. Public marketplace submission is authorized; directory approval is still pending.
 
 Version 1.2.3 strengthens task-fit routing, evidence and selection checks, recovery, constraint-preserving handoffs and portable project exports. Current goals and constraints come from available context and inspected sources. Authorized local records support return visits; Idea-Man does not recover unseen conversations or guarantee drift-free behavior.
 

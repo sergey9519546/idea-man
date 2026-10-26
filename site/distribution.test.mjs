@@ -29,8 +29,14 @@ for (const repositoryUrl of ['https://github.com/sergey9519546/idea-man', null])
       assert(!html.includes('idea-man-1.2.2.zip'));
       assert(!html.includes('/releases/latest'));
       assert(!html.includes('>Install Idea-Man '));
+      assert(!html.includes('Marketplace listing pending'));
+      assert(!html.includes('listing is pending review'));
       const commands = [...html.matchAll(/<pre><code>([\s\S]*?)<\/code><\/pre>/g)].map(x => x[1]).filter(x => /claude|codex/.test(x));
       if (repositoryUrl) {
+        assert(html.includes('Choose the plugin asset, rather than GitHub’s source-code archive'));
+        assert(html.includes('Requires a paid Claude plan with plugin access'));
+        assert(html.includes('This uses the repository marketplace. A public directory listing is not required.'));
+        assert(html.includes('Restart the desktop app. Open the Plugins Directory'));
         assert.deepEqual(commands, [
           'claude plugin marketplace add sergey9519546/idea-man\nclaude plugin install idea-man@idea-man-marketplace',
           'codex plugin marketplace add sergey9519546/idea-man --ref main'
