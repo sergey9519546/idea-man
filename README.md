@@ -1,45 +1,27 @@
-<div align="center">
-
-<sub><b>AN INNOVATION STUDIO WITH A SIDEKICK SPIRIT &nbsp;·&nbsp; Two characters. One Idea-Man.</b></sub>
-
-<br><br>
+<a id="idea-man"></a>
 
 <a href="https://sergey9519546.github.io/idea-man/">
-  <img src="plugins/idea-man/assets/lightbulb-hero-1024.webp" alt="Idea-Man: a faceless cyan lightbulb in round violet glasses and a coral cape" width="360">
+  <img src=".github/assets/idea-man-hero.webp" alt="Idea-Man — Every big idea needs a sidekick. Insight first. Only ideas worth making. A cyan lightbulb hero with round violet glasses and a coral cape on bright yellow." width="100%">
 </a>
 
-<br>
-
-# Idea-Man
-
-### **Every big idea needs a sidekick.**
-**Insight first. Only ideas worth making.**
-
 <p align="center">
-  <i>Find distinct directions. Sharpen the strongest. Turn it into something you can make.</i>
+  <b>Find distinct directions. Sharpen the strongest. Turn it into something you can make.</b><br>
+  A free innovation plugin for Claude and Codex. Business, engineering, research, everyday life, and creative work.
 </p>
 
-[![Live Studio Site](https://img.shields.io/badge/Idea--Man-LIVE_SITE_%E2%86%97-F6F43C?style=for-the-badge&labelColor=25134D)](https://sergey9519546.github.io/idea-man/)
-[![Claude Code & Cowork](https://img.shields.io/badge/CLAUDE-PLUGIN-4B39F2?style=for-the-badge&labelColor=25134D)](#01--install)
-[![Codex](https://img.shields.io/badge/CODEX-PLUGIN-26D9E6?style=for-the-badge&labelColor=25134D)](#01--install)
-[![Latest Release](https://img.shields.io/github/v/release/sergey9519546/idea-man?style=for-the-badge&label=RELEASE&color=FF5878&labelColor=25134D)](https://github.com/sergey9519546/idea-man/releases/latest)
-[![License: MIT](https://img.shields.io/badge/LICENSE-MIT-F6F43C?style=for-the-badge&labelColor=25134D)](#license)
-
 <p align="center">
-  <a href="https://sergey9519546.github.io/idea-man/"><b>Live Site ↗</b></a> &nbsp;·&nbsp;
-  <a href="#the-promise"><b>The Promise</b></a> &nbsp;·&nbsp;
-  <a href="#01--install"><b>Install</b></a> &nbsp;·&nbsp;
-  <a href="#02--modes"><b>Modes</b></a> &nbsp;·&nbsp;
-  <a href="#03--skills"><b>11 Skills</b></a> &nbsp;·&nbsp;
-  <a href="#04--voice"><b>Voice</b></a> &nbsp;·&nbsp;
-  <a href="#05--character-system"><b>Characters</b></a>
+  <a href="https://sergey9519546.github.io/idea-man/"><b>Explore the site ↗</b></a> &nbsp; / &nbsp;
+  <a href="#01--install"><b>Install Idea-Man</b></a> &nbsp; / &nbsp;
+  <a href="https://github.com/sergey9519546/idea-man/releases/latest"><b>Latest release</b></a>
 </p>
 
-</div>
+<p align="center"><sub>Open source · MIT licensed · 11 skills · 17 thinking methods</sub></p>
 
 ---
 
 ## The Promise
+
+<img src=".github/assets/idea-man-clearer-way.webp" alt="A clearer way forward: Idea-Man draws a tangled yellow line into a straight cyan arrow, illustrating the work of untangling a problem." width="100%">
 
 <table>
 <tr>
