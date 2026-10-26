@@ -1,14 +1,10 @@
 <a id="idea-man"></a>
 
-<a href="https://sergey9519546.github.io/idea-man/">
-  <img src=".github/assets/idea-man-hero.webp" alt="Idea-Man — Every big idea needs a sidekick. A cyan lightbulb hero with round violet glasses and a coral cape on yellow." width="100%">
-</a>
+<p align="center"><a href="https://sergey9519546.github.io/idea-man/"><img src=".github/assets/idea-man-hero-connected.webp" width="100%" align="top" alt="Idea-Man — Every big idea needs a sidekick. The faceless cyan lightbulb hero flies through a looping cyan ribbon on yellow."></a><a href="#01--install"><img src=".github/assets/nav-install.svg" width="25%" height="64" align="top" alt="Install Idea-Man"></a><a href="#02--modes"><img src=".github/assets/nav-modes.svg" width="25%" height="64" align="top" alt="Explore modes"></a><a href="#03--skills"><img src=".github/assets/nav-skills.svg" width="25%" height="64" align="top" alt="Browse skills"></a><a href="https://sergey9519546.github.io/idea-man/"><img src=".github/assets/nav-website.svg" width="25%" height="64" align="top" alt="Visit the website"></a></p>
 
 **Idea-Man is a free innovation plugin for Claude and Codex.** Bring a problem, a rough idea, or something you want to improve. It helps you understand the assignment, find useful approaches, and turn a chosen direction into practical work.
 
 Use it for business, engineering, research, everyday problems, and creative work. Simple requests stay focused; complex ones can combine investigation, analysis, ideas, and verification.
-
-[Install](#01--install) · [Modes](#02--modes) · [Skills](#03--skills) · [Website ↗](https://sergey9519546.github.io/idea-man/)
 
 ## 01 / Install
 
