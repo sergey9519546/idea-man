@@ -65,6 +65,11 @@ elaboration. Do not spend the response on a general framework and leave the requ
 options, calculation or check unfinished. Recheck a prior assistant claim before using
 it as an input; the user's latest supplied facts and attempt control the current turn.
 
+A strict word limit covers every visible message, including progress notes. Reserve
+space for required updates and draft comfortably below the cap; roughly three quarters
+for the final answer is a useful starting allowance. Check the combined total before
+delivery. Exact-format and number-only requests need no optional preface.
+
 ## Specialist map
 
 | Need | Skill or reference |

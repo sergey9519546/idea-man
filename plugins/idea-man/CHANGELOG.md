@@ -1,3 +1,7 @@
+# 1.2.4
+
+Idea-Man 1.2.4 clarifies native Codex activation and enforces a shared response budget across progress notes and the final answer. Existing eleven specialists, seventeen methods, approved artwork and starter prompts are preserved.
+
 # 1.2.3
 
 Idea-Man 1.2.3 strengthens task-fit routing, evidence and selection checks, recovery, constraint-preserving handoffs and portable project exports. Host tools and supplied context determine available execution; no hidden conversation memory is claimed.

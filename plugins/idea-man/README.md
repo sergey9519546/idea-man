@@ -15,14 +15,16 @@ By Sergey Avetisyan. Not endorsed by Anthropic or OpenAI.
 
 - **Claude Code:** `claude plugin marketplace add sergey9519546/idea-man`, then
   `claude plugin install idea-man@idea-man-marketplace`. Run `/idea-man:creative-director <brief>`.
-- **Claude.ai / Cowork:** Customize → Plugins → Add → Upload plugin, then choose a published plugin ZIP from the [GitHub Releases page](https://github.com/sergey9519546/idea-man/releases/latest). Version 1.2.2 is available from GitHub Releases.
+- **Claude.ai / Cowork:** Customize → Plugins → Add → Upload plugin, then choose a published plugin ZIP from the [GitHub Releases page](https://github.com/sergey9519546/idea-man/releases/latest). Use the latest published plugin asset.
 - **Codex:** `codex plugin marketplace add sergey9519546/idea-man --ref main` Then restart the app, choose the Idea-Man marketplace in the Plugins Directory and install it. In Codex CLI, open /plugins. Start a new session before use. Public-directory publication follows a separate review process.
 
 
 ## Start with the job
 
 Use `/idea-man:creative-director <what you want to change>` in Claude Code.
-In other hosts, invoke the installed creative-director skill with your request.
+In Codex, invoke `$idea-man:creative-director` from the installed `idea-man-marketplace` source.
+A bare `$creative-director` may select an unrelated skill with the same name.
+In other hosts, select the Idea-Man innovation conductor with your request.
 Describe the outcome in ordinary language; no mode or thinking method is required.
 
 - **Understand evidence:** "Use these interviews to explain why customers abandon setup.
@@ -121,7 +123,7 @@ identity is not imposed on customer projects. Both approved assets are included.
 
 ## Version and validation
 
-Package version 1.2.3 contains the task-fit, recovery and continuity repairs.
+Package version 1.2.4 contains the task-fit, recovery and continuity repairs.
 Installed copies require an update or reload; public-directory review is separate.
 Mechanical tests, source-conditioned conversation probes, independent grading and host
 initialization checks are separate evidence. They do not establish automatic skill

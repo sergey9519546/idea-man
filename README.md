@@ -135,6 +135,8 @@ codex plugin marketplace add sergey9519546/idea-man --ref main
 
 After registration, open Plugins, install Idea-Man from the registered marketplace, and start a new session. In Codex CLI, open `/plugins`.
 
+Select **Idea-Man - Innovation Conductor**, or start with `$idea-man:creative-director` followed by your task. A bare `$creative-director` can select another skill. If an older Idea-Man marketplace installation exposes the same name, disable that old installation and keep the current one enabled; preserve its files.
+
 <sub><i>Public-directory approval is separate; registering a marketplace alone does not activate the plugin. Public marketplace submission is authorized; directory approval is still pending.</i></sub>
 
 </td>
