@@ -10,7 +10,7 @@ node --check src/app.js
 node verify-live.mjs
 ```
 
-`site-config.json` sets the verified public repository URL, canonical Pages base URL, and release version displayed by installation instructions. releaseStatus distinguishes an unreleased candidate from a GitHub release. Version 1.2.3 is published on GitHub; marketplace submission is authorized; public-directory approval remains pending. Keep releaseStatus=candidate for future unpublished work.
+`site-config.json` sets the verified public repository URL, canonical Pages base URL, and release version displayed by installation instructions. releaseStatus distinguishes an unreleased candidate from a GitHub release. Version 1.2.4 is published on GitHub; marketplace submission is authorized; public-directory approval remains pending. Keep releaseStatus=candidate for future unpublished work.
 
 The public directory listing remains pending unless `marketplacePublicVerified` is explicitly set after actual approval. Repository installation is separate from public-directory approval.
 

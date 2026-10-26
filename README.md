@@ -396,9 +396,9 @@ idea-man/
 
 ## Release and local development
 
-**v1.2.3 is released.** Published ZIPs are listed on [GitHub Releases](https://github.com/sergey9519546/idea-man/releases); installed copies receive changes only through a separate update. Public marketplace submission is authorized; directory approval is still pending.
+**v1.2.4 is released.** Published ZIPs are listed on [GitHub Releases](https://github.com/sergey9519546/idea-man/releases); installed copies receive changes only through a separate update. Public marketplace submission is authorized; directory approval is still pending.
 
-Version 1.2.3 strengthens task-fit routing, evidence and selection checks, recovery, constraint-preserving handoffs and portable project exports. Current goals and constraints come from available context and inspected sources. Authorized local records support return visits; Idea-Man does not recover unseen conversations or guarantee drift-free behavior.
+Version 1.2.4 strengthens task-fit routing, evidence and selection checks, recovery, constraint-preserving handoffs and portable project exports. Current goals and constraints come from available context and inspected sources. Authorized local records support return visits; Idea-Man does not recover unseen conversations or guarantee drift-free behavior.
 
 The optional [candidate contract](plugins/idea-man/skills/creative-director/references/candidate-decisions.md) separates hard requirements, shared mechanisms, tradeoffs and readiness for the specific next commitment. It validates host-supplied judgments and grants no execution authority. Python helpers require Python 3.9+ and only the standard library; ordinary skill use does not require Python.
 
