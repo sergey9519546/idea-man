@@ -1,0 +1,3 @@
+# Idea-Man Python Dependencies
+# Core plugins, test suite, and evaluation tools use Python 3.9+ standard library.
+# No third-party PyPI packages are strictly required for core functionality.

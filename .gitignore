@@ -11,3 +11,8 @@ test-runs/
 release_prepare.py
 # Historical design exploration retained locally, not approved release artwork.
 plugins/idea-man/assets/lightbulb-heroes-reference.png
+
+# Environment files
+.env
+.env.local
+.env.*.local
