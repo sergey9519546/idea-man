@@ -1,0 +1,3 @@
+# Idea-Man Python Dependencies
+# Idea-Man's core evaluation tools and test suites use standard Python 3.9+ library only.
+# No external pip dependencies are required.
