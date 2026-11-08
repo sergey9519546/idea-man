@@ -5,6 +5,9 @@ __pycache__/
 Thumbs.db
 node_modules/
 *.bak
+.env
+.env.*
+!.env.example
 site/dist/
 outputs/
 test-runs/
