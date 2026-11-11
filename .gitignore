@@ -9,5 +9,9 @@ site/dist/
 outputs/
 test-runs/
 release_prepare.py
+.env
+.env.*
+!.env.example
+
 # Historical design exploration retained locally, not approved release artwork.
 plugins/idea-man/assets/lightbulb-heroes-reference.png
